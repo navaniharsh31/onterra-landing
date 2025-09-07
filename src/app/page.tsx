@@ -1,103 +1,119 @@
-import Image from "next/image";
+"use client";
+
+import { HeroSection } from "@/components/content/HeroSection";
+import { StatisticsSection } from "@/components/content/StatisticsSection";
+import { OnterraStandardsSectionNew } from "@/components/content/OnterraStandardsSectionNew";
+import { InvestmentStrategiesSectionNew } from "@/components/content/InvestmentStrategiesSectionNew";
+import { useHeroContent } from "@/hooks/useHeroContent";
+import { useStatisticsContent } from "@/hooks/useStatisticsContent";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const {
+    data: heroContent,
+    isLoading: heroLoading,
+    error: heroError,
+  } = useHeroContent();
+  const {
+    data: statisticsContent,
+    isLoading: statsLoading,
+    error: statsError,
+  } = useStatisticsContent();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const isLoading = heroLoading || statsLoading;
+  const hasError = heroError || statsError;
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen">
+        {/* Hero Section Loading */}
+        <div className="h-screen flex items-center justify-center">
+          <div className="text-center space-y-4">
+            <Skeleton className="h-12 w-96 mx-auto" />
+            <Skeleton className="h-6 w-64 mx-auto" />
+            <Skeleton className="h-10 w-32 mx-auto" />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Other Sections Loading */}
+        <div className="space-y-16">
+          <div className="py-16 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <Skeleton className="h-8 w-64 mx-auto mb-8" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Skeleton key={i} className="h-24 w-full" />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (hasError || !heroContent) {
+    return (
+      <div className="min-h-screen">
+        {/* Hero Section Fallback */}
+        <div className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-gray-900">
+          <div className="max-w-4xl flex items-center px-4 sm:px-6 lg:px-8">
+            {/* Vertical Line Design */}
+            <div className="w-1 bg-blue-500 mr-6 flex-shrink-0 h-24" />
+
+            {/* Text Content */}
+            <div className="flex-1 text-left">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+                Building wealth through{" "}
+                <span className="text-blue-400">strategic</span> real estate
+                investments
+              </h1>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                <a
+                  href="#contact"
+                  className="inline-block bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-white/90 transition-colors font-semibold"
+                >
+                  Get Started
+                </a>
+                <a
+                  href="#about"
+                  className="inline-block border border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-900 transition-colors font-semibold"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Fallback for other sections */}
+        <div className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Content Loading Error
+            </h2>
+            <p className="text-gray-600">
+              Please check your Sanity configuration and try again.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <HeroSection content={heroContent} />
+
+      {/* Statistics Section */}
+      {statisticsContent && <StatisticsSection content={statisticsContent} />}
+
+      {/* Onterra Standards Section */}
+      <OnterraStandardsSectionNew />
+
+      {/* Investment Strategies Section */}
+      <InvestmentStrategiesSectionNew />
     </div>
   );
 }

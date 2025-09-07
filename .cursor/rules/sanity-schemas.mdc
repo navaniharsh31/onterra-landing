@@ -1,0 +1,112 @@
+---
+globs: src/sanity/schemaTypes/*.ts
+description: Sanity schema design patterns and requirements
+---
+
+# Sanity Schema Design Rules
+
+## Schema Design Principles
+
+- **Content-First**: Design schemas based on content needs
+- **Type Safety**: Use proper TypeScript types
+- **Validation**: Implement comprehensive validation rules
+- **Relationships**: Define clear content relationships
+- **Reusability**: Create reusable field groups
+
+## Required Content Types
+
+Based on Onterra's business needs:
+
+### Property Schema
+
+```typescript
+export const property = {
+  name: "property",
+  title: "Property",
+  type: "document",
+  fields: [
+    // Property details
+    { name: "title", type: "string", validation: Rule.required() },
+    { name: "description", type: "text" },
+    { name: "location", type: "string" },
+    { name: "price", type: "number" },
+    { name: "images", type: "array", of: [{ type: "image" }] },
+
+    // Investment details
+    { name: "expectedReturn", type: "number" },
+    { name: "investmentType", type: "string" },
+    {
+      name: "status",
+      type: "string",
+      options: { list: ["available", "sold", "pending"] },
+    },
+  ],
+};
+```
+
+### Team Member Schema
+
+```typescript
+export const teamMember = {
+  name: "teamMember",
+  title: "Team Member",
+  type: "document",
+  fields: [
+    { name: "name", type: "string", validation: Rule.required() },
+    { name: "role", type: "string" },
+    { name: "bio", type: "text" },
+    { name: "photo", type: "image" },
+    { name: "socialLinks", type: "array", of: [{ type: "object" }] },
+  ],
+};
+```
+
+## Field Validation Rules
+
+- **Required Fields**: Use `Rule.required()` for critical fields
+- **String Length**: Set min/max length constraints
+- **Number Ranges**: Define min/max values for numbers
+- **Custom Validation**: Implement business logic validation
+
+## Image Handling
+
+```typescript
+// Image field with optimization
+{
+  name: 'image',
+  type: 'image',
+  options: {
+    hotspot: true // Enable image cropping
+  },
+  fields: [
+    {
+      name: 'alt',
+      type: 'string',
+      title: 'Alt Text',
+      validation: Rule.required()
+    }
+  ]
+}
+```
+
+## Content Relationships
+
+- **References**: Use `type: 'reference'` for relationships
+- **Arrays of References**: For one-to-many relationships
+- **Weak References**: For optional relationships
+
+## Global Settings Schema
+
+```typescript
+export const settings = {
+  name: "settings",
+  title: "Settings",
+  type: "document",
+  fields: [
+    { name: "siteTitle", type: "string" },
+    { name: "siteDescription", type: "text" },
+    { name: "contactEmail", type: "string" },
+    { name: "socialLinks", type: "array", of: [{ type: "object" }] },
+  ],
+};
+```

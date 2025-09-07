@@ -1,0 +1,51 @@
+---
+alwaysApply: true
+description: Core project architecture and development patterns
+---
+
+# Onterra Landing Page - Project Architecture
+
+## Project Overview
+
+This is a Next.js 15 + Sanity CMS project for Onterra Real Estate Investment Firm. Every aspect of the website should be editable through Sanity CMS.
+
+## Core Principles
+
+- **Sanity-First**: All content must be manageable through Sanity CMS
+- **Component-Driven**: Build small, reusable, scalable components
+- **Production Quality**: Enterprise-level code standards
+- **Type Safety**: Full TypeScript implementation
+- **Performance**: Optimized for Core Web Vitals
+
+## Technology Stack
+
+- **Framework**: Next.js 15 with App Router
+- **CMS**: Sanity 4.6.1 (Project ID: jkbyd2en)
+- **Styling**: Tailwind CSS 4 with OKLCH colors
+- **UI**: Shadcn UI components only
+- **State**: Jotai + TanStack Query
+- **Language**: TypeScript 5 (strict mode)
+
+## File Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+├── components/            # Reusable components
+│   ├── ui/               # Shadcn UI components (DO NOT EDIT)
+│   ├── content/          # Sanity content components
+│   ├── layout/           # Layout components
+│   └── forms/            # Form components
+├── lib/
+│   ├── sanity/           # Sanity configuration
+│   └── utils/            # Utility functions
+├── hooks/                # Custom React hooks
+└── sanity/               # Sanity schemas and utilities
+```
+
+## Development Workflow
+
+- **Simultaneous Development**: Next.js dev server + Sanity Studio
+- **Studio Access**: Available at `/studio` route
+- **Content Management**: All content editable through Sanity Studio
+- **Type Generation**: Auto-generate types from Sanity schemas

@@ -1,0 +1,71 @@
+---
+globs: *.ts,*.tsx,*.js,*.jsx
+description: Development workflow and best practices
+---
+
+# Development Workflow Rules
+
+## Simultaneous Development
+
+**Run both Next.js and Sanity Studio simultaneously:**
+
+```bash
+# Terminal 1: Next.js development server
+npm run dev
+
+# Terminal 2: Sanity Studio (if needed separately)
+npm run sanity dev
+```
+
+## Development Process
+
+1. **Schema First**: Define Sanity schema before building components
+2. **Type Generation**: Generate TypeScript types from schemas
+3. **Component Development**: Build components based on schema structure
+4. **Content Integration**: Test with real Sanity content
+5. **Studio Testing**: Verify content updates in Studio
+
+## File Naming Conventions
+
+- **Components**: PascalCase (e.g., `PropertyCard.tsx`)
+- **Hooks**: camelCase with `use` prefix (e.g., `usePropertyData.ts`)
+- **Utilities**: camelCase (e.g., `formatPrice.ts`)
+- **Types**: PascalCase (e.g., `PropertyTypes.ts`)
+
+## Import Organization
+
+```typescript
+// 1. React imports
+import React from "react";
+import { useState, useEffect } from "react";
+
+// 2. Next.js imports
+import Image from "next/image";
+import Link from "next/link";
+
+// 3. Third-party imports
+import { useQuery } from "@tanstack/react-query";
+import { atom } from "jotai";
+
+// 4. Internal imports
+import { client } from "@/sanity/lib/client";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+```
+
+## Git Workflow
+
+- **Feature Branches**: Create branch for each feature
+- **Commit Messages**: Use conventional commits
+- **Pull Requests**: Require review before merge
+- **Testing**: Run tests before committing
+
+## Code Review Checklist
+
+- [ ] TypeScript errors resolved
+- [ ] ESLint warnings addressed
+- [ ] Sanity content integration working
+- [ ] Component reusability maintained
+- [ ] Performance impact considered
+- [ ] Accessibility requirements met
+- [ ] Mobile responsiveness verified

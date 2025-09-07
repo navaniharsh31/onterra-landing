@@ -1,0 +1,159 @@
+---
+globs: *.tsx,*.ts
+description: Component architecture and Shadcn UI usage patterns
+---
+
+# Component Architecture Rules
+
+## Shadcn UI Only
+
+**ONLY use Shadcn UI components from [src/components/ui/](mdc:src/components/ui/). DO NOT EDIT these files.**
+
+## Component Segregation Principles
+
+- **Single Responsibility**: Each component has one clear purpose
+- **Composition over Inheritance**: Build complex components from simple ones
+- **Props Interface**: Always define TypeScript interfaces for props
+- **Forward Refs**: Use `forwardRef` for components that need ref access
+
+## Component Structure
+
+```typescript
+// Component file structure
+interface ComponentNameProps {
+  // Props definition
+  className?: string
+  children?: React.ReactNode
+  // ... other props
+}
+
+export function ComponentName({
+  className,
+  children,
+  ...props
+}: ComponentNameProps) {
+  return (
+    <div className={cn("base-styles", className)} {...props}>
+      {children}
+    </div>
+  )
+}
+```
+
+## Component Categories
+
+### Content Components (`src/components/content/`)
+
+- **PropertyCard**: Display property information
+- **TeamMemberCard**: Show team member details
+- **TestimonialCard**: Display client testimonials
+- **InvestmentOpportunityCard**: Show investment details
+- **BlogPostCard**: Display blog post previews
+
+### Layout Components (`src/components/layout/`)
+
+- **Header**: Navigation and branding
+- **Footer**: Site footer with links
+- **PageLayout**: Page wrapper with metadata
+- **SectionWrapper**: Consistent section spacing
+
+### Form Components (`src/components/forms/`)
+
+- **ContactForm**: Lead capture form
+- **NewsletterSignup**: Email subscription
+- **InvestmentInquiryForm**: Investment inquiry form
+
+## Reusability Guidelines
+
+- **Generic Props**: Use generic types for reusable components
+- **Variant System**: Implement variant-based styling
+- **Composition**: Build complex layouts from simple components
+- **Customization**: Allow customization through props and className
+
+## Tailwind CSS Mobile-First Methodology
+
+### Core Principles
+
+- **Mobile-First**: Always start with mobile styles, then add larger breakpoints
+- **Responsive Design**: Use Tailwind's responsive prefixes (`sm:`, `md:`, `lg:`, `xl:`, `2xl:`)
+- **Progressive Enhancement**: Build up from mobile to desktop
+- **Consistent Spacing**: Use Tailwind's spacing scale consistently
+
+### Breakpoint Strategy
+
+```typescript
+// Mobile-first approach
+<div className="
+  // Mobile styles (default)
+  text-sm p-4 flex flex-col
+
+  // Small screens and up
+  sm:text-base sm:p-6 sm:flex-row
+
+  // Medium screens and up
+  md:text-lg md:p-8
+
+  // Large screens and up
+  lg:text-xl lg:p-10
+
+  // Extra large screens and up
+  xl:text-2xl xl:p-12
+">
+```
+
+### Responsive Patterns
+
+- **Grid Systems**: Use `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
+- **Typography**: Scale text sizes progressively
+- **Spacing**: Increase padding/margins on larger screens
+- **Layout**: Stack on mobile, side-by-side on desktop
+
+### Mobile-First Examples
+
+```typescript
+// Card component - mobile first
+<div className="
+  // Mobile: full width, stacked
+  w-full p-4 space-y-4
+
+  // Tablet: 2 columns
+  sm:w-1/2 sm:p-6
+
+  // Desktop: 3 columns
+  lg:w-1/3 lg:p-8
+">
+
+// Navigation - mobile first
+<nav className="
+  // Mobile: vertical stack
+  flex flex-col space-y-2 p-4
+
+  // Desktop: horizontal row
+  lg:flex-row lg:space-y-0 lg:space-x-6 lg:p-6
+">
+```
+
+### Common Mobile-First Patterns
+
+- **Container**: `container mx-auto px-4 sm:px-6 lg:px-8`
+- **Text Sizing**: `text-sm sm:text-base lg:text-lg`
+- **Spacing**: `p-4 sm:p-6 lg:p-8`
+- **Grid**: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
+- **Flex Direction**: `flex-col sm:flex-row`
+
+### Mobile-First Checklist
+
+- [ ] Start with mobile styles (no prefix)
+- [ ] Add `sm:` for tablet (640px+)
+- [ ] Add `md:` for small desktop (768px+)
+- [ ] Add `lg:` for desktop (1024px+)
+- [ ] Add `xl:` for large desktop (1280px+)
+- [ ] Test on actual devices, not just browser dev tools
+- [ ] Ensure touch targets are at least 44px on mobile
+
+## Performance Optimization
+
+- **Dynamic Imports**: Use for large components
+- **Memoization**: Use `React.memo` for expensive components
+- **Lazy Loading**: Implement for below-the-fold content
+- **Image Optimization**: Use Next.js Image with Sanity images

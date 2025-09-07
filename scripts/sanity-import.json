@@ -1,0 +1,229 @@
+{
+  "heroSection": {
+    "_type": "heroSection",
+    "_id": "hero-section-main",
+    "staticText": "Building wealth through",
+    "rotatingText": ["strategic", "innovative", "proven", "sustainable"],
+    "lineDesign": {
+      "enabled": true,
+      "color": "#3B82F6"
+    },
+    "ctaButtons": [
+      {
+        "text": "Get Started",
+        "url": "#contact",
+        "variant": "primary"
+      },
+      {
+        "text": "Learn More",
+        "url": "#about",
+        "variant": "secondary"
+      }
+    ],
+    "overlayOpacity": 0.4
+  },
+  "statisticsSection": {
+    "_type": "statisticsSection",
+    "_id": "statistics-section-main",
+    "title": "Our Track Record",
+    "statistics": [
+      {
+        "value": "20+",
+        "label": "Years of Real Estate Experience",
+        "suffix": ""
+      },
+      {
+        "value": "$2.5B",
+        "label": "Total Assets Under Management",
+        "suffix": ""
+      },
+      {
+        "value": "500+",
+        "label": "Successful Property Acquisitions",
+        "suffix": ""
+      },
+      {
+        "value": "15%",
+        "label": "Average Annual Returns",
+        "suffix": ""
+      },
+      {
+        "value": "98%",
+        "label": "Client Satisfaction Rate",
+        "suffix": ""
+      }
+    ]
+  },
+  "onterraStandards": {
+    "_type": "onterraStandards",
+    "_id": "onterra-standards-main",
+    "sectionTitle": "Onterra Standards",
+    "subtitle": "Rooted in Discipline",
+    "principles": [
+      {
+        "title": "Due Diligence",
+        "description": "Comprehensive analysis of every investment opportunity",
+        "points": [
+          "Market research and analysis",
+          "Financial modeling and projections",
+          "Risk assessment and mitigation"
+        ],
+        "icon": {
+          "type": "iconify",
+          "value": "mdi:chart-line"
+        }
+      },
+      {
+        "title": "Transparency",
+        "description": "Clear communication and honest reporting",
+        "points": [
+          "Regular performance updates",
+          "Transparent fee structure",
+          "Open communication channels"
+        ],
+        "icon": {
+          "type": "iconify",
+          "value": "mdi:eye"
+        }
+      },
+      {
+        "title": "Risk Management",
+        "description": "Protecting capital through strategic planning",
+        "points": [
+          "Diversified portfolio approach",
+          "Conservative underwriting standards",
+          "Continuous monitoring and adjustment"
+        ],
+        "icon": {
+          "type": "iconify",
+          "value": "mdi:shield-check"
+        }
+      },
+      {
+        "title": "Long-term Vision",
+        "description": "Building sustainable wealth over time",
+        "points": [
+          "Multi-generational wealth building",
+          "Market cycle awareness",
+          "Patient capital deployment"
+        ],
+        "icon": {
+          "type": "iconify",
+          "value": "mdi:timeline-clock"
+        }
+      },
+      {
+        "title": "Innovation",
+        "description": "Leveraging technology and modern strategies",
+        "points": [
+          "Data-driven decision making",
+          "Technology integration",
+          "Process optimization"
+        ],
+        "icon": {
+          "type": "iconify",
+          "value": "mdi:lightbulb"
+        }
+      },
+      {
+        "title": "Partnership",
+        "description": "Collaborative approach with all stakeholders",
+        "points": [
+          "Client-focused solutions",
+          "Vendor relationships",
+          "Community engagement"
+        ],
+        "icon": {
+          "type": "iconify",
+          "value": "mdi:handshake"
+        }
+      }
+    ]
+  },
+  "investmentStrategies": {
+    "_type": "investmentStrategies",
+    "_id": "investment-strategies-main",
+    "sectionTitle": "Investment Strategies",
+    "sectionDescription": "Our comprehensive approach to real estate investment across residential and commercial markets, designed to maximize returns while managing risk.",
+    "categories": [
+      {
+        "categoryName": "Residential",
+        "categoryDescription": "Single-family homes, multi-family properties, and residential developments",
+        "strategies": [
+          {
+            "title": "Single-Family Rentals",
+            "description": "Acquisition and management of individual single-family homes for rental income. We focus on properties in high-demand areas with strong rental yields and appreciation potential. Our approach includes thorough market analysis, property evaluation, and tenant screening to ensure consistent cash flow.",
+            "highlights": [
+              "Target properties in growing markets",
+              "Professional property management",
+              "Regular maintenance and upgrades",
+              "Tenant retention programs"
+            ],
+            "isExpandedByDefault": true
+          },
+          {
+            "title": "Multi-Family Properties",
+            "description": "Investment in apartment buildings and duplexes to achieve economies of scale. We target properties with 2-50 units, focusing on value-add opportunities and operational improvements. This strategy provides diversified income streams and reduced vacancy risk.",
+            "highlights": [
+              "Scalable investment model",
+              "Reduced vacancy risk",
+              "Professional management systems",
+              "Value-add renovation opportunities"
+            ],
+            "isExpandedByDefault": false
+          },
+          {
+            "title": "Residential Development",
+            "description": "Ground-up development of residential communities and subdivisions. We work with experienced developers to create high-quality housing that meets market demand. This strategy offers higher returns but requires longer investment horizons.",
+            "highlights": [
+              "Higher potential returns",
+              "Market timing expertise",
+              "Development partnerships",
+              "Long-term appreciation focus"
+            ],
+            "isExpandedByDefault": false
+          }
+        ]
+      },
+      {
+        "categoryName": "Commercial",
+        "categoryDescription": "Office buildings, retail spaces, industrial properties, and mixed-use developments",
+        "strategies": [
+          {
+            "title": "Office Buildings",
+            "description": "Investment in Class A and B office properties in prime locations. We focus on buildings with strong tenant profiles, long-term leases, and modern amenities. Our strategy includes active asset management to maintain high occupancy rates.",
+            "highlights": [
+              "Long-term lease agreements",
+              "Creditworthy tenants",
+              "Prime location focus",
+              "Professional asset management"
+            ],
+            "isExpandedByDefault": true
+          },
+          {
+            "title": "Retail Properties",
+            "description": "Investment in shopping centers, strip malls, and standalone retail buildings. We target properties with strong anchor tenants and high foot traffic. Our approach includes careful tenant mix planning and regular property improvements.",
+            "highlights": [
+              "Anchor tenant stability",
+              "High foot traffic locations",
+              "Diverse tenant mix",
+              "Regular property improvements"
+            ],
+            "isExpandedByDefault": false
+          },
+          {
+            "title": "Industrial Properties",
+            "description": "Investment in warehouses, distribution centers, and manufacturing facilities. We focus on properties with modern infrastructure, good transportation access, and flexible layouts. This asset class offers stable income and growth potential.",
+            "highlights": [
+              "Modern infrastructure",
+              "Transportation access",
+              "Flexible space configurations",
+              "E-commerce growth driver"
+            ],
+            "isExpandedByDefault": false
+          }
+        ]
+      }
+    ]
+  }
+}

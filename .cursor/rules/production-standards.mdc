@@ -1,0 +1,78 @@
+---
+alwaysApply: true
+description: Production-level code quality and standards
+---
+
+# Production Quality Standards
+
+## Code Quality Requirements
+
+- **TypeScript Strict Mode**: Zero TypeScript errors allowed
+- **ESLint Compliance**: All code must pass ESLint checks
+- **Performance**: Core Web Vitals scores > 90
+- **Accessibility**: WCAG 2.1 AA compliance
+- **SEO**: Lighthouse SEO score > 95
+
+## TypeScript Standards
+
+```typescript
+// Always use strict typing
+interface StrictProps {
+  required: string;
+  optional?: number;
+  children: React.ReactNode;
+}
+
+// Use proper error handling
+function safeFunction(): Result<Data, Error> {
+  try {
+    // Implementation
+  } catch (error) {
+    return { success: false, error };
+  }
+}
+```
+
+## Error Handling
+
+- **Error Boundaries**: Implement for all major sections
+- **Graceful Degradation**: Handle missing content gracefully
+- **User Feedback**: Provide clear error messages
+- **Logging**: Implement proper error logging
+
+## Performance Standards
+
+- **Bundle Size**: Keep components under 50KB
+- **Load Time**: < 3 seconds on 3G
+- **Image Optimization**: Use Next.js Image with Sanity
+- **Code Splitting**: Implement for large components
+
+## Mobile-First Standards
+
+- **Responsive Design**: All components must be mobile-first
+- **Touch Targets**: Minimum 44px touch targets on mobile
+- **Performance**: Optimize for mobile performance first
+- **Testing**: Test on actual mobile devices, not just browser dev tools
+- **Breakpoints**: Use Tailwind's responsive prefixes consistently
+- **Progressive Enhancement**: Build up from mobile to desktop
+
+## Security Standards
+
+- **Environment Variables**: Never expose sensitive data
+- **Input Validation**: Validate all user inputs
+- **XSS Prevention**: Sanitize all dynamic content
+- **CSRF Protection**: Implement for forms
+
+## Testing Requirements
+
+- **Unit Tests**: Test all utility functions
+- **Component Tests**: Test component behavior
+- **Integration Tests**: Test Sanity integration
+- **E2E Tests**: Test critical user flows
+
+## Documentation Standards
+
+- **JSDoc Comments**: Document all public functions
+- **README Files**: Maintain up-to-date documentation
+- **Type Definitions**: Clear and comprehensive types
+- **Code Comments**: Explain complex logic

@@ -1,0 +1,65 @@
+---
+globs: *.ts,*.tsx
+description: Sanity CMS integration patterns and requirements
+---
+
+# Sanity CMS Integration Rules
+
+## Core Requirement
+
+**Every piece of content on the website MUST be editable through Sanity CMS.** No hardcoded content allowed.
+
+## Sanity Client Usage
+
+Always use the configured client from [src/sanity/lib/client.ts](mdc:src/sanity/lib/client.ts):
+
+```typescript
+import { client } from "@/sanity/lib/client";
+```
+
+## Content Fetching Patterns
+
+- **Custom Hooks**: Create custom hooks for each content type
+- **TanStack Query**: Use for caching and synchronization
+- **Error Handling**: Implement proper error boundaries
+- **Loading States**: Consistent loading state management
+
+## Schema-First Development
+
+1. **Define Schema**: Create Sanity schema first
+2. **Generate Types**: Use Sanity's type generation
+3. **Build Components**: Create components based on schema structure
+4. **Test Integration**: Verify content updates in Studio
+
+## Content Component Structure
+
+```typescript
+// Example content component
+interface ContentComponentProps {
+  content: SanityDocument; // Generated from schema
+  className?: string;
+}
+
+export function ContentComponent({
+  content,
+  className,
+}: ContentComponentProps) {
+  // Component implementation
+}
+```
+
+## Image Handling
+
+Always use Sanity's image URL builder:
+
+```typescript
+import { urlFor } from "@/sanity/lib/image";
+```
+
+## Environment Variables
+
+Required Sanity environment variables:
+
+- `NEXT_PUBLIC_SANITY_PROJECT_ID`
+- `NEXT_PUBLIC_SANITY_DATASET`
+- `NEXT_PUBLIC_SANITY_API_VERSION`
