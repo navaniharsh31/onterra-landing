@@ -1,178 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { InvestmentFlowChart } from "./InvestmentFlowChart";
 import { StrategyDetailPanel } from "./StrategyDetailPanel";
-
-// Dummy data structure for the new design
-const strategiesData = {
-  sectionTitle: "Investment Strategies",
-  sectionDescription:
-    "Our comprehensive approach to real estate investment spanning residential and commercial markets, designed to maximize returns while managing risk through diversified property portfolios.",
-
-  strategies: [
-    {
-      id: "multi-family",
-      title: "Multi-Family Properties",
-      category: "residential",
-      level: 0,
-      index: 0,
-      description:
-        "Strategic investments in apartment complexes and multi-unit residential properties that provide stable cash flow through rental income. We focus on properties with strong fundamentals in growing markets with favorable demographic trends.",
-      keyPoints: [
-        "Stable monthly cash flow from multiple units",
-        "Economies of scale in property management",
-        "Appreciation potential in growing markets",
-        "Lower vacancy risk through unit diversification",
-      ],
-      metrics: {
-        averageReturn: "8-12%",
-        holdPeriod: "5-7 years",
-        minInvestment: "$500K",
-      },
-      isSelectable: true,
-    },
-    {
-      id: "single-family",
-      title: "Single-Family Homes",
-      category: "residential",
-      level: 0,
-      index: 1,
-      description:
-        "Carefully selected single-family rental properties in high-demand neighborhoods. Our strategy focuses on properties that attract quality tenants and offer strong appreciation potential through strategic improvements and market timing.",
-      keyPoints: [
-        "Strong rental demand from families",
-        "Easier property management and maintenance",
-        "Attractive to owner-occupants for future sale",
-        "Potential for value-add improvements",
-      ],
-      metrics: {
-        averageReturn: "6-10%",
-        holdPeriod: "3-5 years",
-        minInvestment: "$200K",
-      },
-      isSelectable: true,
-    },
-    {
-      id: "student-housing",
-      title: "Student Housing",
-      category: "residential",
-      level: 0,
-      index: 2,
-      description:
-        "Purpose-built student accommodation near major universities and colleges. These properties benefit from consistent demand, higher rental rates per square foot, and long-term stability tied to educational institution growth.",
-      keyPoints: [
-        "Higher rental rates per square foot",
-        "Consistent demand tied to university enrollment",
-        "Parental guarantees reduce payment risk",
-        "Opportunity for premium amenities and services",
-      ],
-      metrics: {
-        averageReturn: "10-14%",
-        holdPeriod: "7-10 years",
-        minInvestment: "$750K",
-      },
-      isSelectable: true,
-    },
-    {
-      id: "residential",
-      title: "Residential",
-      category: "main-category",
-      level: 1,
-      index: 0,
-      description: "",
-      keyPoints: [] as string[],
-      metrics: {} as Record<string, string>,
-      isSelectable: false,
-    },
-    {
-      id: "commercial",
-      title: "Commercial",
-      category: "main-category",
-      level: 2,
-      index: 0,
-      description: "",
-      keyPoints: [] as string[],
-      metrics: {} as Record<string, string>,
-      isSelectable: false,
-    },
-    {
-      id: "office-buildings",
-      title: "Office Buildings",
-      category: "commercial",
-      level: 3,
-      index: 0,
-      description:
-        "Class A and B office buildings in central business districts and suburban office parks. We target buildings with stable tenant bases, modern amenities, and potential for rental growth through strategic capital improvements.",
-      keyPoints: [
-        "Focus on Class A and B office properties",
-        "Central business district and suburban locations",
-        "Long-term lease agreements with corporate tenants",
-        "Strategic capital improvement programs",
-      ],
-      metrics: {
-        averageReturn: "7-10%",
-        holdPeriod: "5-8 years",
-        minInvestment: "$1M+",
-      },
-      isSelectable: true,
-    },
-    {
-      id: "retail-spaces",
-      title: "Retail Spaces",
-      category: "commercial",
-      level: 3,
-      index: 1,
-      description:
-        "Strategic retail investments in neighborhood shopping centers, strip malls, and standalone retail buildings. We focus on properties with strong demographics, high traffic counts, and tenants that provide essential services to local communities.",
-      keyPoints: [
-        "Neighborhood shopping centers and strip malls",
-        "Essential service tenants (grocery, pharmacy, services)",
-        "High traffic count locations",
-        "Strong local demographic fundamentals",
-      ],
-      metrics: {
-        averageReturn: "8-12%",
-        holdPeriod: "7-10 years",
-        minInvestment: "$750K",
-      },
-      isSelectable: true,
-    },
-  ],
-
-  flowStructure: {
-    levels: [
-      {
-        level: 0,
-        nodes: ["multi-family", "single-family", "student-housing"],
-        parentId: "residential",
-        title: "Property Types",
-      },
-      {
-        level: 1,
-        nodes: ["residential"],
-        parentId: null,
-        childId: "commercial",
-        title: "Asset Categories",
-      },
-      {
-        level: 2,
-        nodes: ["commercial"],
-        parentId: "residential",
-        childIds: ["office-buildings", "retail-spaces"],
-        title: "Commercial Sectors",
-      },
-      {
-        level: 3,
-        nodes: ["office-buildings", "retail-spaces"],
-        parentId: "commercial",
-        title: "Investment Types",
-      },
-    ],
-  },
-};
+import { useInvestmentStrategiesContentNew } from "@/hooks/useInvestmentStrategiesContentNew";
 
 interface InvestmentStrategiesSectionNewProps {
   className?: string;
@@ -181,18 +14,30 @@ interface InvestmentStrategiesSectionNewProps {
 export function InvestmentStrategiesSectionNew({
   className,
 }: InvestmentStrategiesSectionNewProps) {
+  const {
+    data: sanityData,
+    isLoading,
+    error,
+  } = useInvestmentStrategiesContentNew();
+
   // Filter out main category nodes for selection
-  const selectableStrategies = strategiesData.strategies.filter(
-    (s) => s.isSelectable !== false
+  const selectableStrategies = useMemo(
+    () => sanityData?.strategies.filter((s) => s.isSelectable !== false) || [],
+    [sanityData?.strategies]
   );
 
-  const [activeStrategy, setActiveStrategy] = useState<
-    (typeof strategiesData.strategies)[0] | null
-  >(selectableStrategies[0]); // Default to first selectable strategy
+  const [activeStrategy, setActiveStrategy] = useState<any | null>(null);
   const [isAutoMode, setIsAutoMode] = useState(true);
-  const [_, setCurrentIndex] = useState(0);
+  const [, setCurrentIndex] = useState(0);
 
-  // Auto-selection logic - cycle through selectable strategies every 5 seconds
+  // Initialize active strategy when data loads
+  useEffect(() => {
+    if (selectableStrategies.length > 0 && !activeStrategy) {
+      setActiveStrategy(selectableStrategies[0]);
+    }
+  }, [selectableStrategies, activeStrategy]);
+
+  // Auto-selection logic - cycle through selectable strategies every 10 seconds
   useEffect(() => {
     if (!isAutoMode || selectableStrategies.length === 0) return;
 
@@ -207,9 +52,7 @@ export function InvestmentStrategiesSectionNew({
     return () => clearInterval(interval);
   }, [isAutoMode, selectableStrategies]);
 
-  const handleStrategySelect = (
-    strategy: (typeof strategiesData.strategies)[0]
-  ) => {
+  const handleStrategySelect = (strategy: any) => {
     // Don't allow selection of main category nodes
     if (strategy.isSelectable === false) return;
 
@@ -222,61 +65,336 @@ export function InvestmentStrategiesSectionNew({
     setTimeout(() => setIsAutoMode(true), 10000);
   };
 
+  // Premium Loading state
+  if (isLoading) {
+    return (
+      <section
+        className={cn(
+          "relative section-full-height flex items-center overflow-hidden",
+          className
+        )}
+      >
+        {/* Premium Loading Background - Light Mode */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">
+          <div className="absolute inset-0 opacity-[0.12]">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `linear-gradient(rgba(71,85,105,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(71,85,105,0.3) 1px, transparent 1px)`,
+                backgroundSize: "60px 60px",
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16">
+          <div className="text-center mb-16">
+            <div className="h-16 bg-gradient-to-r from-slate-200/60 to-slate-100/60 rounded-xs mb-6 animate-pulse backdrop-blur-sm" />
+            <div className="h-8 bg-gradient-to-r from-slate-100/40 to-slate-50/40 rounded-xs max-w-4xl mx-auto animate-pulse backdrop-blur-sm" />
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-slate-300/40 to-transparent mx-auto mt-6" />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="w-full h-80 bg-gradient-to-br from-slate-100/30 to-slate-50/30 rounded-xs animate-pulse backdrop-blur-xl" />
+            </div>
+            <div className="lg:col-span-7 flex items-center justify-center">
+              <div className="w-full max-w-2xl h-80 bg-gradient-to-br from-slate-900/90 to-slate-800/85 rounded-xs animate-pulse backdrop-blur-xl border border-slate-700/40" />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Premium Error state or no data
+  if (error || !sanityData) {
+    return (
+      <section
+        className={cn(
+          "relative section-full-height flex items-center overflow-hidden",
+          className
+        )}
+      >
+        {/* Premium Error Background - Light Mode */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">
+          <div className="absolute inset-0 opacity-[0.12]">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `linear-gradient(rgba(71,85,105,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(71,85,105,0.3) 1px, transparent 1px)`,
+                backgroundSize: "60px 60px",
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16">
+          <div className="text-center">
+            {/* Professional Error Container - Light Background with Dark Panel Style */}
+            <div className="relative max-w-2xl mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-slate-900/95 backdrop-blur-xl rounded-xs border border-slate-700/40 shadow-[0_24px_64px_rgba(0,0,0,0.4)]" />
+              <div className="relative z-10 p-12">
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-red-400/60 to-transparent mx-auto mb-8" />
+
+                <h2 className="text-3xl font-light text-white mb-6">
+                  {error ? "Content Unavailable" : "Configuration Required"}
+                </h2>
+
+                <p className="text-slate-300 mb-8 leading-relaxed">
+                  {error
+                    ? "We're experiencing difficulty retrieving investment strategies data. Our technical team has been notified."
+                    : "Investment strategies content is currently being configured in our content management system."}
+                </p>
+
+                <div className="text-sm text-slate-400 bg-slate-800/30 rounded-xs px-6 py-4 border border-slate-700/30">
+                  Please contact our technical support team or try again
+                  shortly.
+                </div>
+
+                <div className="w-16 h-px bg-gradient-to-r from-transparent via-slate-400/30 to-transparent mx-auto mt-8" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
       className={cn(
-        "min-h-screen bg-white flex items-center justify-center",
+        "relative section-full-height flex items-center overflow-hidden",
         className
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full ">
-        {/* Section Header */}
+      {/* Premium Light Background - ENHANCED VISIBILITY */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">
+        {/* Optional Subtle Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.12]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `linear-gradient(rgba(71,85,105,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(71,85,105,0.3) 1px, transparent 1px)`,
+              backgroundSize: "60px 60px",
+            }}
+          />
+        </div>
+
+        {/* Dynamic Bouncing Gradient Orbs */}
+
+        {/* Blue Orb - EXTRA LARGE SIZE, VERY SUBTLE */}
+        <motion.div
+          className="absolute w-96 h-96 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 40%, transparent 70%)",
+          }}
+          animate={{
+            x: [
+              "calc(20vw - 192px)",
+              "calc(80vw - 192px)",
+              "calc(80vw - 192px)",
+              "calc(20vw - 192px)",
+              "calc(20vw - 192px)",
+            ],
+            y: [
+              "calc(20vh - 192px)",
+              "calc(20vh - 192px)",
+              "calc(80vh - 192px)",
+              "calc(80vh - 192px)",
+              "calc(20vh - 192px)",
+            ],
+          }}
+          transition={{
+            duration: 24,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Slate Orb - EXTRA LARGE SIZE, VERY SUBTLE */}
+        <motion.div
+          className="absolute w-80 h-80 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(100, 116, 139, 0.06) 0%, rgba(100, 116, 139, 0.03) 50%, transparent 70%)",
+          }}
+          animate={{
+            x: [
+              "calc(10vw - 160px)",
+              "calc(50vw - 160px)",
+              "calc(90vw - 160px)",
+              "calc(50vw - 160px)",
+              "calc(10vw - 160px)",
+            ],
+            y: [
+              "calc(50vh - 160px)",
+              "calc(10vh - 160px)",
+              "calc(50vh - 160px)",
+              "calc(90vh - 160px)",
+              "calc(50vh - 160px)",
+            ],
+          }}
+          transition={{
+            duration: 28,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Purple Orb - EXTRA LARGE SIZE, VERY SUBTLE */}
+        <motion.div
+          className="absolute w-[28rem] h-[28rem] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0.02) 45%, transparent 65%)",
+          }}
+          animate={{
+            x: [
+              "calc(0vw)",
+              "calc(25vw - 224px)",
+              "calc(50vw - 224px)",
+              "calc(75vw - 224px)",
+              "calc(100vw - 448px)",
+              "calc(75vw - 224px)",
+              "calc(50vw - 224px)",
+              "calc(25vw - 224px)",
+              "calc(0vw)",
+            ],
+            y: [
+              "calc(50vh - 224px)",
+              "calc(25vh - 224px)",
+              "calc(50vh - 224px)",
+              "calc(75vh - 224px)",
+              "calc(50vh - 224px)",
+              "calc(25vh - 224px)",
+              "calc(50vh - 224px)",
+              "calc(75vh - 224px)",
+              "calc(50vh - 224px)",
+            ],
+          }}
+          transition={{
+            duration: 32,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16">
+        {/* Premium Section Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            {strategiesData.sectionTitle}
-          </h2>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
-            {strategiesData.sectionDescription}
-          </p>
-        </motion.div>
-
-        {/* Split-Screen Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-32 items-center">
-          {/* Left Panel - Flow Chart Tree */}
+          {/* Professional Title with Sophisticated Styling */}
           <motion.div
-            className="lg:col-span-2 flex justify-center"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <InvestmentFlowChart
-              strategies={strategiesData.strategies}
-              flowStructure={strategiesData.flowStructure}
-              activeStrategy={activeStrategy}
-              onStrategySelect={handleStrategySelect}
-              className="w-full max-w-lg"
-            />
-          </motion.div>
-
-          {/* Right Panel - Strategy Detail */}
-          <motion.div
-            className="lg:col-span-3 flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            className="relative mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <StrategyDetailPanel
-              strategy={activeStrategy}
-              className="w-full max-w-2xl"
-            />
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
+              <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-700 bg-clip-text text-transparent">
+                {sanityData.sectionTitle}
+              </span>
+            </h2>
+
+            {/* Subtle Professional Glow */}
+            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-transparent via-blue-500/8 to-transparent rounded-2xl blur-xl -z-10" />
+          </motion.div>
+
+          {/* Premium Subtitle */}
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
+              {sanityData.sectionDescription}
+            </p>
+
+            {/* Professional Bottom Accent */}
+            <div className="w-48 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent mx-auto mt-6" />
+          </motion.div>
+        </motion.div>
+
+        {/* Premium Split-Screen Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          {/* Left Panel - Clean Flow Chart */}
+          <motion.div
+            className="lg:col-span-5 flex justify-center"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            {/* Clean Flow Chart Container - No Background */}
+            <div className="w-full">
+              <InvestmentFlowChart
+                strategies={sanityData.strategies}
+                flowStructure={sanityData.flowStructure}
+                activeStrategy={activeStrategy}
+                onStrategySelect={handleStrategySelect}
+                className="w-full"
+              />
+            </div>
+          </motion.div>
+
+          {/* Right Panel - Premium Strategy Detail */}
+          <motion.div
+            className="lg:col-span-7 flex items-center justify-center"
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            {/* Sophisticated Strategy Panel Container - Premium Dark Theme */}
+            <div className="relative w-full max-w-2xl">
+              {/* Premium Glass Morphism Background - Dark Theme */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-slate-900/95 backdrop-blur-xl rounded-xs border border-slate-700/40 shadow-[0_24px_64px_rgba(0,0,0,0.4)]" />
+
+              {/* Professional Gradient Overlay - Dark Theme */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-slate-800/30 rounded-xs" />
+
+              {/* Sophisticated Border Treatment - Dark Theme */}
+              <div className="absolute inset-0 ring-1 ring-inset ring-slate-600/30 rounded-xs" />
+
+              {/* Premium Corner Accents - Dark Theme */}
+              <div className="absolute -top-px -left-px w-8 h-8 bg-gradient-to-br from-blue-400/25 to-transparent rounded-tl-xs" />
+              <div className="absolute -bottom-px -right-px w-8 h-8 bg-gradient-to-br from-slate-400/15 to-transparent rounded-br-xs" />
+
+              {/* Professional Accent Points - Dark Theme */}
+              <div className="absolute top-4 right-4 w-1.5 h-1.5 bg-blue-400/70 rounded-full blur-[0.5px]" />
+              <div className="absolute bottom-4 left-4 w-2 h-2 bg-slate-400/50 rounded-full blur-[0.5px]" />
+
+              {/* Premium Edge Highlights */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-500/40 to-transparent" />
+              <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-slate-500/30 to-transparent" />
+
+              {/* Content */}
+              <div className="relative z-10 p-8 lg:p-12">
+                <StrategyDetailPanel
+                  strategy={activeStrategy}
+                  className="w-full"
+                />
+              </div>
+
+              {/* Sophisticated Professional Glow - Dark Theme */}
+              <div className="absolute -inset-3 bg-gradient-to-br from-blue-500/15 via-slate-700/10 to-slate-600/15 rounded-xs blur-2xl -z-10 opacity-80" />
+
+              {/* Premium Inner Shadow - Dark Theme */}
+              <div className="absolute inset-0 shadow-inner shadow-slate-950/40 rounded-xs pointer-events-none" />
+
+              {/* Subtle Premium Texture */}
+              <div className="absolute inset-0 opacity-[0.03] bg-gradient-to-br from-slate-400 to-slate-600 rounded-xs mix-blend-overlay pointer-events-none" />
+            </div>
           </motion.div>
         </div>
       </div>

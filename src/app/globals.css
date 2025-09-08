@@ -124,6 +124,24 @@
     @apply bg-background text-foreground font-sans;
   }
 
+  /* Header height variables for full-screen sections */
+  :root {
+    /* Header height variables */
+    --header-height-mobile: 4rem; /* 64px */
+    --header-height-desktop: 5rem; /* 80px */
+
+    /* Content height calculations */
+    --content-height: calc(100vh - var(--header-height-mobile));
+    --content-min-height: calc(100vh - var(--header-height-mobile));
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --content-height: calc(100vh - var(--header-height-desktop));
+      --content-min-height: calc(100vh - var(--header-height-desktop));
+    }
+  }
+
   /* Typography improvements */
   h1,
   h2,
@@ -150,3 +168,48 @@
     @apply leading-relaxed;
   }
 }
+
+@layer utilities {
+  /* Header-aware height utilities */
+  .h-screen-header {
+    height: var(--content-height);
+  }
+
+  .min-h-screen-header {
+    min-height: var(--content-min-height);
+  }
+
+  .max-h-screen-header {
+    max-height: var(--content-height);
+  }
+
+  /* Combined utilities for sections */
+  .section-full-height {
+    min-height: var(--content-min-height);
+    max-height: var(--content-height);
+  }
+
+  /* Header height utilities */
+  .header-height {
+    height: var(--header-height-mobile);
+  }
+
+  @media (min-width: 1024px) {
+    .header-height {
+      height: var(--header-height-desktop);
+    }
+  }
+
+  /* Menu positioning utilities */
+  .menu-top-positioned {
+    top: calc(var(--header-height-mobile) - 1px);
+  }
+
+  @media (min-width: 1024px) {
+    .menu-top-positioned {
+      top: calc(var(--header-height-desktop) - 1px);
+    }
+  }
+}
+
+/* Premium Background Animations - Now handled by Framer Motion */

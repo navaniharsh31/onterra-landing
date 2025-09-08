@@ -35,9 +35,9 @@ export function HeroSection({ content, className }: HeroSectionProps) {
     ctaButtons,
     overlayOpacity = 0.4,
   } = content;
-
+  console.log("backgroundVideos", backgroundVideos);
   return (
-    <FullScreenSection className={className}>
+    <FullScreenSection withHeader={false} className={className}>
       <MultiVideoBackground videos={backgroundVideos || []} />
       <HeroOverlay opacity={overlayOpacity} />
       <HeroContent

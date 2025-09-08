@@ -109,11 +109,12 @@ export default function Home() {
       {/* Statistics Section */}
       {statisticsContent && <StatisticsSection content={statisticsContent} />}
 
+      <InvestmentStrategiesSectionNew />
+
       {/* Onterra Standards Section */}
       <OnterraStandardsSectionNew />
 
       {/* Investment Strategies Section */}
-      <InvestmentStrategiesSectionNew />
     </div>
   );
 }

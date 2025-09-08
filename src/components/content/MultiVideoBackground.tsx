@@ -19,6 +19,10 @@ export function MultiVideoBackground({
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Debug logging
+  console.log("MultiVideoBackground - videos:", videos);
+  console.log("MultiVideoBackground - videos.length:", videos?.length);
+
   useEffect(() => {
     if (videos.length <= 1) return;
 
@@ -29,14 +33,25 @@ export function MultiVideoBackground({
     return () => clearInterval(interval);
   }, [videos.length]);
 
-  if (!videos || videos.length === 0) return null;
+  if (!videos || videos.length === 0) {
+    console.log("MultiVideoBackground - No videos available");
+    return null;
+  }
 
   const currentVideo = videos[currentVideoIndex];
+  console.log("MultiVideoBackground - currentVideo:", currentVideo);
 
-  if (!currentVideo?.asset?.url) return null;
+  if (!currentVideo?.asset?.url) {
+    console.log("MultiVideoBackground - No video URL available");
+    return null;
+  }
 
   return (
     <div className={cn("absolute inset-0 w-full h-full", className)}>
+      {/* Fallback gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" />
+
+      {/* Video elements */}
       {videos.map((video, index) => (
         <video
           key={index}
@@ -48,7 +63,13 @@ export function MultiVideoBackground({
           muted
           loop
           playsInline
-          onLoadedData={() => setIsLoaded(true)}
+          onLoadedData={() => {
+            console.log(`Video ${index} loaded successfully`);
+            setIsLoaded(true);
+          }}
+          onError={(e) => {
+            console.error(`Video ${index} failed to load:`, e);
+          }}
           style={{ display: index === currentVideoIndex ? "block" : "none" }}
         >
           <source src={video.asset?.url} type="video/mp4" />

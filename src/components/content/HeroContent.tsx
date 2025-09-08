@@ -43,18 +43,26 @@ export function HeroContent({
         {/* Text Content */}
         <div className="flex-1">
           <AnimatedSection animation="slideInLeft" delay={200}>
-            <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-              {/* Static Text - stays on one line */}
-              <div className="whitespace-nowrap">{staticText}</div>
+            {/* Institutional-Grade Typography */}
+            <div className="relative my-4">
+              {/* Premium Static Text */}
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight tracking-tight">
+                <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent whitespace-nowrap">
+                  {staticText}
+                </span>
+              </div>
 
-              {/* Rotating Text - below static text */}
-              <div className="text-blue-400">
+              {/* Premium Rotating Text */}
+              <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight">
                 <RotatingText
                   words={rotatingText}
                   className="text-blue-400"
                   animationDuration={3000}
                 />
               </div>
+
+              {/* Subtle Professional Glow */}
+              <div className="absolute -inset-x-6 -inset-y-4 bg-gradient-to-r from-transparent via-white/8 to-transparent rounded-3xl blur-2xl -z-10" />
             </div>
           </AnimatedSection>
 

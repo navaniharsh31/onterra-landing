@@ -26,6 +26,229 @@ const client = createClient({
 
 // Sample content data
 const contentData = {
+  footerSettings: {
+    _type: "footerSettings",
+    _id: "footer-settings-main",
+    title: "Footer Settings",
+    company: {
+      name: "Onterra Capital",
+      tagline: "Your trusted partner in real estate investment opportunities",
+      logo: null, // Will be set manually in Sanity Studio
+    },
+    contact: {
+      address: {
+        street: "1234 Investment Boulevard, Suite 500",
+        city: "New York",
+        state: "NY",
+        zipCode: "10001",
+        country: "United States",
+      },
+      phone: "+1 (555) 123-4567",
+      email: "info@onterracapital.com",
+      businessHours: "Monday - Friday, 9:00 AM - 6:00 PM EST",
+    },
+    socialMedia: [
+      {
+        platform: "linkedin",
+        url: "https://linkedin.com/company/onterra-capital",
+        label: "Follow Onterra Capital on LinkedIn",
+      },
+      {
+        platform: "twitter",
+        url: "https://twitter.com/onterracapital",
+        label: "Follow Onterra Capital on Twitter",
+      },
+      {
+        platform: "youtube",
+        url: "https://youtube.com/onterracapital",
+        label: "Subscribe to Onterra Capital on YouTube",
+      },
+      {
+        platform: "newsletter",
+        url: "/newsletter",
+        label: "Subscribe to our newsletter",
+      },
+    ],
+    legal: {
+      copyrightText: "© 2024 Onterra Capital. All rights reserved.",
+      legalLinks: [
+        {
+          title: "Privacy Policy",
+          url: "/privacy-policy",
+        },
+        {
+          title: "Terms of Service",
+          url: "/terms-of-service",
+        },
+        {
+          title: "Investment Disclaimer",
+          url: "/disclaimer",
+        },
+        {
+          title: "Regulatory Information",
+          url: "/regulatory",
+        },
+      ],
+    },
+    seo: {
+      organizationSchema: true,
+      foundingDate: "2010-01-15",
+      industry: "Real Estate Investment",
+    },
+  },
+
+  footerNavigation: {
+    _type: "footerNavigation",
+    _id: "footer-navigation-main",
+    title: "Footer Navigation",
+    linkSections: [
+      {
+        sectionTitle: "Company",
+        sectionOrder: 1,
+        links: [
+          {
+            title: "About Us",
+            url: "/about",
+            isExternal: false,
+            description: "Learn about our company and mission",
+            order: 1,
+          },
+          {
+            title: "Our Team",
+            url: "/team",
+            isExternal: false,
+            description: "Meet our experienced professionals",
+            order: 2,
+          },
+          {
+            title: "Careers",
+            url: "/careers",
+            isExternal: false,
+            description: "Join our growing team",
+            order: 3,
+          },
+          {
+            title: "News & Updates",
+            url: "/news",
+            isExternal: false,
+            description: "Latest company news and announcements",
+            order: 4,
+          },
+        ],
+      },
+      {
+        sectionTitle: "Services",
+        sectionOrder: 2,
+        links: [
+          {
+            title: "Investment Management",
+            url: "/services/investment-management",
+            isExternal: false,
+            description: "Professional investment management services",
+            order: 1,
+          },
+          {
+            title: "Property Development",
+            url: "/services/development",
+            isExternal: false,
+            description: "Real estate development projects",
+            order: 2,
+          },
+          {
+            title: "Portfolio Management",
+            url: "/services/portfolio",
+            isExternal: false,
+            description: "Comprehensive portfolio management",
+            order: 3,
+          },
+          {
+            title: "Consultation",
+            url: "/services/consultation",
+            isExternal: false,
+            description: "Expert real estate investment advice",
+            order: 4,
+          },
+        ],
+      },
+      {
+        sectionTitle: "Resources",
+        sectionOrder: 3,
+        links: [
+          {
+            title: "Market Reports",
+            url: "/resources/reports",
+            isExternal: false,
+            description: "Comprehensive market analysis and reports",
+            order: 1,
+          },
+          {
+            title: "Investment Analysis",
+            url: "/resources/analysis",
+            isExternal: false,
+            description: "Detailed investment opportunity analysis",
+            order: 2,
+          },
+          {
+            title: "Market Trends",
+            url: "/resources/trends",
+            isExternal: false,
+            description: "Current real estate market trends",
+            order: 3,
+          },
+          {
+            title: "FAQ",
+            url: "/faq",
+            isExternal: false,
+            description: "Frequently asked questions",
+            order: 4,
+          },
+        ],
+      },
+      {
+        sectionTitle: "Investors",
+        sectionOrder: 4,
+        links: [
+          {
+            title: "Investment Opportunities",
+            url: "/investors/opportunities",
+            isExternal: false,
+            description: "Current investment opportunities",
+            order: 1,
+          },
+          {
+            title: "Investor Portal",
+            url: "/investors/portal",
+            isExternal: false,
+            description: "Access your investor account",
+            order: 2,
+          },
+          {
+            title: "Performance Reports",
+            url: "/investors/performance",
+            isExternal: false,
+            description: "Investment performance and returns",
+            order: 3,
+          },
+          {
+            title: "Contact Investor Relations",
+            url: "/investors/contact",
+            isExternal: false,
+            description: "Get in touch with our investor relations team",
+            order: 4,
+          },
+        ],
+      },
+    ],
+    featuredCTA: {
+      enabled: true,
+      title: "Ready to Start Investing?",
+      description:
+        "Join thousands of investors who trust Onterra Capital with their real estate investments. Get started with a personalized consultation today.",
+      buttonText: "Schedule Consultation",
+      buttonUrl: "/contact",
+      variant: "primary",
+    },
+  },
   heroSection: {
     _type: "heroSection",
     _id: "hero-section-main",
@@ -72,187 +295,266 @@ const contentData = {
     ],
   },
 
-  onterraStandards: {
-    _type: "onterraStandards",
-    _id: "onterra-standards-main",
-    sectionTitle: "Onterra Standards",
-    subtitle: "Rooted in Discipline",
+  onterraStandardsNew: {
+    _type: "onterraStandardsNew",
+    _id: "onterra-standards-new-main",
+    sectionTitle: "Our Standards",
+    description:
+      "Rooted in discipline and built on decades of institutional experience, our standards guide every investment decision and client interaction. We maintain the highest levels of excellence through rigorous processes and unwavering commitment to our principles.",
+    // Note: Central hub logo will need to be added manually in Sanity Studio
     principles: [
       {
-        title: "Due Diligence",
-        description: "Comprehensive analysis of every investment opportunity",
+        id: "alignment",
+        title: "Alignment Without Conflicts",
+        shortTitle: "Alignment Without Conflicts",
+        description:
+          "We ensure complete alignment between our interests and our investors' interests, eliminating conflicts and ensuring transparent decision-making.",
         points: [
-          "Market research and analysis",
-          "Financial modeling and projections",
-          "Risk assessment and mitigation",
-        ],
-        icon: {
-          type: "iconify",
-          value: "mdi:chart-line",
-        },
-      },
-      {
-        title: "Transparency",
-        description: "Clear communication and honest reporting",
-        points: [
-          "Regular performance updates",
+          "No hidden fees or conflicts of interest",
           "Transparent fee structure",
-          "Open communication channels",
+          "Investor-first decision making",
         ],
-        icon: {
-          type: "iconify",
-          value: "mdi:eye",
-        },
+        icon: "Target",
+        position: 0,
       },
       {
-        title: "Risk Management",
-        description: "Protecting capital through strategic planning",
+        id: "real-estate",
+        title: "Real Estate Only, End-to-end",
+        shortTitle: "Real Estate Only, End-to-end",
+        description:
+          "We focus exclusively on real estate investments with comprehensive end-to-end services from acquisition to management.",
         points: [
-          "Diversified portfolio approach",
+          "Exclusive real estate focus",
+          "Complete investment lifecycle management",
+          "Specialized expertise in property markets",
+        ],
+        icon: "Eye",
+        position: 1,
+      },
+      {
+        id: "risk-management",
+        title: "Risk Management Over Deal Velocity",
+        shortTitle: "Risk Management Over Deal Velocity",
+        description:
+          "We prioritize thorough risk assessment and management over quick deal execution, ensuring sustainable long-term returns.",
+        points: [
+          "Comprehensive due diligence process",
           "Conservative underwriting standards",
-          "Continuous monitoring and adjustment",
+          "Quality over quantity approach",
         ],
-        icon: {
-          type: "iconify",
-          value: "mdi:shield-check",
-        },
+        icon: "Shield",
+        position: 2,
       },
       {
-        title: "Long-term Vision",
-        description: "Building sustainable wealth over time",
+        id: "integrity",
+        title: "Integrity and Communication",
+        shortTitle: "Integrity and Communication",
+        description:
+          "We maintain the highest standards of integrity and provide clear, honest communication throughout the investment process.",
         points: [
-          "Multi-generational wealth building",
-          "Market cycle awareness",
-          "Patient capital deployment",
+          "Transparent reporting and communication",
+          "Honest assessment of opportunities and risks",
+          "Regular investor updates and feedback",
         ],
-        icon: {
-          type: "iconify",
-          value: "mdi:timeline-clock",
-        },
+        icon: "Clock",
+        position: 3,
       },
       {
-        title: "Innovation",
-        description: "Leveraging technology and modern strategies",
+        id: "performance",
+        title: "Performance Through Talent and Focus",
+        shortTitle: "Performance Through Talent and Focus",
+        description:
+          "We achieve superior performance through our talented team and laser focus on real estate investment excellence.",
         points: [
-          "Data-driven decision making",
-          "Technology integration",
-          "Process optimization",
+          "Experienced investment team",
+          "Specialized real estate expertise",
+          "Focused investment strategy",
         ],
-        icon: {
-          type: "iconify",
-          value: "mdi:lightbulb",
-        },
+        icon: "Lightbulb",
+        position: 4,
       },
       {
-        title: "Partnership",
-        description: "Collaborative approach with all stakeholders",
+        id: "partnerships",
+        title: "Built on Enduring Partnerships",
+        shortTitle: "Built on Enduring Partnerships",
+        description:
+          "We build long-term, mutually beneficial partnerships with investors, partners, and stakeholders based on trust and shared success.",
         points: [
-          "Client-focused solutions",
-          "Vendor relationships",
-          "Community engagement",
+          "Long-term relationship focus",
+          "Mutual benefit partnerships",
+          "Trust-based collaboration",
         ],
-        icon: {
-          type: "iconify",
-          value: "mdi:handshake",
-        },
+        icon: "Handshake",
+        position: 5,
       },
     ],
   },
 
-  investmentStrategies: {
-    _type: "investmentStrategies",
-    _id: "investment-strategies-main",
+  investmentStrategiesNew: {
+    _type: "investmentStrategiesNew",
+    _id: "investment-strategies-new-main",
     sectionTitle: "Investment Strategies",
     sectionDescription:
-      "Our comprehensive approach to real estate investment across residential and commercial markets, designed to maximize returns while managing risk.",
-    categories: [
+      "Our comprehensive approach to real estate investment spanning residential and commercial markets, designed to maximize returns while managing risk through diversified property portfolios.",
+    strategies: [
       {
-        categoryName: "Residential",
-        categoryDescription:
-          "Single-family homes, multi-family properties, and residential developments",
-        strategies: [
-          {
-            title: "Single-Family Rentals",
-            description:
-              "Acquisition and management of individual single-family homes for rental income. We focus on properties in high-demand areas with strong rental yields and appreciation potential. Our approach includes thorough market analysis, property evaluation, and tenant screening to ensure consistent cash flow.",
-            highlights: [
-              "Target properties in growing markets",
-              "Professional property management",
-              "Regular maintenance and upgrades",
-              "Tenant retention programs",
-            ],
-            isExpandedByDefault: true,
-          },
-          {
-            title: "Multi-Family Properties",
-            description:
-              "Investment in apartment buildings and duplexes to achieve economies of scale. We target properties with 2-50 units, focusing on value-add opportunities and operational improvements. This strategy provides diversified income streams and reduced vacancy risk.",
-            highlights: [
-              "Scalable investment model",
-              "Reduced vacancy risk",
-              "Professional management systems",
-              "Value-add renovation opportunities",
-            ],
-            isExpandedByDefault: false,
-          },
-          {
-            title: "Residential Development",
-            description:
-              "Ground-up development of residential communities and subdivisions. We work with experienced developers to create high-quality housing that meets market demand. This strategy offers higher returns but requires longer investment horizons.",
-            highlights: [
-              "Higher potential returns",
-              "Market timing expertise",
-              "Development partnerships",
-              "Long-term appreciation focus",
-            ],
-            isExpandedByDefault: false,
-          },
+        id: "multi-family",
+        title: "Multi-Family Properties",
+        category: "residential",
+        level: 0,
+        index: 0,
+        description:
+          "Strategic investments in apartment complexes and multi-unit residential properties that provide stable cash flow through rental income. We focus on properties with strong fundamentals in growing markets with favorable demographic trends.",
+        keyPoints: [
+          "Stable monthly cash flow from multiple units",
+          "Economies of scale in property management",
+          "Appreciation potential in growing markets",
+          "Lower vacancy risk through unit diversification",
         ],
+        metrics: {
+          averageReturn: "8-12%",
+          holdPeriod: "5-7 years",
+          minInvestment: "$500K",
+        },
+        isSelectable: true,
       },
       {
-        categoryName: "Commercial",
-        categoryDescription:
-          "Office buildings, retail spaces, industrial properties, and mixed-use developments",
-        strategies: [
-          {
-            title: "Office Buildings",
-            description:
-              "Investment in Class A and B office properties in prime locations. We focus on buildings with strong tenant profiles, long-term leases, and modern amenities. Our strategy includes active asset management to maintain high occupancy rates.",
-            highlights: [
-              "Long-term lease agreements",
-              "Creditworthy tenants",
-              "Prime location focus",
-              "Professional asset management",
-            ],
-            isExpandedByDefault: true,
-          },
-          {
-            title: "Retail Properties",
-            description:
-              "Investment in shopping centers, strip malls, and standalone retail buildings. We target properties with strong anchor tenants and high foot traffic. Our approach includes careful tenant mix planning and regular property improvements.",
-            highlights: [
-              "Anchor tenant stability",
-              "High foot traffic locations",
-              "Diverse tenant mix",
-              "Regular property improvements",
-            ],
-            isExpandedByDefault: false,
-          },
-          {
-            title: "Industrial Properties",
-            description:
-              "Investment in warehouses, distribution centers, and manufacturing facilities. We focus on properties with modern infrastructure, good transportation access, and flexible layouts. This asset class offers stable income and growth potential.",
-            highlights: [
-              "Modern infrastructure",
-              "Transportation access",
-              "Flexible space configurations",
-              "E-commerce growth driver",
-            ],
-            isExpandedByDefault: false,
-          },
+        id: "single-family",
+        title: "Single-Family Homes",
+        category: "residential",
+        level: 0,
+        index: 1,
+        description:
+          "Carefully selected single-family rental properties in high-demand neighborhoods. Our strategy focuses on properties that attract quality tenants and offer strong appreciation potential through strategic improvements and market timing.",
+        keyPoints: [
+          "Strong rental demand from families",
+          "Easier property management and maintenance",
+          "Attractive to owner-occupants for future sale",
+          "Potential for value-add improvements",
         ],
+        metrics: {
+          averageReturn: "6-10%",
+          holdPeriod: "3-5 years",
+          minInvestment: "$200K",
+        },
+        isSelectable: true,
+      },
+      {
+        id: "student-housing",
+        title: "Student Housing",
+        category: "residential",
+        level: 0,
+        index: 2,
+        description:
+          "Purpose-built student accommodation near major universities and colleges. These properties benefit from consistent demand, higher rental rates per square foot, and long-term stability tied to educational institution growth.",
+        keyPoints: [
+          "Higher rental rates per square foot",
+          "Consistent demand tied to university enrollment",
+          "Parental guarantees reduce payment risk",
+          "Opportunity for premium amenities and services",
+        ],
+        metrics: {
+          averageReturn: "10-14%",
+          holdPeriod: "7-10 years",
+          minInvestment: "$750K",
+        },
+        isSelectable: true,
+      },
+      {
+        id: "residential",
+        title: "Residential",
+        category: "main-category",
+        level: 1,
+        index: 0,
+        description: "",
+        keyPoints: [],
+        metrics: {},
+        isSelectable: false,
+      },
+      {
+        id: "commercial",
+        title: "Commercial",
+        category: "main-category",
+        level: 2,
+        index: 0,
+        description: "",
+        keyPoints: [],
+        metrics: {},
+        isSelectable: false,
+      },
+      {
+        id: "office-buildings",
+        title: "Office Buildings",
+        category: "commercial",
+        level: 3,
+        index: 0,
+        description:
+          "Class A and B office buildings in central business districts and suburban office parks. We target buildings with stable tenant bases, modern amenities, and potential for rental growth through strategic capital improvements.",
+        keyPoints: [
+          "Focus on Class A and B office properties",
+          "Central business district and suburban locations",
+          "Long-term lease agreements with corporate tenants",
+          "Strategic capital improvement programs",
+        ],
+        metrics: {
+          averageReturn: "7-10%",
+          holdPeriod: "5-8 years",
+          minInvestment: "$1M+",
+        },
+        isSelectable: true,
+      },
+      {
+        id: "retail-spaces",
+        title: "Retail Spaces",
+        category: "commercial",
+        level: 3,
+        index: 1,
+        description:
+          "Strategic retail investments in neighborhood shopping centers, strip malls, and standalone retail buildings. We focus on properties with strong demographics, high traffic counts, and tenants that provide essential services to local communities.",
+        keyPoints: [
+          "Neighborhood shopping centers and strip malls",
+          "Essential service tenants (grocery, pharmacy, services)",
+          "High traffic count locations",
+          "Strong local demographic fundamentals",
+        ],
+        metrics: {
+          averageReturn: "8-12%",
+          holdPeriod: "7-10 years",
+          minInvestment: "$750K",
+        },
+        isSelectable: true,
       },
     ],
+    flowStructure: {
+      levels: [
+        {
+          level: 0,
+          nodes: ["multi-family", "single-family", "student-housing"],
+          parentId: "residential",
+          title: "Property Types",
+        },
+        {
+          level: 1,
+          nodes: ["residential"],
+          parentId: null,
+          childId: "commercial",
+          title: "Asset Categories",
+        },
+        {
+          level: 2,
+          nodes: ["commercial"],
+          parentId: "residential",
+          childIds: ["office-buildings", "retail-spaces"],
+          title: "Commercial Sectors",
+        },
+        {
+          level: 3,
+          nodes: ["office-buildings", "retail-spaces"],
+          parentId: "commercial",
+          title: "Investment Types",
+        },
+      ],
+    },
   },
 };
 
@@ -288,29 +590,73 @@ async function seedContent() {
       console.log("✅ Statistics section created successfully");
     }
 
-    const existingStandards = await client.fetch(
-      '*[_type == "onterraStandards"][0]'
+    const existingStandardsNew = await client.fetch(
+      '*[_type == "onterraStandardsNew"][0]'
     );
-    if (existingStandards) {
-      console.log("⚠️  Onterra Standards section already exists. Skipping...");
-    } else {
-      console.log("🏛️  Creating Onterra Standards section...");
-      await client.create(contentData.onterraStandards);
-      console.log("✅ Onterra Standards section created successfully");
-    }
-
-    const existingStrategies = await client.fetch(
-      '*[_type == "investmentStrategies"][0]'
-    );
-    if (existingStrategies) {
+    if (existingStandardsNew && !forceUpdate) {
       console.log(
-        "⚠️  Investment Strategies section already exists. Skipping..."
+        "⚠️  Onterra Standards (New) section already exists. Skipping..."
       );
     } else {
-      console.log("💼 Creating Investment Strategies section...");
-      await client.create(contentData.investmentStrategies);
-      console.log("✅ Investment Strategies section created successfully");
+      if (existingStandardsNew && forceUpdate) {
+        console.log("🔄 Updating existing Onterra Standards (New) section...");
+        await client.createOrReplace(contentData.onterraStandardsNew);
+      } else {
+        console.log("🏛️  Creating Onterra Standards (New) section...");
+        await client.create(contentData.onterraStandardsNew);
+      }
+      console.log(
+        "✅ Onterra Standards (New) section created/updated successfully"
+      );
     }
+
+    const existingStrategiesNew = await client.fetch(
+      '*[_type == "investmentStrategiesNew"][0]'
+    );
+    if (existingStrategiesNew && !forceUpdate) {
+      console.log(
+        "⚠️  Investment Strategies (New) section already exists. Skipping..."
+      );
+    } else {
+      if (existingStrategiesNew && forceUpdate) {
+        console.log(
+          "🔄 Updating existing Investment Strategies (New) section..."
+        );
+        await client.createOrReplace(contentData.investmentStrategiesNew);
+      } else {
+        console.log("💼 Creating Investment Strategies (New) section...");
+        await client.create(contentData.investmentStrategiesNew);
+      }
+      console.log(
+        "✅ Investment Strategies (New) section created/updated successfully"
+      );
+    }
+
+    // Seed Footer Settings
+    const existingFooterSettings = await client.fetch(
+      '*[_type == "footerSettings"][0]'
+    );
+    if (existingFooterSettings) {
+      console.log("🔄 Updating existing Footer Settings...");
+      await client.createOrReplace(contentData.footerSettings);
+    } else {
+      console.log("🦶 Creating Footer Settings...");
+      await client.create(contentData.footerSettings);
+    }
+    console.log("✅ Footer Settings created/updated successfully");
+
+    // Seed Footer Navigation
+    const existingFooterNavigation = await client.fetch(
+      '*[_type == "footerNavigation"][0]'
+    );
+    if (existingFooterNavigation) {
+      console.log("🔄 Updating existing Footer Navigation...");
+      await client.createOrReplace(contentData.footerNavigation);
+    } else {
+      console.log("🔗 Creating Footer Navigation...");
+      await client.create(contentData.footerNavigation);
+    }
+    console.log("✅ Footer Navigation created/updated successfully");
 
     console.log("\n🎉 Content seeding completed successfully!");
     console.log(
@@ -319,6 +665,15 @@ async function seedContent() {
     console.log(
       "🌐 Your homepage should now display the seeded content at http://localhost:3000"
     );
+    console.log("\n💡 Notes:");
+    console.log("   📸 For the central hub logo in Onterra Standards:");
+    console.log("      1. Upload a logo image through the Sanity Studio");
+    console.log("      2. Edit the Onterra Standards (New Design) document");
+    console.log("      3. Add the uploaded logo to the Central Hub section");
+    console.log("   🦶 For the footer company logo:");
+    console.log("      1. Upload a company logo through the Sanity Studio");
+    console.log("      2. Edit the Footer Settings document");
+    console.log("      3. Add the uploaded logo to the Company section");
   } catch (error) {
     console.error("❌ Error seeding content:", error.message);
     console.error("\n🔧 Troubleshooting:");

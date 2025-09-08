@@ -67,7 +67,7 @@ export function FlowChartNode({
       onClick={isSelectable ? onClick : undefined}
       disabled={!isSelectable}
       className={cn(
-        "relative p-4 rounded-xl border-2 transition-all duration-300 text-left",
+        "relative p-4 rounded-xs border-2 transition-all duration-300 text-left",
         isMainCategory
           ? "bg-slate-100 border-slate-300 text-slate-700 cursor-default shadow-sm "
           : isSelectable
@@ -95,7 +95,7 @@ export function FlowChartNode({
     >
       {/* Background gradient overlay for active state */}
       {isActive && !isMainCategory && (
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xs" />
       )}
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full">
@@ -128,7 +128,7 @@ export function FlowChartNode({
 
       {/* Hover effect overlay for selectable items */}
       {isSelectable && !isMainCategory && (
-        <div className="absolute inset-0 bg-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-blue-500/10 rounded-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       )}
     </motion.button>
   );

@@ -28,9 +28,9 @@ export function StrategyDetailPanel({
   if (!strategy || strategy.isSelectable === false) {
     return (
       <div className={cn("flex items-center justify-center h-full", className)}>
-        <div className="text-center text-gray-500">
-          <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-            <TrendingUp className="w-8 h-8 text-gray-400" />
+        <div className="text-center text-slate-400">
+          <div className="w-16 h-16 mx-auto mb-4 bg-slate-800/50 rounded-full flex items-center justify-center border border-slate-700/30">
+            <TrendingUp className="w-8 h-8 text-slate-500" />
           </div>
           <p className="text-lg">
             Select an investment strategy to view details
@@ -51,7 +51,7 @@ export function StrategyDetailPanel({
       >
         {/* Strategy Title */}
         <motion.h2
-          className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3"
+          className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -61,7 +61,7 @@ export function StrategyDetailPanel({
 
         {/* Strategy Description */}
         <motion.p
-          className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4"
+          className="text-sm sm:text-base text-slate-300 leading-relaxed mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -76,38 +76,38 @@ export function StrategyDetailPanel({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-base font-semibold text-gray-900 mb-2">
+            <h3 className="text-base font-semibold text-slate-100 mb-2">
               Investment Metrics
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {Object.entries(strategy.metrics).map(([key, value], index) => (
                 <motion.div
                   key={key}
-                  className="bg-gray-50 rounded-lg p-3 border border-gray-200"
+                  className="bg-slate-800/50 rounded-xs p-3 border border-slate-700/50 backdrop-blur-sm"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
                 >
                   <div className="flex items-center mb-2">
                     {key.toLowerCase().includes("return") && (
-                      <TrendingUp className="w-4 h-4 text-blue-600 mr-2" />
+                      <TrendingUp className="w-4 h-4 text-blue-400 mr-2" />
                     )}
                     {key.toLowerCase().includes("period") && (
-                      <Clock className="w-4 h-4 text-blue-600 mr-2" />
+                      <Clock className="w-4 h-4 text-blue-400 mr-2" />
                     )}
                     {key.toLowerCase().includes("investment") && (
-                      <DollarSign className="w-4 h-4 text-blue-600 mr-2" />
+                      <DollarSign className="w-4 h-4 text-blue-400 mr-2" />
                     )}
                     {!key.toLowerCase().includes("return") &&
                       !key.toLowerCase().includes("period") &&
                       !key.toLowerCase().includes("investment") && (
-                        <TrendingUp className="w-4 h-4 text-blue-600 mr-2" />
+                        <TrendingUp className="w-4 h-4 text-blue-400 mr-2" />
                       )}
-                    <span className="text-sm font-medium text-gray-600 capitalize">
+                    <span className="text-sm font-medium text-slate-400 capitalize">
                       {key.replace(/([A-Z])/g, " $1").trim()}
                     </span>
                   </div>
-                  <p className="text-lg font-bold text-gray-900">{value}</p>
+                  <p className="text-lg font-bold text-slate-100">{value}</p>
                 </motion.div>
               ))}
             </div>
@@ -123,14 +123,14 @@ export function StrategyDetailPanel({
         >
           <span
             className={cn(
-              "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium",
+              "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border",
               strategy.category === "residential"
-                ? "bg-green-100 text-green-800"
+                ? "bg-green-900/30 text-green-300 border-green-700/40"
                 : strategy.category === "commercial"
-                  ? "bg-blue-100 text-blue-800"
+                  ? "bg-blue-900/30 text-blue-300 border-blue-700/40"
                   : strategy.category === "category"
-                    ? "bg-purple-100 text-purple-800"
-                    : "bg-gray-100 text-gray-800"
+                    ? "bg-purple-900/30 text-purple-300 border-purple-700/40"
+                    : "bg-slate-800/40 text-slate-300 border-slate-700/40"
             )}
           >
             {strategy.category === "residential" && "Residential"}

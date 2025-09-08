@@ -57,7 +57,7 @@ export function InvestmentFlowChart({
         {/* Level 0 - Top Row (Multi-Family, Single-Family, Student Housing) */}
         <div className="relative mb-8">
           <div className="flex justify-center items-center gap-8">
-            {flowStructure.levels[0].nodes.map((nodeId, index) => {
+            {flowStructure.levels[0].nodes.map((nodeId) => {
               const strategy = strategyMap[nodeId];
               if (!strategy) return null;
 
@@ -67,7 +67,7 @@ export function InvestmentFlowChart({
                     strategy={strategy}
                     isActive={activeStrategy?.id === nodeId}
                     onClick={() => onStrategySelect(strategy)}
-                    className="w-36 h-20"
+                    className="w-44 h-24"
                   />
                 </div>
               );
@@ -145,7 +145,7 @@ export function InvestmentFlowChart({
                     strategy={strategy}
                     isActive={activeStrategy?.id === nodeId}
                     onClick={() => onStrategySelect(strategy)}
-                    className="w-32 h-16"
+                    className="w-44 h-18"
                   />
                 </div>
               );
@@ -166,7 +166,7 @@ export function InvestmentFlowChart({
                     strategy={strategy}
                     isActive={activeStrategy?.id === nodeId}
                     onClick={() => onStrategySelect(strategy)}
-                    className="w-32 h-16"
+                    className="w-44 h-18"
                   />
                 </div>
               );
@@ -233,7 +233,7 @@ export function InvestmentFlowChart({
                   strategy={strategy}
                   isActive={activeStrategy?.id === nodeId}
                   onClick={() => onStrategySelect(strategy)}
-                  className="w-36 h-20"
+                  className="w-44 h-24"
                 />
               </div>
             );

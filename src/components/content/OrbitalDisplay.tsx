@@ -31,15 +31,15 @@ export function OrbitalDisplay({
   const getOrbitalPosition = (
     index: number,
     totalItems: number,
-    radius: number = 240
+    radius: number = 260
   ) => {
     // Container dimensions
     const containerWidth = 600;
     const containerHeight = 600;
 
     // Orbital element dimensions (for centering)
-    const orbitalWidth = 176; // w-44 = 11rem = 176px
-    const orbitalHeight = 128; // h-32 = 8rem = 128px
+    const orbitalWidth = 208; // w-48 = 12rem = 192px
+    const orbitalHeight = 116; // h-32 = 8rem = 128px
 
     // Center point of the container
     const centerX = containerWidth / 2;
@@ -75,8 +75,7 @@ export function OrbitalDisplay({
         className
       )}
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-gray-50/30 rounded-3xl" />
+      {/* Clean Professional Container - No Background */}
 
       {/* Orbital Container - Perfect Circle */}
       <div className="relative w-[600px] h-[600px]">
@@ -84,8 +83,8 @@ export function OrbitalDisplay({
         <div
           className="absolute z-30"
           style={{
-            left: 300 - 112, // containerWidth/2 - hubWidth/2 (224px/2)
-            top: 300 - 56, // containerHeight/2 - hubHeight/2 (112px/2)
+            left: 300 - 126, // containerWidth/2 - hubWidth/2 (224px/2)
+            top: 300 - 64, // containerHeight/2 - hubHeight/2 (112px/2)
           }}
         >
           <CentralHub />
