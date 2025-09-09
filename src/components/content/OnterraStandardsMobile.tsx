@@ -117,10 +117,7 @@ export function OnterraStandardsMobile({
 
   return (
     <section
-      className={cn(
-        "relative flex items-center overflow-hidden",
-        className
-      )}
+      className={cn("relative flex items-center overflow-hidden", className)}
     >
       {/* Premium Light Background with Animated Orbs */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">

@@ -22,10 +22,7 @@ export function InvestmentStrategiesMobile({
   if (isLoading) {
     return (
       <section
-        className={cn(
-          "relative flex items-center overflow-hidden",
-          className
-        )}
+        className={cn("relative flex items-center overflow-hidden", className)}
       >
         {/* Premium Loading Background - Light Mode */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">
