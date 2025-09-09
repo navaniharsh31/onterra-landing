@@ -1,58 +1,66 @@
-"use client";
-
 import { HeroSection } from "@/components/content/HeroSection";
 import { StatisticsSection } from "@/components/content/StatisticsSection";
 import { OnterraStandardsSectionNew } from "@/components/content/OnterraStandardsSectionNew";
 import { InvestmentStrategiesSectionNew } from "@/components/content/InvestmentStrategiesSectionNew";
-import { useHeroContent } from "@/hooks/useHeroContent";
-import { useStatisticsContent } from "@/hooks/useStatisticsContent";
-import { Skeleton } from "@/components/ui/skeleton";
+import { client } from "@/sanity/lib/client";
 
-export default function Home() {
-  const {
-    data: heroContent,
-    isLoading: heroLoading,
-    error: heroError,
-  } = useHeroContent();
-  const {
-    data: statisticsContent,
-    isLoading: statsLoading,
-    error: statsError,
-  } = useStatisticsContent();
+// Server-side data fetching queries
+const heroQuery = `*[_type == "heroSection"][0] {
+  staticText,
+  rotatingText,
+  lineDesign {
+    enabled,
+    color
+  },
+  backgroundVideos[] {
+    asset->{
+      url,
+      _ref,
+      _type
+    }
+  },
+  ctaButtons[] {
+    text,
+    url,
+    variant
+  },
+  overlayOpacity
+}`;
 
-  const isLoading = heroLoading || statsLoading;
-  const hasError = heroError || statsError;
+const statisticsQuery = `*[_type == "statisticsSection"][0] {
+  title,
+  statistics[] {
+    value,
+    label,
+    suffix
+  }
+}`;
 
-  if (isLoading) {
+export default async function Home() {
+  try {
+    // Parallel server-side data fetching
+    const [heroContent, statisticsContent] = await Promise.all([
+      client.fetch(heroQuery),
+      client.fetch(statisticsQuery),
+    ]);
+
     return (
       <div className="min-h-screen">
-        {/* Hero Section Loading */}
-        <div className="h-screen flex items-center justify-center">
-          <div className="text-center space-y-4">
-            <Skeleton className="h-12 w-96 mx-auto" />
-            <Skeleton className="h-6 w-64 mx-auto" />
-            <Skeleton className="h-10 w-32 mx-auto" />
-          </div>
-        </div>
+        {/* Hero Section - Server rendered */}
+        <HeroSection content={heroContent} />
 
-        {/* Other Sections Loading */}
-        <div className="space-y-16">
-          <div className="py-16 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Skeleton className="h-8 w-64 mx-auto mb-8" />
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Skeleton key={i} className="h-24 w-full" />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Statistics Section - Server rendered */}
+        {statisticsContent && <StatisticsSection content={statisticsContent} />}
+
+        {/* Interactive Sections - Client rendered */}
+        <InvestmentStrategiesSectionNew />
+        <OnterraStandardsSectionNew />
       </div>
     );
-  }
+  } catch (error) {
+    console.error("Error fetching content:", error);
 
-  if (hasError || !heroContent) {
+    // Fallback content on error
     return (
       <div className="min-h-screen">
         {/* Hero Section Fallback */}
@@ -86,7 +94,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Fallback for other sections */}
+        {/* Error message */}
         <div className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -100,21 +108,4 @@ export default function Home() {
       </div>
     );
   }
-
-  return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <HeroSection content={heroContent} />
-
-      {/* Statistics Section */}
-      {statisticsContent && <StatisticsSection content={statisticsContent} />}
-
-      <InvestmentStrategiesSectionNew />
-
-      {/* Onterra Standards Section */}
-      <OnterraStandardsSectionNew />
-
-      {/* Investment Strategies Section */}
-    </div>
-  );
 }
