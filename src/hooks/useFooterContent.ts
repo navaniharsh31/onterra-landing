@@ -3,18 +3,30 @@ import { client } from "@/sanity/lib/client";
 
 // Footer Settings Type
 export interface FooterSettings {
-  _id: string;
-  company: {
-    name: string;
-    tagline?: string;
-    logo?: {
-      asset: {
-        url: string;
-      };
-      alt: string;
+  siteTitle: string;
+  siteDescription: string;
+  logo?: {
+    asset: {
+      url: string;
+    };
+    alt?: string;
+  };
+  favicon?: {
+    asset: {
+      url: string;
     };
   };
+  copyrightText: string;
+  privacyPolicyUrl: string;
+  termsOfServiceUrl: string;
+  disclaimerUrl: string;
+  company: {
+    name: string;
+    description: string;
+  };
   contact: {
+    phone?: string;
+    email?: string;
     address?: {
       street?: string;
       city?: string;
@@ -22,208 +34,79 @@ export interface FooterSettings {
       zipCode?: string;
       country?: string;
     };
-    phone?: string;
-    email?: string;
-    businessHours?: string;
   };
-  socialMedia?: Array<{
-    platform:
-      | "linkedin"
-      | "twitter"
-      | "facebook"
-      | "instagram"
-      | "youtube"
-      | "newsletter";
+  seo: {
+    organizationSchema: boolean;
+    foundingDate: string;
+    industry: string;
+    googleAnalyticsId?: string;
+    googleTagManagerId?: string;
+  };
+  socialMedia: Array<{
+    platform: string;
     url: string;
-    label: string;
+    label?: string;
   }>;
   legal: {
-    copyrightText?: string;
-    legalLinks?: Array<{
+    legalLinks: Array<{
       title: string;
       url: string;
+      openInNewTab: boolean;
     }>;
-  };
-  seo?: {
-    organizationSchema?: boolean;
-    foundingDate?: string;
-    industry?: string;
   };
 }
 
 // Footer Navigation Type
 export interface FooterNavigation {
-  _id: string;
+  useMainNavigation: boolean;
+  additionalSections: Array<{
+    title: string;
+    links: Array<{
+      title: string;
+      url: string;
+      openInNewTab: boolean;
+    }>;
+  }>;
   linkSections: Array<{
     sectionTitle: string;
-    sectionOrder: number;
     links: Array<{
       title: string;
       url: string;
       isExternal?: boolean;
-      description?: string;
-      order: number;
     }>;
   }>;
-  featuredCTA?: {
-    enabled: boolean;
-    title?: string;
-    description?: string;
-    buttonText?: string;
-    buttonUrl?: string;
-    variant?: "primary" | "secondary" | "outline";
+}
+
+// Contact Details Type
+export interface ContactDetails {
+  phone?: string;
+  email?: string;
+  address?: {
+    street?: string;
+    city?: string;
+    state?: string;
+    zipCode?: string;
+    country?: string;
   };
 }
 
-// Combined Footer Content Type
-export interface FooterContent {
-  settings: FooterSettings;
+// Social Media Type
+export interface SocialMedia {
+  platform: string;
+  url: string;
+  label?: string;
+}
+
+// Footer Data Type
+export interface FooterData {
+  siteSettings: FooterSettings;
   navigation: FooterNavigation;
+  contactDetails: ContactDetails;
+  socialLinks: SocialMedia[];
 }
 
-// GROQ Queries
-const FOOTER_SETTINGS_QUERY = `
-  *[_type == "footerSettings"][0]{
-    _id,
-    company{
-      name,
-      tagline,
-      logo{
-        asset->{
-          url
-        },
-        alt
-      }
-    },
-    contact{
-      address{
-        street,
-        city,
-        state,
-        zipCode,
-        country
-      },
-      phone,
-      email,
-      businessHours
-    },
-    socialMedia[]{
-      platform,
-      url,
-      label
-    },
-    legal{
-      copyrightText,
-      legalLinks[]{
-        title,
-        url
-      }
-    },
-    seo{
-      organizationSchema,
-      foundingDate,
-      industry
-    }
-  }
-`;
-
-const FOOTER_NAVIGATION_QUERY = `
-  *[_type == "footerNavigation"][0]{
-    _id,
-    linkSections[]{
-      sectionTitle,
-      sectionOrder,
-      links[]{
-        title,
-        url,
-        isExternal,
-        description,
-        order
-      }
-    },
-    featuredCTA{
-      enabled,
-      title,
-      description,
-      buttonText,
-      buttonUrl,
-      variant
-    }
-  }
-`;
-
-// Custom Hook for Footer Settings
-export function useFooterSettings() {
-  return useQuery<FooterSettings>({
-    queryKey: ["footer-settings"],
-    queryFn: async () => {
-      const data = await client.fetch(FOOTER_SETTINGS_QUERY);
-      if (!data) {
-        throw new Error("Footer settings not found");
-      }
-      return data;
-    },
-    staleTime: 1000 * 60 * 5, // 5 minutes
-    gcTime: 1000 * 60 * 30, // 30 minutes
-  });
-}
-
-// Custom Hook for Footer Navigation
-export function useFooterNavigation() {
-  return useQuery<FooterNavigation>({
-    queryKey: ["footer-navigation"],
-    queryFn: async () => {
-      const data = await client.fetch(FOOTER_NAVIGATION_QUERY);
-      if (!data) {
-        throw new Error("Footer navigation not found");
-      }
-
-      // Sort sections by order
-      if (data.linkSections) {
-        data.linkSections.sort((a, b) => a.sectionOrder - b.sectionOrder);
-
-        // Sort links within each section
-        data.linkSections.forEach((section) => {
-          if (section.links) {
-            section.links.sort((a, b) => a.order - b.order);
-          }
-        });
-      }
-
-      return data;
-    },
-    staleTime: 1000 * 60 * 5, // 5 minutes
-    gcTime: 1000 * 60 * 30, // 30 minutes
-  });
-}
-
-// Combined Hook for Complete Footer Content
-export function useFooterContent() {
-  const settingsQuery = useFooterSettings();
-  const navigationQuery = useFooterNavigation();
-
-  return {
-    data:
-      settingsQuery.data && navigationQuery.data
-        ? {
-            settings: settingsQuery.data,
-            navigation: navigationQuery.data,
-          }
-        : undefined,
-    isLoading: settingsQuery.isLoading || navigationQuery.isLoading,
-    isError: settingsQuery.isError || navigationQuery.isError,
-    error: settingsQuery.error || navigationQuery.error,
-    refetch: () => {
-      settingsQuery.refetch();
-      navigationQuery.refetch();
-    },
-  };
-}
-
-// Utility function to format address
-export function formatAddress(
-  address?: FooterSettings["contact"]["address"]
-): string {
+// Utility functions
+export function formatAddress(address?: ContactDetails["address"]): string {
   if (!address) return "";
 
   const parts = [
@@ -237,21 +120,89 @@ export function formatAddress(
   return parts.join(", ");
 }
 
-// Utility function to get social media icon
+export function isExternalUrl(url: string): boolean {
+  return url.startsWith("http://") || url.startsWith("https://");
+}
+
 export function getSocialIcon(platform: string): string {
-  const icons: Record<string, string> = {
-    linkedin: "linkedin",
-    twitter: "twitter",
+  const iconMap: Record<string, string> = {
     facebook: "facebook",
+    twitter: "twitter",
+    linkedin: "linkedin",
     instagram: "instagram",
     youtube: "youtube",
     newsletter: "mail",
   };
 
-  return icons[platform] || "link";
+  return iconMap[platform.toLowerCase()] || "link";
 }
 
-// Utility function to validate external URLs
-export function isExternalUrl(url: string): boolean {
-  return url.startsWith("http://") || url.startsWith("https://");
+// Hook to fetch footer content
+export function useFooterContent() {
+  return useQuery({
+    queryKey: ["footer-content"],
+    queryFn: async (): Promise<FooterData> => {
+      const [siteSettings, navigation, contactDetails, socialLinks] =
+        await Promise.all([
+          client.fetch(`*[_type == "siteSettings"][0]`),
+          client.fetch(`*[_type == "navigation"][0]`),
+          client.fetch(`*[_type == "contactDetails"][0]`),
+          client.fetch(`*[_type == "socialLinks"][0]`),
+        ]);
+
+      // Transform the data to match the expected structure
+      const transformedSiteSettings: FooterSettings = {
+        ...siteSettings,
+        company: {
+          name: siteSettings?.siteTitle || "Onterra Capital",
+          description:
+            siteSettings?.siteDescription ||
+            "Strategic real estate investment firm",
+        },
+        contact: {
+          phone: contactDetails?.phone,
+          email: contactDetails?.email,
+          address: contactDetails?.address,
+        },
+        seo: siteSettings?.seo || {
+          organizationSchema: true,
+          foundingDate: "2020-01-01",
+          industry: "Real Estate Investment",
+        },
+        socialMedia: socialLinks?.links || [],
+        legal: {
+          legalLinks: [
+            {
+              title: "Privacy Policy",
+              url: siteSettings?.privacyPolicyUrl || "/privacy-policy",
+              openInNewTab: false,
+            },
+            {
+              title: "Terms of Service",
+              url: siteSettings?.termsOfServiceUrl || "/terms-of-service",
+              openInNewTab: false,
+            },
+            {
+              title: "Disclaimer",
+              url: siteSettings?.disclaimerUrl || "/disclaimer",
+              openInNewTab: false,
+            },
+          ],
+        },
+      };
+
+      const transformedNavigation: FooterNavigation = {
+        ...navigation,
+        linkSections: navigation?.additionalSections || [],
+      };
+
+      return {
+        siteSettings: transformedSiteSettings,
+        navigation: transformedNavigation,
+        contactDetails,
+        socialLinks: socialLinks?.links || [],
+      };
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
 }

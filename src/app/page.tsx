@@ -1,60 +1,25 @@
-import { HeroSection } from "@/components/content/HeroSection";
-import { StatisticsSection } from "@/components/content/StatisticsSection";
-import { OnterraStandardsSectionNew } from "@/components/content/OnterraStandardsSectionNew";
-import { InvestmentStrategiesSectionNew } from "@/components/content/InvestmentStrategiesSectionNew";
-import { client } from "@/sanity/lib/client";
-
-// Server-side data fetching queries
-const heroQuery = `*[_type == "heroSection"][0] {
-  staticText,
-  rotatingText,
-  lineDesign {
-    enabled,
-    color
-  },
-  backgroundVideos[] {
-    asset->{
-      url,
-      _ref,
-      _type
-    }
-  },
-  ctaButtons[] {
-    text,
-    url,
-    variant
-  },
-  overlayOpacity
-}`;
-
-const statisticsQuery = `*[_type == "statisticsSection"][0] {
-  title,
-  statistics[] {
-    value,
-    label,
-    suffix
-  }
-}`;
+import { HeroSection } from "@/components/content/hero/HeroSection";
+import { StatisticsSection } from "@/components/content/statistics/StatisticsSection";
+import { OnterraStandardsSectionNew } from "@/components/content/onterra-standards/OnterraStandardsSectionNew";
+import { InvestmentStrategiesSectionNew } from "@/components/content/investment-strategies/InvestmentStrategiesSectionNew";
+import { getPageData } from "@/lib/sanity/queries";
 
 export default async function Home() {
   try {
-    // Parallel server-side data fetching
-    const [heroContent, statisticsContent] = await Promise.all([
-      client.fetch(heroQuery),
-      client.fetch(statisticsQuery),
-    ]);
+    // Server-side data fetching
+    const pageData = await getPageData();
 
     return (
       <div className="min-h-screen">
         {/* Hero Section - Server rendered */}
-        <HeroSection content={heroContent} />
+        <HeroSection content={pageData.hero} />
 
         {/* Statistics Section - Server rendered */}
-        {statisticsContent && <StatisticsSection content={statisticsContent} />}
+        {pageData.statistics && <StatisticsSection content={pageData.statistics} />}
 
-        {/* Interactive Sections - Client rendered */}
-        <InvestmentStrategiesSectionNew />
-        <OnterraStandardsSectionNew />
+        {/* Content Sections - Server rendered */}
+        <InvestmentStrategiesSectionNew content={pageData.investmentStrategies} />
+        <OnterraStandardsSectionNew content={pageData.onterraStandards} />
       </div>
     );
   } catch (error) {
