@@ -4,116 +4,44 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Navigation } from "./Navigation";
+import { useMobileMenu } from "@/components/providers/MobileMenuProvider";
 import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
   className?: string;
+  navItems: Array<{
+    id: string;
+    title: string;
+    type: "link" | "dropdown" | "megamenu";
+    url?: string;
+    dropdownItems?: Array<{
+      id: string;
+      title: string;
+      url: string;
+    }>;
+    megaMenuContent?: {
+      title: string;
+      sections: Array<{
+        id: string;
+        title: string;
+        description: string;
+        image: string;
+      }>;
+    };
+  }>;
+  ctaButton: {
+    text: string;
+    url: string;
+    variant: "primary" | "secondary" | "outline";
+  };
 }
 
-// Dummy navigation data
-const dummyNavData = {
-  logo: { src: "/logo.png", alt: "Onterra Capital", url: "/" },
-  navItems: [
-    {
-      id: "home",
-      title: "Home",
-      type: "link" as const,
-      url: "/",
-    },
-    {
-      id: "about",
-      title: "About Us",
-      type: "megamenu" as const,
-      megaMenuContent: {
-        title: "About Us",
-        sections: [
-          {
-            id: "story",
-            title: "Our Story",
-            description:
-              "Learn about our journey and mission in real estate investment. We've been building wealth through strategic investments for over two decades.",
-            image: "/about-story.jpg",
-          },
-          {
-            id: "team",
-            title: "Our Team",
-            description:
-              "Meet the experienced professionals behind our success. Our team combines decades of real estate expertise with innovative investment strategies.",
-            image: "/about-team.jpg",
-          },
-          {
-            id: "values",
-            title: "Our Values",
-            description:
-              "Discover the principles that guide our investment decisions. We believe in transparency, integrity, and delivering exceptional returns for our investors.",
-            image: "/about-values.jpg",
-          },
-        ],
-      },
-    },
-    {
-      id: "services",
-      title: "Services",
-      type: "dropdown" as const,
-      dropdownItems: [
-        {
-          id: "investment",
-          title: "Investment Management",
-          url: "/services/investment",
-        },
-        {
-          id: "development",
-          title: "Property Development",
-          url: "/services/development",
-        },
-        {
-          id: "consultation",
-          title: "Consultation",
-          url: "/services/consultation",
-        },
-        {
-          id: "portfolio",
-          title: "Portfolio Management",
-          url: "/services/portfolio",
-        },
-      ],
-    },
-    {
-      id: "properties",
-      title: "Properties",
-      type: "link" as const,
-      url: "/properties",
-    },
-    {
-      id: "insights",
-      title: "Market Insights",
-      type: "dropdown" as const,
-      dropdownItems: [
-        { id: "reports", title: "Market Reports", url: "/insights/reports" },
-        {
-          id: "analysis",
-          title: "Investment Analysis",
-          url: "/insights/analysis",
-        },
-        { id: "trends", title: "Market Trends", url: "/insights/trends" },
-      ],
-    },
-    {
-      id: "contact",
-      title: "Contact",
-      type: "link" as const,
-      url: "/contact",
-    },
-  ],
-  ctaButton: {
-    text: "Get Started",
-    url: "/contact",
-    variant: "primary" as const,
-  },
-};
+// Logo data
+const logoData = { src: "/logo.png", alt: "Onterra Capital", url: "/" };
 
-export function Header({ className }: HeaderProps) {
+export function Header({ className, navItems, ctaButton }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { openMenu } = useMobileMenu();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -139,10 +67,10 @@ export function Header({ className }: HeaderProps) {
         <div className="flex items-center justify-between header-height">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href={dummyNavData.logo.url} className="flex items-center">
+            <a href={logoData.url} className="flex items-center">
               <Image
-                src={dummyNavData.logo.src}
-                alt={dummyNavData.logo.alt}
+                src={logoData.src}
+                alt={logoData.alt}
                 width={160}
                 height={40}
                 className={cn(
@@ -156,10 +84,7 @@ export function Header({ className }: HeaderProps) {
 
           {/* Navigation - Desktop */}
           <div className="hidden lg:flex lg:items-center lg:space-x-1">
-            <Navigation
-              navItems={dummyNavData.navItems}
-              isScrolled={isScrolled}
-            />
+            <Navigation navItems={navItems} isScrolled={isScrolled} />
           </div>
 
           {/* CTA Button - Desktop */}
@@ -175,9 +100,7 @@ export function Header({ className }: HeaderProps) {
                   : "bg-white/90 hover:bg-white text-slate-900 backdrop-blur-sm"
               )}
             >
-              <a href={dummyNavData.ctaButton.url}>
-                {dummyNavData.ctaButton.text}
-              </a>
+              <a href={ctaButton.url}>{ctaButton.text}</a>
             </Button>
           </div>
 
@@ -185,6 +108,7 @@ export function Header({ className }: HeaderProps) {
           <div className="lg:hidden">
             <button
               type="button"
+              onClick={openMenu}
               className={cn(
                 "inline-flex items-center justify-center p-2 rounded-xs transition-colors duration-200",
                 isScrolled

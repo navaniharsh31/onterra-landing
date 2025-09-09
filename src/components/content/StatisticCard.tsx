@@ -22,11 +22,11 @@ export function StatisticCard({
       )}
     >
       {/* Professional Statistic Value */}
-      <div className="relative mb-4">
-        <div className="text-3xl sm:text-4xl lg:text-5xl font-light text-slate-900 mb-1 group-hover:text-blue-600 group-hover:scale-105 transition-all duration-300 tracking-tight">
+      <div className="relative mb-2">
+        <div className="text-4xl sm:text-4xl lg:text-5xl  font-light text-slate-900 group-hover:text-blue-600 group-hover:scale-105 transition-all duration-300 tracking-tight">
           {value}
           {suffix && (
-            <span className="text-xl sm:text-2xl lg:text-3xl text-blue-600 group-hover:text-blue-700 transition-colors duration-300 font-medium ml-1">
+            <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-blue-600 group-hover:text-blue-700 transition-colors duration-300 font-medium ml-1">
               {suffix}
             </span>
           )}
@@ -37,7 +37,7 @@ export function StatisticCard({
       </div>
 
       {/* Professional Label */}
-      <div className="text-base sm:text-lg text-slate-600 group-hover:text-slate-700 max-w-48 transition-colors duration-200 font-medium leading-relaxed tracking-wide">
+      <div className="text-sm sm:text-base lg:text-lg text-slate-600 group-hover:text-slate-700 max-w-48 transition-colors duration-200 font-medium leading-relaxed tracking-wide">
         {label}
       </div>
     </div>

@@ -43,7 +43,7 @@ export function StatisticsSection({
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
           {statistics.map((statistic, index) => (
             <AnimatedSection
               key={index}

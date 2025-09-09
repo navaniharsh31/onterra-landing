@@ -15,7 +15,7 @@ export function FullScreenSection({
     <section
       className={cn(
         "relative w-full overflow-hidden",
-        withHeader ? "h-screen-header" : "h-screen",
+        withHeader ? "min-h-screen-header" : "min-h-screen",
         className
       )}
     >
