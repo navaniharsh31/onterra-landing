@@ -346,8 +346,6 @@ export async function getAboutPageData() {
       client.fetch(queries.teamMembers),
     ]);
 
-    console.log("Raw team members data:", teamMembers);
-
     // Transform team member image URLs
     const transformedTeamMembers =
       teamMembers?.map((member: any) => ({
@@ -362,8 +360,6 @@ export async function getAboutPageData() {
             }
           : null,
       })) || [];
-
-    console.log("Transformed team members data:", transformedTeamMembers);
 
     return {
       aboutPage: aboutPage || null,

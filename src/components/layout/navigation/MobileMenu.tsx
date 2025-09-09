@@ -12,29 +12,26 @@ interface MobileMenuProps {
   navigation?: any;
 }
 
-export function MobileMenu({ isOpen, onClose, siteSettings, navigation }: MobileMenuProps) {
-
+export function MobileMenu({
+  isOpen,
+  onClose,
+  siteSettings,
+  navigation,
+}: MobileMenuProps) {
   // Transform Sanity data to component format
-  const navItems = (
-    navigation?.navItems?.map(
-      (item: any) =>
-        ({
-          ...item,
-          megaMenuContent: item.megaMenuContent
-            ? {
-                ...item.megaMenuContent,
-                sections: item.megaMenuContent.sections.map(
-                  (section: any) =>
-                    ({
-                      ...section,
-                      image: section.image?.asset.url,
-                    })
-                ),
-              }
-            : undefined,
-        })
-    ) || []
-  );
+  const navItems =
+    navigation?.navItems?.map((item: any) => ({
+      ...item,
+      megaMenuContent: item.megaMenuContent
+        ? {
+            ...item.megaMenuContent,
+            sections: item.megaMenuContent.sections.map((section: any) => ({
+              ...section,
+              image: section.image?.asset.url,
+            })),
+          }
+        : undefined,
+    })) || [];
 
   const ctaButton = navigation?.ctaButton || null;
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -116,19 +113,16 @@ export function MobileMenu({ isOpen, onClose, siteSettings, navigation }: Mobile
                             className="overflow-hidden"
                           >
                             <div className="ml-4 mt-2 space-y-1">
-                              {item.dropdownItems.map(
-                                (dropdownItem: any) =>
-                                  (
-                                    <a
-                                      key={dropdownItem.id}
-                                      href={dropdownItem.url}
-                                      className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-                                      onClick={onClose}
-                                    >
-                                      {dropdownItem.title}
-                                    </a>
-                                  )
-                              )}
+                              {item.dropdownItems.map((dropdownItem: any) => (
+                                <a
+                                  key={dropdownItem.id}
+                                  href={dropdownItem.url}
+                                  className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                                  onClick={onClose}
+                                >
+                                  {dropdownItem.title}
+                                </a>
+                              ))}
                             </div>
                           </motion.div>
                         )}
@@ -136,20 +130,45 @@ export function MobileMenu({ isOpen, onClose, siteSettings, navigation }: Mobile
                     </div>
                   ) : item.type === "megamenu" ? (
                     <div>
-                      <button
-                        onClick={() => handleDropdownToggle(item.id)}
-                        className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-                      >
-                        <span>{item.title}</span>
-                        <motion.div
-                          animate={{
-                            rotate: openDropdown === item.id ? 90 : 0,
-                          }}
-                          transition={{ duration: 0.2 }}
+                      {item.url ? (
+                        <div className="flex items-center">
+                          <a
+                            href={item.url}
+                            className="flex-1 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                            onClick={onClose}
+                          >
+                            {item.title}
+                          </a>
+                          <button
+                            onClick={() => handleDropdownToggle(item.id)}
+                            className="px-2 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                          >
+                            <motion.div
+                              animate={{
+                                rotate: openDropdown === item.id ? 90 : 0,
+                              }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <ChevronRight className="h-4 w-4" />
+                            </motion.div>
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => handleDropdownToggle(item.id)}
+                          className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
                         >
-                          <ChevronRight className="h-4 w-4" />
-                        </motion.div>
-                      </button>
+                          <span>{item.title}</span>
+                          <motion.div
+                            animate={{
+                              rotate: openDropdown === item.id ? 90 : 0,
+                            }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </motion.div>
+                        </button>
+                      )}
                       <AnimatePresence>
                         {openDropdown === item.id && item.megaMenuContent && (
                           <motion.div
@@ -164,22 +183,21 @@ export function MobileMenu({ isOpen, onClose, siteSettings, navigation }: Mobile
                                 {item.megaMenuContent.title}
                               </h3>
                               {item.megaMenuContent.sections.map(
-                                (section: any) =>
-                                  (
-                                    <a
-                                      key={section.id}
-                                      href={`/${section.id}`}
-                                      className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-                                      onClick={onClose}
-                                    >
-                                      <div className="font-medium">
-                                        {section.title}
-                                      </div>
-                                      <div className="text-xs text-gray-500 mt-1">
-                                        {section.description}
-                                      </div>
-                                    </a>
-                                  )
+                                (section: any) => (
+                                  <a
+                                    key={section.id}
+                                    href={`/${section.id}`}
+                                    className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                                    onClick={onClose}
+                                  >
+                                    <div className="font-medium">
+                                      {section.title}
+                                    </div>
+                                    <div className="text-xs text-gray-500 mt-1">
+                                      {section.description}
+                                    </div>
+                                  </a>
+                                )
                               )}
                             </div>
                           </motion.div>
