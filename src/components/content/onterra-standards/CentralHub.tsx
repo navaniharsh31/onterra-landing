@@ -4,9 +4,13 @@ import Image from "next/image";
 
 interface CentralHubProps {
   className?: string;
+  logoData?: {
+    src: string;
+    alt: string;
+  };
 }
 
-export function CentralHub({ className }: CentralHubProps) {
+export function CentralHub({ className, logoData }: CentralHubProps) {
   return (
     <motion.div
       className={cn(
@@ -39,8 +43,8 @@ export function CentralHub({ className }: CentralHubProps) {
       {/* Professional Logo Container */}
       <div className="relative z-10 w-full h-full flex items-center justify-center">
         <Image
-          src="/logo.png"
-          alt="Onterra Capital Logo"
+          src={logoData?.src || "/logo.png"}
+          alt={logoData?.alt || "Onterra Capital Logo"}
           width={200}
           height={100}
           className="w-full h-full object-contain brightness-0 invert opacity-90"

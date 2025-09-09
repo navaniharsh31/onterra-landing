@@ -9,17 +9,35 @@ export default async function Home() {
     // Server-side data fetching
     const pageData = await getPageData();
 
+    // Prepare logo data for components
+    const logoData = pageData.siteSettings?.logo?.asset?.url
+      ? {
+          src: pageData.siteSettings.logo.asset.url,
+          alt: pageData.siteSettings.logo.alt || "Onterra Capital",
+        }
+      : {
+          src: "/logo.png",
+          alt: "Onterra Capital",
+        };
+
     return (
       <div className="min-h-screen">
         {/* Hero Section - Server rendered */}
         <HeroSection content={pageData.hero} />
 
         {/* Statistics Section - Server rendered */}
-        {pageData.statistics && <StatisticsSection content={pageData.statistics} />}
+        {pageData.statistics && (
+          <StatisticsSection content={pageData.statistics} />
+        )}
 
         {/* Content Sections - Server rendered */}
-        <InvestmentStrategiesSectionNew content={pageData.investmentStrategies} />
-        <OnterraStandardsSectionNew content={pageData.onterraStandards} />
+        <InvestmentStrategiesSectionNew
+          content={pageData.investmentStrategies}
+        />
+        <OnterraStandardsSectionNew
+          content={pageData.onterraStandards}
+          logoData={logoData}
+        />
       </div>
     );
   } catch (error) {

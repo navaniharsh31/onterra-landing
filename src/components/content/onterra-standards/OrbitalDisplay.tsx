@@ -19,6 +19,10 @@ interface OrbitalDisplayProps {
   onPrincipleHover?: (principle: Principle) => void;
   onPrincipleLeave?: () => void;
   className?: string;
+  logoData?: {
+    src: string;
+    alt: string;
+  };
 }
 
 export function OrbitalDisplay({
@@ -26,6 +30,7 @@ export function OrbitalDisplay({
   onPrincipleHover,
   onPrincipleLeave,
   className,
+  logoData,
 }: OrbitalDisplayProps) {
   // Calculate orbital positions for perfect circular alignment
   const getOrbitalPosition = (
@@ -87,7 +92,7 @@ export function OrbitalDisplay({
             top: 300 - 64, // containerHeight/2 - hubHeight/2 (112px/2)
           }}
         >
-          <CentralHub />
+          <CentralHub logoData={logoData} />
         </div>
 
         {/* Principle Orbitals - positioned around the center */}

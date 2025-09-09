@@ -19,11 +19,16 @@ const iconMap = {
 interface OnterraStandardsSectionNewProps {
   className?: string;
   content?: any;
+  logoData?: {
+    src: string;
+    alt: string;
+  };
 }
 
 export function OnterraStandardsSectionNew({
   className,
   content,
+  logoData,
 }: OnterraStandardsSectionNewProps) {
   const sanityData = content;
 
@@ -244,6 +249,7 @@ export function OnterraStandardsSectionNew({
                   className="w-full h-full max-w-[600px] max-h-[600px]"
                   onPrincipleHover={handlePrincipleHover}
                   onPrincipleLeave={handlePrincipleLeave}
+                  logoData={logoData}
                 />
               </div>
             </motion.div>

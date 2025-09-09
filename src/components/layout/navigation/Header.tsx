@@ -28,10 +28,10 @@ export function Header({ className, siteSettings, navigation }: HeaderProps) {
   }, []);
 
   // Fallback data if Sanity data is not available
-  const logoData = siteSettings?.branding?.logo
+  const logoData = siteSettings?.logo?.asset?.url
     ? {
-        src: siteSettings.branding.logo.asset.url,
-        alt: siteSettings.branding.logo.alt || "Onterra Capital",
+        src: siteSettings.logo.asset.url,
+        alt: siteSettings.logo.alt || "Onterra Capital",
         url: "/",
       }
     : {
@@ -41,26 +41,19 @@ export function Header({ className, siteSettings, navigation }: HeaderProps) {
       };
 
   // Transform Sanity data to component format
-  const navItems = (
-    navigation?.navItems?.map(
-      (item: any) =>
-        ({
-          ...item,
-          megaMenuContent: item.megaMenuContent
-            ? {
-                ...item.megaMenuContent,
-                sections: item.megaMenuContent.sections.map(
-                  (section: any) =>
-                    ({
-                      ...section,
-                      image: section.image?.asset.url,
-                    })
-                ),
-              }
-            : undefined,
-        })
-    ) || []
-  );
+  const navItems =
+    navigation?.navItems?.map((item: any) => ({
+      ...item,
+      megaMenuContent: item.megaMenuContent
+        ? {
+            ...item.megaMenuContent,
+            sections: item.megaMenuContent.sections.map((section: any) => ({
+              ...section,
+              image: section.image?.asset.url,
+            })),
+          }
+        : undefined,
+    })) || [];
 
   const ctaButton = navigation?.ctaButton || null;
 
