@@ -64,28 +64,28 @@ export default async function Home() {
     return (
       <div className="min-h-screen">
         {/* Hero Section Fallback */}
-        <div className="h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-gray-900">
+        <div className="h-screen flex items-center justify-center bg-gradient-to-br from-navy-900 to-gray-900">
           <div className="max-w-4xl flex items-center px-4 sm:px-6 lg:px-8">
             {/* Vertical Line Design */}
-            <div className="w-1 bg-blue-500 mr-6 flex-shrink-0 h-24" />
+            <div className="w-1 bg-navy-500 mr-6 flex-shrink-0 h-24" />
 
             {/* Text Content */}
             <div className="flex-1 text-left">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 Building wealth through{" "}
-                <span className="text-blue-400">strategic</span> real estate
+                <span className="text-navy-400">strategic</span> real estate
                 investments
               </h1>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <a
                   href="#contact"
-                  className="inline-block bg-white text-blue-900 px-6 py-3 rounded-lg hover:bg-white/90 transition-colors font-semibold"
+                  className="inline-block bg-white text-navy-900 px-6 py-3 rounded-lg hover:bg-white/90 transition-colors font-semibold"
                 >
                   Get Started
                 </a>
                 <a
                   href="#about"
-                  className="inline-block border border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-blue-900 transition-colors font-semibold"
+                  className="inline-block border border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-navy-900 transition-colors font-semibold"
                 >
                   Learn More
                 </a>

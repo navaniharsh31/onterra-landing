@@ -246,7 +246,7 @@ export function OnterraStandardsMobile({
             </h2>
 
             {/* Subtle Professional Glow */}
-            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-transparent via-blue-500/8 to-transparent rounded-2xl blur-xl -z-10" />
+            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-transparent via-navy-500/8 to-transparent rounded-2xl blur-xl -z-10" />
           </motion.div>
 
           {/* Premium Subtitle */}

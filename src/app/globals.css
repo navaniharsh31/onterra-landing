@@ -41,6 +41,33 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Navy Brand Colors */
+  --color-navy-50: #f0f2ff;
+  --color-navy-100: #e1e5ff;
+  --color-navy-200: #c3ccff;
+  --color-navy-300: #a5b3ff;
+  --color-navy-400: #879aff;
+  --color-navy-500: #001670;
+  --color-navy-600: #00145c;
+  --color-navy-700: #001248;
+  --color-navy-800: #001034;
+  --color-navy-900: #000e20;
+  --color-navy-950: #000a14;
+
+  /* Mustard Accent Colors */
+  --color-mustard-50: #fefdf8;
+  --color-mustard-100: #fef7e0;
+  --color-mustard-200: #fcecc2;
+  --color-mustard-300: #f9d98a;
+  --color-mustard-400: #f5c842;
+  --color-mustard-500: #d4a574;
+  --color-mustard-600: #b8941f;
+  --color-mustard-700: #9c7c1a;
+  --color-mustard-800: #806415;
+  --color-mustard-900: #6b4e0f;
+  --color-mustard-950: #4d3c0d;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

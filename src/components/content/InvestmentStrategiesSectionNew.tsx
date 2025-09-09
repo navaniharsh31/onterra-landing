@@ -313,7 +313,7 @@ export function InvestmentStrategiesSectionNew({
               </h2>
 
               {/* Subtle Professional Glow */}
-              <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-transparent via-blue-500/8 to-transparent rounded-2xl blur-xl -z-10" />
+              <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-transparent via-navy-500/8 to-transparent rounded-2xl blur-xl -z-10" />
             </motion.div>
 
             {/* Premium Subtitle */}
@@ -324,7 +324,7 @@ export function InvestmentStrategiesSectionNew({
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
+              <p className="text-lg sm:text-xl text-typography-100 leading-relaxed max-w-4xl mx-auto font-light">
                 {sanityData.sectionDescription}
               </p>
 
@@ -369,18 +369,22 @@ export function InvestmentStrategiesSectionNew({
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-slate-900/95 backdrop-blur-xl rounded-xs border border-slate-700/40 shadow-[0_24px_64px_rgba(0,0,0,0.4)]" />
 
                 {/* Professional Gradient Overlay - Dark Theme */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-slate-800/30 rounded-xs" />
+                <div className="absolute inset-0 bg-gradient-to-br from-navy-900/20 via-transparent to-slate-800/30 rounded-xs" />
 
                 {/* Sophisticated Border Treatment - Dark Theme */}
                 <div className="absolute inset-0 ring-1 ring-inset ring-slate-600/30 rounded-xs" />
 
                 {/* Premium Corner Accents - Dark Theme */}
-                <div className="absolute -top-px -left-px w-8 h-8 bg-gradient-to-br from-blue-400/25 to-transparent rounded-tl-xs" />
+                <div className="absolute -top-px -left-px w-8 h-8 bg-gradient-to-br from-navy-400/25 to-transparent rounded-tl-xs" />
                 <div className="absolute -bottom-px -right-px w-8 h-8 bg-gradient-to-br from-slate-400/15 to-transparent rounded-br-xs" />
 
                 {/* Professional Accent Points - Dark Theme */}
-                <div className="absolute top-4 right-4 w-1.5 h-1.5 bg-blue-400/70 rounded-full blur-[0.5px]" />
+                <div className="absolute top-4 right-4 w-1.5 h-1.5 bg-navy-400/70 rounded-full blur-[0.5px]" />
                 <div className="absolute bottom-4 left-4 w-2 h-2 bg-slate-400/50 rounded-full blur-[0.5px]" />
+
+                {/* Mustard Accent Hint - Right Side */}
+                <div className="absolute top-1/2 -right-2 w-1 h-16 bg-gradient-to-b from-mustard-400/60 via-mustard-500/80 to-mustard-600/60 rounded-full blur-[0.5px]" />
+                <div className="absolute top-1/2 -right-1 w-0.5 h-12 bg-gradient-to-b from-mustard-300/40 via-mustard-400/60 to-mustard-500/40 rounded-full" />
 
                 {/* Premium Edge Highlights */}
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-500/40 to-transparent" />
@@ -395,7 +399,7 @@ export function InvestmentStrategiesSectionNew({
                 </div>
 
                 {/* Sophisticated Professional Glow - Dark Theme */}
-                <div className="absolute -inset-3 bg-gradient-to-br from-blue-500/15 via-slate-700/10 to-slate-600/15 rounded-xs blur-2xl -z-10 opacity-80" />
+                <div className="absolute -inset-3 bg-gradient-to-br from-navy-500/15 via-slate-700/10 to-slate-600/15 rounded-xs blur-2xl -z-10 opacity-80" />
 
                 {/* Premium Inner Shadow - Dark Theme */}
                 <div className="absolute inset-0 shadow-inner shadow-slate-950/40 rounded-xs pointer-events-none" />

@@ -17,7 +17,7 @@ export function HeroLineDesign({
   return (
     <div
       className={cn(
-        "w-1 bg-blue-500 mr-6 flex-shrink-0 self-stretch",
+        "w-1 bg-navy-500 mr-6 flex-shrink-0 self-stretch",
         className
       )}
       style={{ backgroundColor: color }}

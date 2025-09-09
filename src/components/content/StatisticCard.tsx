@@ -23,17 +23,17 @@ export function StatisticCard({
     >
       {/* Professional Statistic Value */}
       <div className="relative mb-2">
-        <div className="text-4xl sm:text-4xl lg:text-5xl  font-light text-slate-900 group-hover:text-blue-600 group-hover:scale-105 transition-all duration-300 tracking-tight">
+        <div className="text-4xl sm:text-4xl lg:text-5xl  font-light text-slate-900 group-hover:text-navy-600 group-hover:scale-105 transition-all duration-300 tracking-tight">
           {value}
           {suffix && (
-            <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-blue-600 group-hover:text-blue-700 transition-colors duration-300 font-medium ml-1">
+            <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-navy-600 group-hover:text-navy-700 transition-colors duration-300 font-medium ml-1">
               {suffix}
             </span>
           )}
         </div>
 
         {/* Subtle Professional Glow */}
-        <div className="absolute -inset-2 bg-gradient-to-r from-transparent via-blue-500/8 to-transparent rounded-lg blur-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute -inset-2 bg-gradient-to-r from-transparent via-navy-500/8 to-transparent rounded-lg blur-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       {/* Professional Label */}

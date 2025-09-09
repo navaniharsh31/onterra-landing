@@ -56,7 +56,7 @@ export function HeroContent({
               <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight">
                 <RotatingText
                   words={rotatingText}
-                  className="text-blue-400"
+                  className="text-navy-400"
                   animationDuration={3000}
                 />
               </div>

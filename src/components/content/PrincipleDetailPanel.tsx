@@ -52,8 +52,8 @@ export function PrincipleDetailPanel({
 
         {/* Icon */}
         {Icon && (
-          <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-            <Icon className="w-8 h-8 text-blue-600" />
+          <div className="w-16 h-16 mx-auto mb-4 bg-navy-100 rounded-full flex items-center justify-center">
+            <Icon className="w-8 h-8 text-navy-600" />
           </div>
         )}
 
@@ -67,7 +67,7 @@ export function PrincipleDetailPanel({
         <ul className="space-y-2 text-left">
           {points.map((point, index) => (
             <li key={index} className="flex items-start">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0" />
+              <div className="w-2 h-2 bg-navy-500 rounded-full mt-2 mr-3 flex-shrink-0" />
               <span className="text-gray-700">{point}</span>
             </li>
           ))}

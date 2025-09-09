@@ -49,7 +49,7 @@ export function MultiVideoBackground({
   return (
     <div className={cn("absolute inset-0 w-full h-full", className)}>
       {/* Fallback gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-navy-900 to-slate-800" />
 
       {/* Video elements */}
       {videos.map((video, index) => (

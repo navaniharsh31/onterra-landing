@@ -72,10 +72,10 @@ export function FlowChartNode({
           ? "bg-slate-100 border-slate-300 text-slate-700 cursor-default shadow-sm "
           : isSelectable
             ? cn(
-                "group hover:shadow-lg hover:border-blue-300 cursor-pointer",
+                "group hover:shadow-lg hover:border-mustard-300 cursor-pointer",
                 isActive
-                  ? "bg-blue-600 border-blue-600 text-white shadow-lg scale-105"
-                  : "bg-white border-gray-200 text-gray-900 hover:bg-blue-50"
+                  ? "bg-navy-600 border-navy-600 text-white shadow-lg scale-105"
+                  : "bg-white border-gray-200 text-gray-900 hover:bg-mustard-50"
               )
             : "bg-gray-100 border-gray-300 text-gray-500 cursor-not-allowed",
         className
@@ -95,7 +95,7 @@ export function FlowChartNode({
     >
       {/* Background gradient overlay for active state */}
       {isActive && !isMainCategory && (
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xs" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-600 to-navy-700 rounded-xs" />
       )}
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full">
@@ -106,7 +106,7 @@ export function FlowChartNode({
               "mb-2 transition-colors",
               isActive
                 ? "w-6 h-6 text-white"
-                : "w-6 h-6 text-blue-600 group-hover:text-blue-700"
+                : "w-6 h-6 text-navy-600 group-hover:text-navy-700"
             )}
           />
         ) : null}
@@ -119,7 +119,7 @@ export function FlowChartNode({
               ? "text-[16px] uppercase font-bold text-slate-700"
               : isActive
                 ? "text-sm text-white"
-                : "text-sm text-gray-900 group-hover:text-blue-900"
+                : "text-sm text-gray-900 group-hover:text-navy-900"
           )}
         >
           {strategy.title}
@@ -128,7 +128,7 @@ export function FlowChartNode({
 
       {/* Hover effect overlay for selectable items */}
       {isSelectable && !isMainCategory && (
-        <div className="absolute inset-0 bg-blue-500/10 rounded-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-navy-500/10 rounded-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       )}
     </motion.button>
   );

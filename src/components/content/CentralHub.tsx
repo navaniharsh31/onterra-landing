@@ -27,13 +27,13 @@ export function CentralHub({ className }: CentralHubProps) {
       }}
     >
       {/* Premium Glass Morphism Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-slate-800/20 rounded-xs" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy-900/10 via-transparent to-slate-800/20 rounded-xs" />
 
       {/* Professional Border Treatment */}
       <div className="absolute inset-0 ring-1 ring-inset ring-slate-600/30 rounded-xs" />
 
       {/* Premium Corner Accents */}
-      <div className="absolute -top-px -left-px w-6 h-6 bg-gradient-to-br from-blue-400/20 to-transparent rounded-tl-xs" />
+      <div className="absolute -top-px -left-px w-6 h-6 bg-gradient-to-br from-navy-400/20 to-transparent rounded-tl-xs" />
       <div className="absolute -bottom-px -right-px w-6 h-6 bg-gradient-to-br from-slate-400/15 to-transparent rounded-br-xs" />
 
       {/* Professional Logo Container */}
@@ -48,7 +48,7 @@ export function CentralHub({ className }: CentralHubProps) {
       </div>
 
       {/* Sophisticated Professional Glow */}
-      <div className="absolute -inset-2 bg-gradient-to-br from-blue-500/8 via-slate-700/5 to-slate-600/8 rounded-xs blur-xl -z-10 opacity-70" />
+      <div className="absolute -inset-2 bg-gradient-to-br from-navy-500/8 via-slate-700/5 to-slate-600/8 rounded-xs blur-xl -z-10 opacity-70" />
     </motion.div>
   );
 }

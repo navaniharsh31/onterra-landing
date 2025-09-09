@@ -30,10 +30,10 @@ export function PrincipleOrbital({
         "absolute cursor-pointer group z-10",
         "w-52 h-28 rounded-xs bg-white",
         "flex flex-col items-center justify-center p-4",
-        "border border-gray-200 hover:border-blue-300",
+        "border border-gray-200 hover:border-mustard-300",
         "shadow-lg hover:shadow-xl",
         "transition-all duration-200 ease-out",
-        isActive && "ring-2 ring-blue-400 ring-opacity-60",
+        isActive && "ring-2 ring-navy-400 ring-opacity-60",
         className
       )}
       style={{
@@ -58,13 +58,13 @@ export function PrincipleOrbital({
     >
       {/* Simple Icon */}
       {Icon && (
-        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mb-3 group-hover:bg-blue-200 transition-colors duration-200">
-          <Icon className="w-5 h-5 text-blue-600" />
+        <div className="w-10 h-10 rounded-full bg-navy-100 flex items-center justify-center mb-3 group-hover:bg-navy-200 transition-colors duration-200">
+          <Icon className="w-5 h-5 text-navy-600" />
         </div>
       )}
 
       {/* Simple Title */}
-      <div className="text-sm font-semibold text-gray-800 text-center leading-tight group-hover:text-blue-700 transition-colors duration-200">
+      <div className="text-sm font-semibold text-gray-800 text-center leading-tight group-hover:text-navy-700 transition-colors duration-200">
         {title}
       </div>
     </motion.div>

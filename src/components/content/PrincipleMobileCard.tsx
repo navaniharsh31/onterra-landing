@@ -42,13 +42,13 @@ export function PrincipleMobileCard({
         <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-slate-50/90 to-white/95 backdrop-blur-xl rounded-xs border border-slate-200/60 shadow-[0_8px_32px_rgba(0,0,0,0.08)]" />
 
         {/* Professional Gradient Overlay - Light Theme */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-transparent to-slate-50/30 rounded-xs" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-50/40 via-transparent to-slate-50/30 rounded-xs" />
 
         {/* Sophisticated Border Treatment - Light Theme */}
         <div className="absolute inset-0 ring-1 ring-inset ring-slate-200/50 rounded-xs" />
 
         {/* Professional Accent Points - Light Theme */}
-        <div className="absolute top-3 right-3 w-1 h-1 bg-blue-500/60 rounded-full blur-[0.5px]" />
+        <div className="absolute top-3 right-3 w-1 h-1 bg-navy-500/60 rounded-full blur-[0.5px]" />
         <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-slate-400/40 rounded-full blur-[0.5px]" />
 
         {/* Premium Edge Highlights */}
@@ -61,8 +61,8 @@ export function PrincipleMobileCard({
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               {/* Icon */}
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center border border-blue-200/50">
-                <Icon className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-navy-100 to-navy-50 flex items-center justify-center border border-navy-200/50">
+                <Icon className="w-6 h-6 text-navy-600" />
               </div>
 
               {/* Title */}
@@ -123,7 +123,7 @@ export function PrincipleMobileCard({
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
                       >
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mt-2 mr-3 flex-shrink-0" />
+                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-navy-500 to-navy-600 rounded-full mt-2 mr-3 flex-shrink-0" />
                         <span className="text-slate-600 text-sm leading-relaxed font-light">
                           {point}
                         </span>
@@ -136,7 +136,7 @@ export function PrincipleMobileCard({
           </motion.div>
 
           {/* Sophisticated Professional Glow - Light Theme */}
-          <div className="absolute -inset-2 bg-gradient-to-br from-blue-500/8 via-slate-200/5 to-slate-300/8 rounded-xs blur-xl -z-10 opacity-60" />
+          <div className="absolute -inset-2 bg-gradient-to-br from-navy-500/8 via-slate-200/5 to-slate-300/8 rounded-xs blur-xl -z-10 opacity-60" />
 
           {/* Premium Inner Shadow - Light Theme */}
           <div className="absolute inset-0 shadow-inner shadow-slate-200/20 rounded-xs pointer-events-none" />

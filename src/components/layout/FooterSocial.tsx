@@ -99,7 +99,7 @@ export function FooterSocial({ settings, className }: FooterSocialProps) {
               )}
 
               {/* Hover effect */}
-              <span className="absolute inset-0 rounded-xs bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="absolute inset-0 rounded-xs bg-gradient-to-br from-navy-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           );
         })}
@@ -113,7 +113,7 @@ export function FooterSocial({ settings, className }: FooterSocialProps) {
         <a
           href="/newsletter"
           className={cn(
-            "inline-flex items-center space-x-2 text-sm text-blue-400 hover:text-blue-300",
+            "inline-flex items-center space-x-2 text-sm text-navy-400 hover:text-navy-300",
             "transition-colors duration-200"
           )}
         >

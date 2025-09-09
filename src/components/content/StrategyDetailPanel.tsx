@@ -29,7 +29,7 @@ export function StrategyDetailPanel({
     return (
       <div className={cn("flex items-center justify-center h-full", className)}>
         <div className="text-center text-slate-400">
-          <div className="w-16 h-16 mx-auto mb-4 bg-slate-800/50 rounded-full flex items-center justify-center border border-slate-700/30">
+          <div className="w-16 h-16 mx-auto mb-4 bg-navy-800/50 rounded-full flex items-center justify-center border border-navy-700/30">
             <TrendingUp className="w-8 h-8 text-slate-500" />
           </div>
           <p className="text-lg">
@@ -83,25 +83,25 @@ export function StrategyDetailPanel({
               {Object.entries(strategy.metrics).map(([key, value], index) => (
                 <motion.div
                   key={key}
-                  className="bg-slate-800/50 rounded-xs p-3 border border-slate-700/50 backdrop-blur-sm"
+                  className="bg-navy-800/50 rounded-xs p-3 border border-navy-700/50 backdrop-blur-sm"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
                 >
                   <div className="flex items-center mb-2">
                     {key.toLowerCase().includes("return") && (
-                      <TrendingUp className="w-4 h-4 text-blue-400 mr-2" />
+                      <TrendingUp className="w-4 h-4 text-mustard-400 mr-2" />
                     )}
                     {key.toLowerCase().includes("period") && (
-                      <Clock className="w-4 h-4 text-blue-400 mr-2" />
+                      <Clock className="w-4 h-4 text-mustard-400 mr-2" />
                     )}
                     {key.toLowerCase().includes("investment") && (
-                      <DollarSign className="w-4 h-4 text-blue-400 mr-2" />
+                      <DollarSign className="w-4 h-4 text-mustard-400 mr-2" />
                     )}
                     {!key.toLowerCase().includes("return") &&
                       !key.toLowerCase().includes("period") &&
                       !key.toLowerCase().includes("investment") && (
-                        <TrendingUp className="w-4 h-4 text-blue-400 mr-2" />
+                        <TrendingUp className="w-4 h-4 text-mustard-400 mr-2" />
                       )}
                     <span className="text-sm font-medium text-slate-400 capitalize">
                       {key.replace(/([A-Z])/g, " $1").trim()}
@@ -127,10 +127,10 @@ export function StrategyDetailPanel({
               strategy.category === "residential"
                 ? "bg-green-900/30 text-green-300 border-green-700/40"
                 : strategy.category === "commercial"
-                  ? "bg-blue-900/30 text-blue-300 border-blue-700/40"
+                  ? "bg-mustard-900/30 text-mustard-300 border-mustard-700/40"
                   : strategy.category === "category"
                     ? "bg-purple-900/30 text-purple-300 border-purple-700/40"
-                    : "bg-slate-800/40 text-slate-300 border-slate-700/40"
+                    : "bg-navy-800/40 text-slate-300 border-navy-700/40"
             )}
           >
             {strategy.category === "residential" && "Residential"}

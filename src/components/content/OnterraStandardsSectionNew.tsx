@@ -281,7 +281,7 @@ export function OnterraStandardsSectionNew({
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4, delay: index * 0.1 }}
                           >
-                            <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mt-2.5 mr-4 flex-shrink-0" />
+                            <div className="w-2 h-2 bg-gradient-to-r from-navy-500 to-navy-600 rounded-full mt-2.5 mr-4 flex-shrink-0" />
                             <span className="text-slate-700 font-light leading-relaxed">
                               {point}
                             </span>

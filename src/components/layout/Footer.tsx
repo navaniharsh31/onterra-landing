@@ -59,7 +59,7 @@ export function Footer({ className }: FooterProps) {
   return (
     <footer
       className={cn(
-        "bg-slate-900 text-white relative overflow-hidden",
+        "bg-navy-900 text-white relative overflow-hidden",
         className
       )}
       role="contentinfo"
@@ -68,7 +68,7 @@ export function Footer({ className }: FooterProps) {
       {/* Premium Background Elements */}
       <div className="absolute inset-0">
         {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 via-slate-900 to-slate-900" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-800/50 via-navy-900 to-navy-900" />
 
         {/* Premium grid pattern */}
         <div
@@ -83,7 +83,7 @@ export function Footer({ className }: FooterProps) {
         />
 
         {/* Corner accent */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-900/10 via-transparent to-transparent" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-navy-900/10 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,7 +188,7 @@ export function Footer({ className }: FooterProps) {
         </div>
 
         {/* Bottom Bar - Copyright Only */}
-        <div className="border-t border-slate-800 py-8">
+        <div className="border-t border-navy-800 py-8">
           <div className="text-center">
             <p className="text-slate-400 text-sm">
               © {currentYear} {navigationData.company.name}. All rights

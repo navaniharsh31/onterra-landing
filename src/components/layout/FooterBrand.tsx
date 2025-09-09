@@ -51,7 +51,7 @@ export function FooterBrand({ settings, className }: FooterBrandProps) {
         {/* Professional Credentials */}
         <div className="flex flex-wrap gap-4 text-sm text-slate-500">
           <span className="flex items-center space-x-1">
-            <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+            <span className="w-2 h-2 bg-navy-600 rounded-full"></span>
             <span>Licensed Real Estate Firm</span>
           </span>
           <span className="flex items-center space-x-1">
