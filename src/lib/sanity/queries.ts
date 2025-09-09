@@ -7,24 +7,17 @@ export const queries = {
     title,
     description,
     tagline,
-    branding {
-      logo {
-        asset->{
-          url
-        },
-        alt
+    logo {
+      asset->{
+        url
       },
-      favicon {
-        asset->{
-          url
-        },
-        alt
+      alt
+    },
+    favicon {
+      asset->{
+        url
       },
-      brandColors {
-        primary,
-        secondary,
-        accent
-      }
+      alt
     },
     seo {
       metaTitle,
@@ -35,16 +28,9 @@ export const queries = {
       googleAnalyticsId,
       googleTagManagerId
     },
-    legal {
-      copyrightText,
-      privacyPolicyUrl,
-      termsOfServiceUrl,
-      legalLinks[] {
-        title,
-        url,
-        openInNewTab
-      }
-    }
+    copyrightText,
+    privacyPolicyUrl,
+    termsOfServiceUrl
   }`,
 
   navigation: `*[_type == "navigation"][0] {
