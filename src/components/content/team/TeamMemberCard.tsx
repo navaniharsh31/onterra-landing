@@ -163,7 +163,7 @@ export function TeamMemberCard({
     >
       <div className="space-y-6">
         {/* Image Container - Compact */}
-        <div className="relative w-3/4 mx-auto h-80 overflow-hidden">
+        <div className="relative w-full max-w-sm mx-auto h-80 overflow-hidden">
           {member.image?.asset?.url ? (
             <Image
               src={member.image.asset.url}

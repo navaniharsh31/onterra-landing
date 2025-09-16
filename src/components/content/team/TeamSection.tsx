@@ -15,7 +15,12 @@ export function TeamSection({ className, teamMembers }: TeamSectionProps) {
   }
 
   return (
-    <section className={cn("relative py-16 sm:py-20 lg:py-32", className)}>
+    <section
+      className={cn(
+        "relative py-16 sm:py-20 lg:py-32 overflow-x-hidden",
+        className
+      )}
+    >
       {/* Premium Light Background with Animated Orbs - EXACT SAME SYSTEM */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">
         {/* Optional Subtle Grid Pattern */}

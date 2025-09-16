@@ -30,7 +30,7 @@ export default async function TeamPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* Team-specific Hero Section */}
       <AboutHero heroData={heroData} />
 
