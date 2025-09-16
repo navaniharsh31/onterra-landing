@@ -141,8 +141,8 @@ export const investmentStrategies = defineType({
           },
         },
       ],
-      validation: (Rule) => Rule.required().min(6).max(10),
-      description: "All investment strategies including main category nodes",
+      validation: (Rule) => Rule.required().min(1).max(10),
+      description: "Investment strategies (1-10 items allowed)",
     }),
   ],
   preview: {

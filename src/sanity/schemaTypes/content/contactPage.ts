@@ -59,41 +59,24 @@ export const contactPage = defineType({
           title: "Success Message",
           type: "text",
           rows: 2,
-          initialValue: "Thank you for your message! We'll get back to you within 24 hours.",
+          initialValue:
+            "Thank you for your message! We'll get back to you within 24 hours.",
         }),
         defineField({
           name: "errorMessage",
           title: "Error Message",
           type: "text",
           rows: 2,
-          initialValue: "Sorry, there was an error sending your message. Please try again or contact us directly.",
+          initialValue:
+            "Sorry, there was an error sending your message. Please try again or contact us directly.",
         }),
       ],
     }),
     defineField({
       name: "seo",
       title: "SEO Settings",
-      type: "object",
-      fields: [
-        defineField({
-          name: "metaTitle",
-          title: "Meta Title",
-          type: "string",
-          description: "Title for search engines (max 60 characters)",
-          validation: (Rule) => Rule.max(60),
-          initialValue: "Contact Us - Onterra Capital",
-        }),
-        defineField({
-          name: "metaDescription",
-          title: "Meta Description",
-          type: "text",
-          rows: 2,
-          description: "Description for search engines (max 160 characters)",
-          validation: (Rule) => Rule.max(160),
-          initialValue:
-            "Get in touch with Onterra Capital for real estate investment opportunities. Contact our team to discuss your investment goals and portfolio strategy.",
-        }),
-      ],
+      type: "seoSettings",
+      description: "SEO settings for this page",
     }),
   ],
   preview: {

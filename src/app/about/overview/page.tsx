@@ -1,6 +1,22 @@
 import { AboutHero } from "@/components/content/about/AboutHero";
 import { OverviewContent } from "@/components/content/about/OverviewContent";
-import { getOverviewPageData } from "@/lib/sanity/queries";
+import { getOverviewPageData, getLayoutData } from "@/lib/sanity/queries";
+import { generateSEOMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  const [{ overviewPage }, { siteSettings }] = await Promise.all([
+    getOverviewPageData(),
+    getLayoutData(),
+  ]);
+
+  return generateSEOMetadata({
+    siteWideSEO: siteSettings?.seo || {},
+    pageSEO: overviewPage?.seo,
+    pageTitle: "Overview",
+    pageDescription:
+      "Learn about India's real estate transformation and the opportunities in the evolving market landscape.",
+  });
+}
 
 export default async function OverviewPage() {
   const { overviewPage } = await getOverviewPageData();

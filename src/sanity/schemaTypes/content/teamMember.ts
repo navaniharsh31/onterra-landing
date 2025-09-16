@@ -21,18 +21,7 @@ export const teamMember = defineType({
     defineField({
       name: "image",
       title: "Profile Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: "alt",
-          title: "Alt Text",
-          type: "string",
-          validation: (Rule) => Rule.required(),
-        }),
-      ],
+      type: "imageWithAlt",
       validation: (Rule) => Rule.required(),
     }),
     defineField({

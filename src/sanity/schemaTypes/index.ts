@@ -8,7 +8,6 @@ import { socialLinks } from "./site/socialLinks";
 
 // Content Schemas
 import { heroSection } from "./content/heroSection";
-import { statisticsSection } from "./content/statisticsSection";
 import { onterraStandards } from "./content/onterraStandards";
 import { investmentStrategies } from "./content/investmentStrategies";
 import { teamMember } from "./content/teamMember";
@@ -34,7 +33,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 
     // Content Schemas
     heroSection,
-    statisticsSection,
     onterraStandards,
     investmentStrategies,
     teamMember,

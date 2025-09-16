@@ -36,6 +36,8 @@ const contentData = {
     logo: null, // Will be set manually in Sanity Studio
     favicon: null, // Will be set manually in Sanity Studio
     seo: {
+      defaultMetaTitle: "{pageTitle} | Onterra Capital",
+      defaultMetaDescription: "Strategic real estate investment firm building wealth through innovative investment strategies and proven market expertise.",
       organizationSchema: true,
       foundingDate: "2020-01-01",
       industry: "Real Estate Investment",
@@ -240,38 +242,6 @@ const contentData = {
     overlayOpacity: 0.4,
   },
 
-  statisticsSection: {
-    _type: "statisticsSection",
-    _id: "statistics-section-main",
-    title: "Our Track Record",
-    statistics: [
-      {
-        value: "20+",
-        label: "Years of Real Estate Experience",
-        suffix: "",
-      },
-      {
-        value: "8,000 Cr +",
-        label: "Total Assets Under Management",
-        suffix: "",
-      },
-      {
-        value: "80+",
-        label: "# Investments Managed",
-        suffix: "",
-      },
-      {
-        value: "8",
-        label: "# of Cities",
-        suffix: "",
-      },
-      {
-        value: "20%",
-        label: "# IRR on Exit",
-        suffix: "",
-      },
-    ],
-  },
 
   // Keep existing content schemas as they are
   onterraStandards: {
@@ -510,6 +480,7 @@ const contentData = {
         "investment",
         "transformation",
       ],
+      canonicalUrl: "https://onterra.in/about/overview",
     },
   },
 
@@ -561,6 +532,7 @@ const contentData = {
         "conflict-free",
         "discipline",
       ],
+      canonicalUrl: "https://onterra.in/about/approach",
     },
   },
 
@@ -622,6 +594,7 @@ const contentData = {
         "expertise",
         "leadership",
       ],
+      canonicalUrl: "https://onterra.in/about/team",
     },
   },
 
@@ -758,6 +731,14 @@ const contentData = {
       metaTitle: "Contact Us - Onterra Capital",
       metaDescription:
         "Get in touch with Onterra Capital for real estate investment opportunities. Contact our team to discuss your investment goals and portfolio strategy.",
+      keywords: [
+        "contact",
+        "real estate investment",
+        "investment opportunities",
+        "portfolio strategy",
+        "Onterra Capital",
+      ],
+      canonicalUrl: "https://onterra.in/contact",
     },
   },
 };
@@ -831,17 +812,6 @@ async function seedContent() {
       console.log("✅ Hero Section created/updated successfully");
     }
 
-    console.log("\n📊 Seeding Statistics Section...");
-    const existingStats = await client.fetch(
-      '*[_type == "statisticsSection"][0]'
-    );
-    if (existingStats && !forceUpdate) {
-      console.log("⚠️ Statistics section already exists. Skipping...");
-    } else {
-      console.log("🔄 Creating/updating Statistics Section...");
-      await client.createOrReplace(contentData.statisticsSection);
-      console.log("✅ Statistics Section created/updated successfully");
-    }
 
     console.log("\n🏛️ Seeding Onterra Standards...");
     const existingStandards = await client.fetch(

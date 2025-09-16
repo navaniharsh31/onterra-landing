@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import { QueryProvider } from "@/components/layout/providers/QueryProvider";
 import { ClientLayout } from "@/components/layout/providers/ClientLayout";
 import { getLayoutData } from "@/lib/sanity/queries";
+import { generateSEOMetadata } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,10 +20,13 @@ const playfairDisplay = Playfair_Display({
   display: "swap", // Recommended for better performance
 });
 
-export const metadata: Metadata = {
-  title: "Onterra - Real Estate Investment Firm",
-  description: "Your trusted partner in real estate investment opportunities",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { siteSettings } = await getLayoutData();
+
+  return generateSEOMetadata({
+    siteWideSEO: siteSettings?.seo || {},
+  });
+}
 
 export default async function RootLayout({
   children,

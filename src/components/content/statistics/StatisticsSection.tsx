@@ -43,7 +43,23 @@ export function StatisticsSection({
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12">
+        <div
+          className={`grid gap-8 sm:gap-10 lg:gap-12 ${
+            statistics.length === 1
+              ? "grid-cols-1 justify-center max-w-sm mx-auto"
+              : statistics.length === 2
+                ? "grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto"
+                : statistics.length === 3
+                  ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                  : statistics.length === 4
+                    ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                    : statistics.length === 5
+                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-5"
+                      : statistics.length <= 8
+                        ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          }`}
+        >
           {statistics.map((statistic, index) => (
             <AnimatedSection
               key={index}

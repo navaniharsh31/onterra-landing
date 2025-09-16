@@ -2,6 +2,18 @@ import { HeroSection } from "@/components/content/hero/HeroSection";
 import { OnterraStandardsSectionNew } from "@/components/content/onterra-standards/OnterraStandardsSectionNew";
 import { InvestmentStrategiesSectionNew } from "@/components/content/investment-strategies/InvestmentStrategiesSectionNew";
 import { getPageData } from "@/lib/sanity/queries";
+import { generateSEOMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  const pageData = await getPageData();
+
+  return generateSEOMetadata({
+    siteWideSEO: pageData.siteSettings?.seo || {},
+    pageTitle: "Onterra Capital - Real Estate Investment Firm",
+    pageDescription:
+      "Strategic real estate investment firm building wealth through innovative investment strategies and proven market expertise.",
+  });
+}
 
 export default async function Home() {
   try {

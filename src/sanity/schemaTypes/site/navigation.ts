@@ -55,7 +55,6 @@ export const navigation = defineType({
               title: "URL",
               type: "string",
               description: "Required for link type (e.g., /about, /contact)",
-              hidden: ({ parent }) => parent?.type !== "link",
             }),
             defineField({
               name: "dropdownItems",

@@ -41,7 +41,7 @@ export function MegaMenu({
     if (menuRef.current) {
       const parentRect = menuRef.current.parentElement?.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
-      const menuWidth = 800; // Fixed menu width
+      const menuWidth = 1000; // Fixed menu width
 
       if (parentRect) {
         // Calculate where the menu would be positioned if centered
@@ -67,11 +67,11 @@ export function MegaMenu({
   const getPositionClasses = () => {
     switch (position) {
       case "right":
-        return "absolute menu-top-positioned right-0 w-[800px] max-w-[calc(100vw-40px)]";
+        return "absolute menu-top-positioned right-0 w-[1000px] max-w-[calc(100vw-40px)]";
       case "left":
-        return "absolute menu-top-positioned left-0 w-[800px] max-w-[calc(100vw-40px)]";
+        return "absolute menu-top-positioned left-0 w-[1000px] max-w-[calc(100vw-40px)]";
       default:
-        return "absolute menu-top-positioned left-1/2 transform -translate-x-1/2 w-[800px] max-w-[calc(100vw-40px)]";
+        return "absolute menu-top-positioned left-1/2 transform -translate-x-1/2 w-[1000px] max-w-[calc(100vw-40px)]";
     }
   };
 

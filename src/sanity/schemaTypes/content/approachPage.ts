@@ -17,7 +17,8 @@ export const approachPage = defineType({
       title: "Page Subtitle",
       type: "string",
       validation: (Rule) => Rule.required(),
-      initialValue: "Onterra Capital is an independent, conflict-free and domestic real estate investment manager offering Indian family offices and various other investors early, aligned access to residential and commercial offices growth.",
+      initialValue:
+        "Onterra Capital is an independent, conflict-free and domestic real estate investment manager offering Indian family offices and various other investors early, aligned access to residential and commercial offices growth.",
     }),
     defineField({
       name: "hero",
@@ -37,7 +38,8 @@ export const approachPage = defineType({
           type: "text",
           rows: 4,
           validation: (Rule) => Rule.required(),
-          initialValue: "Onterra Capital is an independent, conflict-free and domestic real estate investment manager offering Indian family offices and various other investors early, aligned access to residential and commercial offices growth. We combine deep expertise across credit, equity and asset management with a disciplined and data-driven process.",
+          initialValue:
+            "Onterra Capital is an independent, conflict-free and domestic real estate investment manager offering Indian family offices and various other investors early, aligned access to residential and commercial offices growth. We combine deep expertise across credit, equity and asset management with a disciplined and data-driven process.",
         }),
       ],
       validation: (Rule) => Rule.required(),
@@ -74,18 +76,7 @@ export const approachPage = defineType({
             defineField({
               name: "image",
               title: "Section Image",
-              type: "image",
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                defineField({
-                  name: "alt",
-                  title: "Alt Text",
-                  type: "string",
-                  validation: (Rule) => Rule.required(),
-                }),
-              ],
+              type: "imageWithAlt",
             }),
             defineField({
               name: "imagePosition",
@@ -120,28 +111,8 @@ export const approachPage = defineType({
     defineField({
       name: "seo",
       title: "SEO Settings",
-      type: "object",
-      fields: [
-        defineField({
-          name: "metaTitle",
-          title: "Meta Title",
-          type: "string",
-          validation: (Rule) => Rule.max(60),
-        }),
-        defineField({
-          name: "metaDescription",
-          title: "Meta Description",
-          type: "text",
-          rows: 3,
-          validation: (Rule) => Rule.max(160),
-        }),
-        defineField({
-          name: "keywords",
-          title: "Keywords",
-          type: "array",
-          of: [{ type: "string" }],
-        }),
-      ],
+      type: "seoSettings",
+      description: "SEO settings for this page",
     }),
   ],
   preview: {

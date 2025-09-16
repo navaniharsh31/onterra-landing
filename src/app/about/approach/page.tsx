@@ -1,6 +1,22 @@
 import { AboutHero } from "@/components/content/about/AboutHero";
 import { ApproachContent } from "@/components/content/about/ApproachContent";
-import { getApproachPageData } from "@/lib/sanity/queries";
+import { getApproachPageData, getLayoutData } from "@/lib/sanity/queries";
+import { generateSEOMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  const [{ approachPage }, { siteSettings }] = await Promise.all([
+    getApproachPageData(),
+    getLayoutData(),
+  ]);
+
+  return generateSEOMetadata({
+    siteWideSEO: siteSettings?.seo || {},
+    pageSEO: approachPage?.seo,
+    pageTitle: "Our Approach",
+    pageDescription:
+      "Discover Onterra Capital's independent, conflict-free approach to real estate investment with deep expertise and disciplined processes.",
+  });
+}
 
 export default async function ApproachPage() {
   const { approachPage } = await getApproachPageData();

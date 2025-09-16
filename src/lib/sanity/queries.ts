@@ -20,8 +20,8 @@ export const queries = {
       alt
     },
     seo {
-      metaTitle,
-      metaDescription,
+      defaultMetaTitle,
+      defaultMetaDescription,
       organizationSchema,
       foundingDate,
       industry,
@@ -67,12 +67,15 @@ export const queries = {
       variant,
       openInNewTab
     },
-    footerSections[] {
-      title,
-      links[] {
+    footerNavigation {
+      useMainNavigation,
+      additionalSections[] {
         title,
-        url,
-        openInNewTab
+        links[] {
+          title,
+          url,
+          openInNewTab
+        }
       }
     }
   }`,
@@ -93,15 +96,6 @@ export const queries = {
       variant
     },
     overlayOpacity
-  }`,
-
-  statistics: `*[_type == "statisticsSection"][0] {
-    title,
-    statistics[] {
-      value,
-      label,
-      suffix
-    }
   }`,
 
   investmentStrategies: `*[_type == "investmentStrategies"][0] {
@@ -140,6 +134,7 @@ export const queries = {
   }`,
 
   contactDetails: `*[_type == "contactDetails"][0] {
+    title,
     address{
       street,
       city,
@@ -153,6 +148,7 @@ export const queries = {
   }`,
 
   socialLinks: `*[_type == "socialLinks"][0] {
+    title,
     links[]{
       platform,
       url,
@@ -197,7 +193,8 @@ export const queries = {
         asset->{
           url
         },
-        alt
+        alt,
+        caption
       },
       imagePosition,
       order
@@ -205,7 +202,8 @@ export const queries = {
     seo {
       metaTitle,
       metaDescription,
-      keywords
+      keywords,
+      canonicalUrl
     }
   }`,
 
@@ -224,7 +222,8 @@ export const queries = {
         asset->{
           url
         },
-        alt
+        alt,
+        caption
       },
       imagePosition,
       order
@@ -232,7 +231,8 @@ export const queries = {
     seo {
       metaTitle,
       metaDescription,
-      keywords
+      keywords,
+      canonicalUrl
     }
   }`,
 
@@ -258,7 +258,8 @@ export const queries = {
     seo {
       metaTitle,
       metaDescription,
-      keywords
+      keywords,
+      canonicalUrl
     }
   }`,
 
@@ -288,7 +289,9 @@ export const queries = {
     },
     seo {
       metaTitle,
-      metaDescription
+      metaDescription,
+      keywords,
+      canonicalUrl
     }
   }`,
 };

@@ -1,13 +1,23 @@
 import { ContactHero } from "@/components/content/contact/ContactHero";
 import { ContactForm } from "@/components/content/contact/ContactForm";
 import { ContactInfo } from "@/components/content/contact/ContactInfo";
-import { getContactPageData } from "@/lib/sanity/queries";
+import { getContactPageData, getLayoutData } from "@/lib/sanity/queries";
+import { generateSEOMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Contact Us - Onterra Capital",
-  description:
-    "Get in touch with Onterra Capital for real estate investment opportunities. Contact our team to discuss your investment goals and portfolio strategy.",
-};
+export async function generateMetadata() {
+  const [{ contactPage }, { siteSettings }] = await Promise.all([
+    getContactPageData(),
+    getLayoutData(),
+  ]);
+
+  return generateSEOMetadata({
+    siteWideSEO: siteSettings?.seo || {},
+    pageSEO: contactPage?.seo,
+    pageTitle: "Contact Us",
+    pageDescription:
+      "Get in touch with Onterra Capital for real estate investment opportunities.",
+  });
+}
 
 export default async function ContactPage() {
   const { contactPage } = await getContactPageData();

@@ -24,32 +24,6 @@ export const onterraStandards = defineType({
       description: "Main description shown when no principle is hovered",
     }),
     defineField({
-      name: "centralHub",
-      title: "Central Hub",
-      type: "object",
-      fields: [
-        defineField({
-          name: "logo",
-          title: "Logo Image",
-          type: "image",
-          options: {
-            hotspot: true,
-          },
-          validation: (Rule) => Rule.required(),
-          description:
-            "Logo image displayed at the center of the orbital display",
-        }),
-        defineField({
-          name: "altText",
-          title: "Alt Text",
-          type: "string",
-          validation: (Rule) => Rule.required(),
-          description: "Alt text for the logo image",
-        }),
-      ],
-      description: "Central hub configuration for the orbital display",
-    }),
-    defineField({
       name: "principles",
       title: "Principles",
       type: "array",

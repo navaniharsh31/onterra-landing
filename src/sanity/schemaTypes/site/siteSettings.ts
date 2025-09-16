@@ -43,8 +43,55 @@ export const siteSettings = defineType({
     }),
     defineField({
       name: "seo",
-      title: "SEO Settings",
-      type: "seoSettings",
+      title: "Site-Wide SEO Settings",
+      type: "object",
+      fields: [
+        defineField({
+          name: "defaultMetaTitle",
+          title: "Default Meta Title Template",
+          type: "string",
+          description: "Default title template for pages (e.g., '{pageTitle} | Onterra Capital')",
+          validation: (Rule) => Rule.max(60),
+        }),
+        defineField({
+          name: "defaultMetaDescription",
+          title: "Default Meta Description",
+          type: "text",
+          description: "Default description for pages without specific SEO",
+          validation: (Rule) => Rule.max(160),
+        }),
+        defineField({
+          name: "organizationSchema",
+          title: "Enable Organization Schema",
+          type: "boolean",
+          description: "Add structured data for better search engine understanding",
+          initialValue: true,
+        }),
+        defineField({
+          name: "foundingDate",
+          title: "Founding Date",
+          type: "date",
+          description: "Company founding date for structured data",
+        }),
+        defineField({
+          name: "industry",
+          title: "Industry",
+          type: "string",
+          description: "Business industry for structured data",
+        }),
+        defineField({
+          name: "googleAnalyticsId",
+          title: "Google Analytics ID",
+          type: "string",
+          description: "Google Analytics tracking ID (e.g., GA4-XXXXXXXXX)",
+        }),
+        defineField({
+          name: "googleTagManagerId",
+          title: "Google Tag Manager ID",
+          type: "string",
+          description: "Google Tag Manager container ID (e.g., GTM-XXXXXXX)",
+        }),
+      ],
     }),
     defineField({
       name: "copyrightText",

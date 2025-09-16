@@ -1,7 +1,23 @@
 import { TeamSection } from "@/components/content/team/TeamSection";
 import { AboutHero } from "@/components/content/about/AboutHero";
 import { StatisticsSection } from "@/components/content/statistics/StatisticsSection";
-import { getTeamPageData } from "@/lib/sanity/queries";
+import { getTeamPageData, getLayoutData } from "@/lib/sanity/queries";
+import { generateSEOMetadata } from "@/lib/seo";
+
+export async function generateMetadata() {
+  const [{ teamPage }, { siteSettings }] = await Promise.all([
+    getTeamPageData(),
+    getLayoutData(),
+  ]);
+
+  return generateSEOMetadata({
+    siteWideSEO: siteSettings?.seo || {},
+    pageSEO: teamPage?.seo,
+    pageTitle: "Our Team",
+    pageDescription:
+      "Meet the experienced professionals behind Onterra Capital's success, combining decades of real estate expertise with innovative strategies.",
+  });
+}
 
 export default async function TeamPage() {
   const { teamPage, teamMembers } = await getTeamPageData();
