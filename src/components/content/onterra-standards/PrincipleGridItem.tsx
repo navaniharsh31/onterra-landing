@@ -1,0 +1,67 @@
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { LucideIcon } from "lucide-react";
+
+interface PrincipleGridItemProps {
+  title: string;
+  shortTitle: string;
+  icon?: LucideIcon;
+  isActive: boolean;
+  onClick: () => void;
+  onHover?: () => void;
+  onLeave?: () => void;
+  className?: string;
+}
+
+export function PrincipleGridItem({
+  title,
+  shortTitle,
+  icon: Icon,
+  isActive,
+  onClick,
+  onHover,
+  onLeave,
+  className,
+}: PrincipleGridItemProps) {
+  return (
+    <motion.div
+      className={cn(
+        "cursor-pointer group z-10",
+        "w-full h-36 rounded-xs bg-white",
+        "flex flex-col items-center justify-center p-6",
+        "border border-gray-200 hover:border-mustard-300",
+        "shadow-lg hover:shadow-xl",
+        "transition-all duration-200 ease-out",
+        isActive && "ring-2 ring-navy-400 ring-opacity-60",
+        className
+      )}
+      animate={{
+        scale: isActive ? 1.05 : 1,
+        opacity: isActive ? 1 : 0.9,
+      }}
+      whileHover={{
+        scale: 1.03,
+        opacity: 1,
+        y: -2,
+      }}
+      whileTap={{
+        scale: 0.98,
+      }}
+      onClick={onClick}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+    >
+      {/* Simple Icon */}
+      {Icon && (
+        <div className="w-12 h-12 rounded-full bg-navy-100 flex items-center justify-center mb-4 group-hover:bg-navy-200 transition-colors duration-200">
+          <Icon className="w-6 h-6 text-navy-600" />
+        </div>
+      )}
+
+      {/* Simple Title */}
+      <div className="text-base font-semibold text-gray-800 text-center leading-tight group-hover:text-navy-700 transition-colors duration-200">
+        {shortTitle}
+      </div>
+    </motion.div>
+  );
+}

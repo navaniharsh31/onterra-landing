@@ -9,12 +9,7 @@ interface StrategyMobileCardProps {
     id: string;
     title: string;
     description: string;
-    keyPoints: string[];
-    metrics: {
-      averageReturn?: string;
-      holdPeriod?: string;
-      minInvestment?: string;
-    };
+    keyPoints?: string[];
     category: string;
   };
   className?: string;
@@ -24,7 +19,7 @@ export function StrategyMobileCard({
   strategy,
   className,
 }: StrategyMobileCardProps) {
-  const { title, description, keyPoints, metrics, category } = strategy;
+  const { title, description, keyPoints, category } = strategy;
 
   return (
     <motion.div
@@ -97,45 +92,6 @@ export function StrategyMobileCard({
               </ul>
             </div>
           )}
-
-          {/* Investment Metrics */}
-          {metrics &&
-            (metrics.averageReturn ||
-              metrics.holdPeriod ||
-              metrics.minInvestment) && (
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {metrics.averageReturn && (
-                  <div className="text-center">
-                    <div className="text-2xl font-light text-slate-900 mb-1">
-                      {metrics.averageReturn}
-                    </div>
-                    <div className="text-xs text-slate-500 font-light">
-                      Avg Return
-                    </div>
-                  </div>
-                )}
-                {metrics.holdPeriod && (
-                  <div className="text-center">
-                    <div className="text-2xl font-light text-slate-900 mb-1">
-                      {metrics.holdPeriod}
-                    </div>
-                    <div className="text-xs text-slate-500 font-light">
-                      Hold Period
-                    </div>
-                  </div>
-                )}
-                {metrics.minInvestment && (
-                  <div className="text-center">
-                    <div className="text-2xl font-light text-slate-900 mb-1">
-                      {metrics.minInvestment}
-                    </div>
-                    <div className="text-xs text-slate-500 font-light">
-                      Min Investment
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
 
           {/* Sophisticated Professional Glow - Light Theme */}
           <div className="absolute -inset-2 bg-gradient-to-br from-navy-500/8 via-slate-200/5 to-slate-300/8 rounded-xs blur-xl -z-10 opacity-60" />

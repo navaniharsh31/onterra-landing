@@ -10,11 +10,6 @@ interface Strategy {
   title: string;
   description: string;
   keyPoints: string[];
-  metrics: {
-    averageReturn?: string;
-    holdPeriod?: string;
-    minInvestment?: string;
-  };
   category: string;
   isSelectable: boolean;
 }
@@ -44,25 +39,19 @@ export function InvestmentStrategiesMobileTabs({
   return (
     <div className={cn("w-full", className)}>
       <Tabs defaultValue="residential" className="w-full">
-        {/* Premium Tab Navigation - Dark Theme */}
-        <TabsList className="grid w-full grid-cols-2 mb-8 bg-slate-900/90 backdrop-blur-xl border border-slate-700/40 shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-xs h-10">
+        {/* Light Tab Navigation */}
+        <TabsList className="grid w-full grid-cols-2 mb-8 bg-white border border-gray-200 shadow-sm rounded-xs h-12">
           <TabsTrigger
             value="residential"
-            className="data-[state=active]:bg-slate-800/90 data-[state=active]:text-white data-[state=active]:shadow-sm text-slate-300 font-medium transition-all duration-300 hover:text-white"
+            className="data-[state=active]:bg-navy-600 data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=active]:font-semibold text-gray-700 font-medium transition-all duration-300 hover:text-navy-600 hover:bg-gray-50 rounded-xs"
           >
             <span className="text-sm sm:text-base">Residential</span>
-            <span className="ml-2 text-xs bg-slate-700/50 text-slate-200 px-2 py-0.5 rounded-full border border-slate-600/50">
-              {residentialStrategies.length}
-            </span>
           </TabsTrigger>
           <TabsTrigger
             value="commercial"
-            className="data-[state=active]:bg-slate-800/90 data-[state=active]:text-white data-[state=active]:shadow-sm text-slate-300 font-medium transition-all duration-300 hover:text-white"
+            className="data-[state=active]:bg-navy-600 data-[state=active]:text-white data-[state=active]:shadow-sm data-[state=active]:font-semibold text-gray-700 font-medium transition-all duration-300 hover:text-navy-600 hover:bg-gray-50 rounded-xs"
           >
             <span className="text-sm sm:text-base">Commercial</span>
-            <span className="ml-2 text-xs bg-slate-700/50 text-slate-200 px-2 py-0.5 rounded-full border border-slate-600/50">
-              {commercialStrategies.length}
-            </span>
           </TabsTrigger>
         </TabsList>
 

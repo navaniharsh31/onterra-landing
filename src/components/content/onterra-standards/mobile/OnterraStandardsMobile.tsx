@@ -3,16 +3,7 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { PrincipleMobileCard } from "./PrincipleMobileCard";
-import { Shield, Eye, Target, Clock, Lightbulb, Handshake } from "lucide-react";
-// Icon mapping for Sanity icon strings
-const iconMap = {
-  Target,
-  Eye,
-  Shield,
-  Clock,
-  Lightbulb,
-  Handshake,
-};
+// Icons removed since mobile cards don't use them
 
 interface OnterraStandardsMobileProps {
   className?: string;
@@ -31,7 +22,7 @@ export function OnterraStandardsMobile({
         ...sanityData,
         principles: sanityData.principles.map((principle: any) => ({
           ...principle,
-          icon: iconMap[principle.icon as keyof typeof iconMap] || Target,
+          // Remove icon transformation since we're not using icons in mobile
         })),
       }
     : null;

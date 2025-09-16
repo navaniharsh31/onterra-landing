@@ -13,7 +13,7 @@ interface Strategy {
     column: number;
   };
   description: string;
-  keyPoints: string[];
+  keyPoints?: string[];
   isSelectable: boolean;
 }
 

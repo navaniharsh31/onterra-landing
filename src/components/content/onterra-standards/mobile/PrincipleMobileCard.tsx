@@ -11,8 +11,7 @@ interface PrincipleMobileCardProps {
     title: string;
     shortTitle: string;
     description: string;
-    points: string[];
-    icon: LucideIcon;
+    points?: string[];
   };
   className?: string;
 }
@@ -22,7 +21,7 @@ export function PrincipleMobileCard({
   className,
 }: PrincipleMobileCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { title, shortTitle, description, points, icon: Icon } = principle;
+  const { title, shortTitle, description, points } = principle;
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -30,11 +29,12 @@ export function PrincipleMobileCard({
 
   return (
     <motion.div
-      className={cn("group relative w-full", className)}
+      className={cn("group relative w-full cursor-pointer", className)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       whileHover={{ y: -2 }}
+      onClick={toggleExpanded}
     >
       {/* Premium Card Container - Light Theme */}
       <div className="relative w-full">
@@ -56,35 +56,22 @@ export function PrincipleMobileCard({
         <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-slate-300/40 to-transparent" />
 
         {/* Content */}
-        <div className="relative z-10 p-6 bg-red">
-          {/* Header with Icon and Toggle */}
+        <div className="relative z-10 p-6">
+          {/* Header with Title and Chevron */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-navy-100 to-navy-50 flex items-center justify-center border border-navy-200/50">
-                <Icon className="w-6 h-6 text-navy-600" />
-              </div>
+            {/* Title */}
+            <h3 className="text-lg font-medium text-slate-900 leading-tight flex-1">
+              {shortTitle}
+            </h3>
 
-              {/* Title */}
-              <h3 className="text-lg font-medium text-slate-900 leading-tight">
-                {shortTitle}
-              </h3>
-            </div>
-
-            {/* Toggle Button */}
-            <motion.button
-              onClick={toggleExpanded}
-              className="p-2 rounded-full bg-slate-100/80 hover:bg-slate-200/80 transition-colors duration-200"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            {/* Chevron Indicator */}
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="ml-4 flex-shrink-0"
             >
-              <motion.div
-                animate={{ rotate: isExpanded ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ChevronDown className="w-4 h-4 text-slate-600" />
-              </motion.div>
-            </motion.button>
+              <ChevronDown className="w-5 h-5 text-slate-600" />
+            </motion.div>
           </div>
 
           {/* Expanded Content */}
@@ -98,11 +85,6 @@ export function PrincipleMobileCard({
             className="overflow-hidden"
           >
             <div className="space-y-4 mt-4">
-              {/* Full Title */}
-              <h4 className="text-xl font-light text-slate-800 leading-tight">
-                {title}
-              </h4>
-
               {/* Description */}
               <p className="text-slate-600 text-sm leading-relaxed font-light">
                 {description}
@@ -111,9 +93,6 @@ export function PrincipleMobileCard({
               {/* Key Points */}
               {points && points.length > 0 && (
                 <div>
-                  <h5 className="text-sm font-medium text-slate-700 mb-3">
-                    Key Points
-                  </h5>
                   <ul className="space-y-2">
                     {points.map((point, index) => (
                       <motion.li

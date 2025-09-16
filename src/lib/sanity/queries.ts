@@ -131,8 +131,12 @@ export const queries = {
       shortTitle,
       description,
       points,
-      icon
-    }
+      icon,
+      gridPosition {
+        row,
+        column
+      }
+    } | order(gridPosition.row asc, gridPosition.column asc)
   }`,
 
   contactDetails: `*[_type == "contactDetails"][0] {

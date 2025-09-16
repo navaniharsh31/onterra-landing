@@ -91,11 +91,11 @@ export function HeroContent({
           <AnimatedSection animation="fadeInUp" delay={200}>
             {/* Single Headline with Rotating Words */}
             <div className="mb-8">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight mb-6 text-center lg:text-left">
-                <span className="text-white text-3xl sm:text-4xl font-semibold lg:text-5xl xl:text-6xl whitespace-nowrap lg:block mb-2">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight mb-6 text-center lg:text-left">
+                <span className="text-white text-2xl sm:text-3xl font-semibold lg:text-5xl xl:text-6xl block mb-2 break-words">
                   {staticText}
                 </span>
-                <span className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl block">
+                <span className="text-white text-3xl sm:text-4xl lg:text-6xl xl:text-7xl block">
                   <RotatingText
                     words={rotatingText}
                     className="text-white"

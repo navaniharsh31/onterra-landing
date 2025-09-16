@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { OrbitalDisplay } from "./OrbitalDisplay";
+import { PrincipleGrid } from "./PrincipleGrid";
 import { OnterraStandardsMobile } from "./mobile/OnterraStandardsMobile";
 import { Shield, Eye, Target, Clock, Lightbulb, Handshake } from "lucide-react";
 // Icon mapping for Sanity icon strings
@@ -243,13 +243,12 @@ export function OnterraStandardsSectionNew({
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               viewport={{ once: true }}
             >
-              <div className="w-full max-w-3xl aspect-square flex items-center justify-center">
-                <OrbitalDisplay
+              <div className="w-full max-w-3xl flex items-center justify-center">
+                <PrincipleGrid
                   principles={transformedData.principles}
-                  className="w-full h-full max-w-[600px] max-h-[600px]"
+                  className="w-full"
                   onPrincipleHover={handlePrincipleHover}
                   onPrincipleLeave={handlePrincipleLeave}
-                  logoData={logoData}
                 />
               </div>
             </motion.div>

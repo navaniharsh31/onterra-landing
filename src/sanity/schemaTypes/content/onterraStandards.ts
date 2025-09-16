@@ -117,31 +117,46 @@ export const onterraStandards = defineType({
               description: "Lucide icon displayed on the orbital node",
             }),
             defineField({
-              name: "position",
-              title: "Orbital Position",
-              type: "number",
-              validation: (Rule) => Rule.required().min(0).max(5).integer(),
-              description:
-                "Position in orbital display (0-5, clockwise from top)",
+              name: "gridPosition",
+              title: "Grid Position",
+              type: "object",
+              fields: [
+                defineField({
+                  name: "row",
+                  title: "Row",
+                  type: "number",
+                  validation: (Rule) => Rule.required().min(1).integer(),
+                  description: "Row number in the grid (1, 2, etc.)",
+                }),
+                defineField({
+                  name: "column",
+                  title: "Column",
+                  type: "number",
+                  validation: (Rule) => Rule.required().min(1).integer(),
+                  description: "Column position within the row (1, 2, 3, etc.)",
+                }),
+              ],
+              validation: (Rule) => Rule.required(),
+              description: "Position in the grid layout",
             }),
           ],
           preview: {
             select: {
               title: "title",
               subtitle: "shortTitle",
-              position: "position",
+              gridPosition: "gridPosition",
             },
-            prepare({ title, subtitle, position }) {
+            prepare({ title, subtitle, gridPosition }) {
               return {
                 title: title || "Untitled Principle",
-                subtitle: `${subtitle} (Position ${position})`,
+                subtitle: `${subtitle} (Row ${gridPosition?.row}, Col ${gridPosition?.column})`,
               };
             },
           },
         },
       ],
       validation: (Rule) => Rule.required().length(6),
-      description: "Exactly 6 principles required for the orbital display",
+      description: "Exactly 6 principles required for the grid display",
     }),
   ],
   preview: {

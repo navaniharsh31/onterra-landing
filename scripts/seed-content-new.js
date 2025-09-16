@@ -301,10 +301,13 @@ const contentData = {
         points: [
           "Independent platform, no competing interests",
           "Returns from performance and alpha creation, not asset accumulation",
-          "Avoid conflicrs that harm and value trust",
+          "Avoid conflicts that harm and value trust",
         ],
         icon: "Target",
-        position: 0,
+        gridPosition: {
+          row: 1,
+          column: 1,
+        },
       },
       {
         id: "real-estate",
@@ -318,7 +321,10 @@ const contentData = {
           "Partner with experienced operators for strategic execution",
         ],
         icon: "Eye",
-        position: 1,
+        gridPosition: {
+          row: 1,
+          column: 2,
+        },
       },
       {
         id: "risk-management",
@@ -327,12 +333,15 @@ const contentData = {
         description:
           "We prioritize thorough risk assessment and management over quick deal execution, ensuring sustainable long-term returns.",
         points: [
-          "Prioritizr risk assessment over quick deals",
+          "Prioritize risk assessment over quick deals",
           "Capital preservation guides decisions",
           "Structure investments to protect capital first",
         ],
         icon: "Shield",
-        position: 2,
+        gridPosition: {
+          row: 2,
+          column: 1,
+        },
       },
       {
         id: "integrity",
@@ -346,7 +355,10 @@ const contentData = {
           "Blend of data, technology, and human insight",
         ],
         icon: "Clock",
-        position: 3,
+        gridPosition: {
+          row: 2,
+          column: 2,
+        },
       },
       {
         id: "performance",
@@ -360,7 +372,10 @@ const contentData = {
           "Focus on deal selection and improving good deals",
         ],
         icon: "Lightbulb",
-        position: 4,
+        gridPosition: {
+          row: 3,
+          column: 1,
+        },
       },
       {
         id: "partnerships",
@@ -374,7 +389,10 @@ const contentData = {
           "Relationships based on respect, transparency and shared success",
         ],
         icon: "Handshake",
-        position: 5,
+        gridPosition: {
+          row: 3,
+          column: 2,
+        },
       },
     ],
   },
@@ -397,12 +415,6 @@ const contentData = {
         },
         description:
           "Flexible and highly customized financing needed by quality developers to acquire land, get various building plan approvals before starting the project, address asset liability mismatches in the construction period and build longer runway to complete the project.",
-        keyPoints: [
-          "Stable monthly cash flow from multiple units",
-          "Economies of scale in property management",
-          "Appreciation potential in growing markets",
-          "Lower vacancy risk through unit diversification",
-        ],
         isSelectable: true,
       },
       {
@@ -416,12 +428,6 @@ const contentData = {
         },
         description:
           "Providing structured capital to select developers for specific projects with visible exit pathways. Our investments are designed to be repaid through either the projects sales proceeds or a developer IPO, whichever materializes first, creating a blend of upside participation with downside protection.",
-        keyPoints: [
-          "Strong rental demand from families",
-          "Easier property management and maintenance",
-          "Attractive to owner-occupants for future sale",
-          "Potential for value-add improvements",
-        ],
         isSelectable: true,
       },
       {
@@ -435,11 +441,6 @@ const contentData = {
         },
         description:
           "Curated equity investments to unlock value in high-quality but capital-starved projects - which includes last-mile (LIFO) funding for project completion, inventory-backed financing, and capital restructuring with project reconfiguration in response to evolving market realities.",
-        keyPoints: [
-          "Last-mile (LIFO) funding for project completion",
-          "Inventory-backed financing",
-          "Capital restructuring with project reconfiguration in response to evolving market realities",
-        ],
         isSelectable: true,
       },
       {
@@ -453,12 +454,6 @@ const contentData = {
         },
         description:
           "India's office market is undergoing a structural shift, driven by rising demand from GCCs, Indian corporates and flex operators. We believe that there is a value-unlocking play in acquiring commercial assets with low/no occupancy in strategic locations through targeted leasing and asset enhancements thereby transforming these properties into core yielding assets.",
-        keyPoints: [
-          "Focus on Class A and B office properties",
-          "Central business district and suburban locations",
-          "Long-term lease agreements with corporate tenants",
-          "Strategic capital improvement programs",
-        ],
         isSelectable: true,
       },
       {
@@ -472,12 +467,6 @@ const contentData = {
         },
         description:
           "Investments in stabilized, income-generating Grade A commercial assets in prime micro-markets. Backed by marquee tenants, long leases, and embedded rent escalations - these assets offer predictable cash flow, capital preservation, and steady yield.",
-        keyPoints: [
-          "Neighborhood shopping centers and strip malls",
-          "Essential service tenants (grocery, pharmacy, services)",
-          "High traffic count locations",
-          "Strong local demographic fundamentals",
-        ],
         isSelectable: true,
       },
     ],
