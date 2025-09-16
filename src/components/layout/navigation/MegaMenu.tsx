@@ -12,6 +12,7 @@ interface MegaMenuSection {
   title: string;
   description: string;
   image?: string;
+  url?: string;
 }
 
 interface MegaMenuContentType {
@@ -41,12 +42,14 @@ export function MegaMenu({
       const parentRect = menuRef.current.parentElement?.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
       const menuWidth = 800; // Fixed menu width
-      
+
       if (parentRect) {
         // Calculate where the menu would be positioned if centered
-        const menuRightEdge = parentRect.left + (parentRect.width / 2) + (menuWidth / 2);
-        const menuLeftEdge = parentRect.left + (parentRect.width / 2) - (menuWidth / 2);
-        
+        const menuRightEdge =
+          parentRect.left + parentRect.width / 2 + menuWidth / 2;
+        const menuLeftEdge =
+          parentRect.left + parentRect.width / 2 - menuWidth / 2;
+
         if (menuRightEdge > viewportWidth - 20) {
           // Menu would overflow right, align to right edge of parent
           setPosition("right");

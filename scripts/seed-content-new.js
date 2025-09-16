@@ -599,8 +599,6 @@ const contentData = {
       subtitle:
         "Meet the experienced professionals behind our success. Our team combines decades of real estate expertise with innovative investment strategies.",
       teamMembers: [], // Will be populated with references after team members are created
-      allowNewTeamMembers: true,
-      showInAbout: true,
     },
     seo: {
       metaTitle: "Our Team - Onterra Capital",

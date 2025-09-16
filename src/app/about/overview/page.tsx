@@ -2,12 +2,6 @@ import { AboutHero } from "@/components/content/about/AboutHero";
 import { OverviewContent } from "@/components/content/about/OverviewContent";
 import { getOverviewPageData } from "@/lib/sanity/queries";
 
-export const metadata = {
-  title: "Overview - Onterra Capital",
-  description:
-    "Learn about India's real estate transformation and the opportunities in the evolving market landscape.",
-};
-
 export default async function OverviewPage() {
   const { overviewPage } = await getOverviewPageData();
 

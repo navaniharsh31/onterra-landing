@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useState, useEffect, useMemo } from "react";
 
 interface OverviewContentProps {
   className?: string;
@@ -24,12 +25,22 @@ interface OverviewContentProps {
 }
 
 export function OverviewContent({ className, content }: OverviewContentProps) {
+  const [isReady, setIsReady] = useState(false);
+  const sections = useMemo(() => content?.sections || [], [content?.sections]);
+
+  // Ensure animations trigger after content is loaded
+  useEffect(() => {
+    if (sections && sections.length > 0) {
+      // Small delay to ensure DOM is ready
+      const timer = setTimeout(() => setIsReady(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [sections]);
+
   // Return null if no content from Sanity
   if (!content?.sections || content.sections.length === 0) {
     return null;
   }
-
-  const sections = content.sections;
 
   return (
     <section
@@ -112,19 +123,23 @@ export function OverviewContent({ className, content }: OverviewContentProps) {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-16">
+        <motion.div
+          className="space-y-16"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isReady ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
           {sections.map((section, index) => (
             <motion.div
               key={section.id}
               className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 20 }}
               transition={{
-                duration: 0.3,
-                delay: index * 0.05,
+                duration: 0.6,
+                delay: isReady ? 0.2 + index * 0.15 : 0,
                 ease: "easeOut",
               }}
-              viewport={{ once: true, amount: 0.1 }}
             >
               {/* Image - Always on top for mobile, positioned by imagePosition on desktop */}
               <div
@@ -172,7 +187,7 @@ export function OverviewContent({ className, content }: OverviewContentProps) {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

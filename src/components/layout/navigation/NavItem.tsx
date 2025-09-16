@@ -22,6 +22,7 @@ interface NavigationItem {
       title: string;
       description: string;
       image?: string;
+      url?: string;
     }>;
   };
 }

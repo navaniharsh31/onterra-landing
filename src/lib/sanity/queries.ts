@@ -246,7 +246,6 @@ export const queries = {
     teamSection {
       title,
       subtitle,
-      allowNewTeamMembers
     },
     seo {
       metaTitle,

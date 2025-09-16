@@ -2,12 +2,6 @@ import { TeamSection } from "@/components/content/team/TeamSection";
 import { AboutHero } from "@/components/content/about/AboutHero";
 import { getTeamPageData } from "@/lib/sanity/queries";
 
-export const metadata = {
-  title: "Our Team - Onterra Capital",
-  description:
-    "Meet the experienced professionals behind Onterra Capital's success, combining decades of real estate expertise with innovative strategies.",
-};
-
 export default async function TeamPage() {
   const { teamPage, teamMembers } = await getTeamPageData();
 

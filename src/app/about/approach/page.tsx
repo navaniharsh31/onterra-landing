@@ -2,12 +2,6 @@ import { AboutHero } from "@/components/content/about/AboutHero";
 import { ApproachContent } from "@/components/content/about/ApproachContent";
 import { getApproachPageData } from "@/lib/sanity/queries";
 
-export const metadata = {
-  title: "Our Approach - Onterra Capital",
-  description:
-    "Discover Onterra Capital's independent, conflict-free approach to real estate investment with deep expertise and disciplined processes.",
-};
-
 export default async function ApproachPage() {
   const { approachPage } = await getApproachPageData();
 

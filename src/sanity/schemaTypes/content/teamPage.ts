@@ -17,7 +17,8 @@ export const teamPage = defineType({
       title: "Page Subtitle",
       type: "string",
       validation: (Rule) => Rule.required(),
-      initialValue: "Onward with real discipline, real returns - and the team that makes it happen.",
+      initialValue:
+        "Onward with real discipline, real returns - and the team that makes it happen.",
     }),
     defineField({
       name: "hero",
@@ -37,7 +38,8 @@ export const teamPage = defineType({
           type: "text",
           rows: 3,
           validation: (Rule) => Rule.required(),
-          initialValue: "Onward with real discipline, real returns - and the team that makes it happen.",
+          initialValue:
+            "Onward with real discipline, real returns - and the team that makes it happen.",
         }),
       ],
       validation: (Rule) => Rule.required(),
@@ -60,7 +62,8 @@ export const teamPage = defineType({
           type: "text",
           rows: 3,
           validation: (Rule) => Rule.required(),
-          initialValue: "Meet the experienced professionals behind our success. Our team combines decades of real estate expertise with innovative investment strategies.",
+          initialValue:
+            "Meet the experienced professionals behind our success. Our team combines decades of real estate expertise with innovative investment strategies.",
         }),
         defineField({
           name: "teamMembers",
@@ -73,18 +76,6 @@ export const teamPage = defineType({
             },
           ],
           validation: (Rule) => Rule.required().min(1),
-        }),
-        defineField({
-          name: "allowNewTeamMembers",
-          title: "Allow New Team Members",
-          type: "boolean",
-          initialValue: true,
-        }),
-        defineField({
-          name: "showInAbout",
-          title: "Show in About",
-          type: "boolean",
-          initialValue: true,
         }),
       ],
       validation: (Rule) => Rule.required(),
