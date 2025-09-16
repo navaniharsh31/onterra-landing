@@ -25,7 +25,7 @@ export function FooterBrand({ settings, className }: FooterBrandProps) {
             src={settings.logo.asset.url}
             alt={settings.logo.alt || settings.siteTitle}
             fill
-            className="object-contain object-left"
+            className="object-contain object-left brightness-0 invert"
             priority
           />
         </div>

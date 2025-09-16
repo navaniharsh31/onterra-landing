@@ -35,26 +35,6 @@ export const heroSection = defineType({
       initialValue: ["strategic", "innovative", "proven"],
     }),
     defineField({
-      name: "lineDesign",
-      title: "Vertical Line Design",
-      type: "object",
-      fields: [
-        defineField({
-          name: "enabled",
-          title: "Enable Line Design",
-          type: "boolean",
-          initialValue: true,
-        }),
-        defineField({
-          name: "color",
-          title: "Line Color",
-          type: "string",
-          initialValue: "#3B82F6",
-          validation: (Rule) => Rule.required(),
-        }),
-      ],
-    }),
-    defineField({
       name: "ctaButtons",
       title: "Call to Action Buttons",
       type: "array",
@@ -113,7 +93,9 @@ export const heroSection = defineType({
       const rotatingPreview = rotatingText ? rotatingText[0] : "";
       return {
         title: "Hero Section",
-        subtitle: `${staticText || ""} ${rotatingPreview || ""}`.trim() || "Hero content",
+        subtitle:
+          `${staticText || ""} ${rotatingPreview || ""}`.trim() ||
+          "Hero content",
       };
     },
   },

@@ -15,8 +15,11 @@ interface Strategy {
   id: string;
   title: string;
   category: string;
-  level: number;
-  index: number;
+  mainPoint: string;
+  gridPosition: {
+    row: number;
+    column: number;
+  };
   description: string;
   keyPoints: string[];
   metrics: Record<string, string>;

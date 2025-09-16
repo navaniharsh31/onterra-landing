@@ -7,10 +7,6 @@ interface HeroSectionProps {
   content: {
     staticText: string;
     rotatingText: string[];
-    lineDesign?: {
-      enabled: boolean;
-      color: string;
-    };
     backgroundVideos?: Array<{
       asset?: {
         url?: string;

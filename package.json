@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed": "node scripts/seed-content.js",
+    "seed": "node scripts/seed-content-new.js",
     "seed:force": "SANITY_FORCE_SEED=true node scripts/seed-content.js"
   },
   "dependencies": {

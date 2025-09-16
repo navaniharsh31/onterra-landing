@@ -80,10 +80,6 @@ export const queries = {
   hero: `*[_type == "heroSection"][0] {
     staticText,
     rotatingText,
-    lineDesign {
-      enabled,
-      color
-    },
     backgroundVideos[] {
       asset->{
         url,
@@ -115,27 +111,15 @@ export const queries = {
       id,
       title,
       category,
-      level,
-      index,
+      mainPoint,
+      gridPosition {
+        row,
+        column
+      },
       description,
       keyPoints,
-      metrics {
-        averageReturn,
-        holdPeriod,
-        minInvestment
-      },
       isSelectable
-    } | order(level asc, index asc),
-    flowStructure {
-      levels[] {
-        level,
-        nodes,
-        parentId,
-        childId,
-        childIds,
-        title
-      } | order(level asc)
-    }
+    } | order(gridPosition.row asc, gridPosition.column asc)
   }`,
 
   onterraStandards: `*[_type == "onterraStandards"][0] {

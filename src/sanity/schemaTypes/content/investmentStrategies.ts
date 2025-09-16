@@ -61,19 +61,35 @@ export const investmentStrategies = defineType({
                 "Category determines styling and behavior in the flow chart",
             }),
             defineField({
-              name: "level",
-              title: "Tree Level",
-              type: "number",
-              validation: (Rule) => Rule.required().min(0).max(3).integer(),
+              name: "mainPoint",
+              title: "Main Point",
+              type: "string",
+              validation: (Rule) => Rule.required(),
               description:
-                "Level in the tree hierarchy: 0=top row, 1=residential, 2=commercial, 3=bottom row",
+                "Main category point (e.g., 'Residential', 'Commercial')",
             }),
             defineField({
-              name: "index",
-              title: "Index within Level",
-              type: "number",
-              validation: (Rule) => Rule.required().min(0).integer(),
-              description: "Position within the tree level (0-based)",
+              name: "gridPosition",
+              title: "Grid Position",
+              type: "object",
+              fields: [
+                defineField({
+                  name: "row",
+                  title: "Row",
+                  type: "number",
+                  validation: (Rule) => Rule.required().min(1).integer(),
+                  description: "Row number in the grid (1, 2, etc.)",
+                }),
+                defineField({
+                  name: "column",
+                  title: "Column",
+                  type: "number",
+                  validation: (Rule) => Rule.required().min(1).integer(),
+                  description: "Column position within the row (1, 2, 3, etc.)",
+                }),
+              ],
+              validation: (Rule) => Rule.required(),
+              description: "Position in the grid layout",
             }),
             defineField({
               name: "description",
@@ -94,34 +110,6 @@ export const investmentStrategies = defineType({
                 "Bullet points highlighting strategy benefits (for selectable strategies only)",
             }),
             defineField({
-              name: "metrics",
-              title: "Investment Metrics",
-              type: "object",
-              fields: [
-                defineField({
-                  name: "averageReturn",
-                  title: "Average Return",
-                  type: "string",
-                  description: "Expected return range (e.g., '8-12%')",
-                }),
-                defineField({
-                  name: "holdPeriod",
-                  title: "Hold Period",
-                  type: "string",
-                  description:
-                    "Typical investment duration (e.g., '5-7 years')",
-                }),
-                defineField({
-                  name: "minInvestment",
-                  title: "Minimum Investment",
-                  type: "string",
-                  description: "Minimum investment amount (e.g., '$500K')",
-                }),
-              ],
-              description:
-                "Investment metrics (required for selectable strategies)",
-            }),
-            defineField({
               name: "isSelectable",
               title: "Is Selectable",
               type: "boolean",
@@ -134,14 +122,20 @@ export const investmentStrategies = defineType({
             select: {
               title: "title",
               category: "category",
-              level: "level",
-              index: "index",
+              mainPoint: "mainPoint",
+              gridPosition: "gridPosition",
               isSelectable: "isSelectable",
             },
-            prepare({ title, category, level, index, isSelectable }) {
+            prepare({
+              title,
+              category,
+              mainPoint,
+              gridPosition,
+              isSelectable,
+            }) {
               return {
                 title: title || "Untitled Strategy",
-                subtitle: `Level ${level}, Index ${index} | ${category}${!isSelectable ? " (Non-selectable)" : ""}`,
+                subtitle: `${mainPoint} | Row ${gridPosition?.row}, Col ${gridPosition?.column} | ${category}${!isSelectable ? " (Non-selectable)" : ""}`,
               };
             },
           },
@@ -149,83 +143,6 @@ export const investmentStrategies = defineType({
       ],
       validation: (Rule) => Rule.required().min(6).max(10),
       description: "All investment strategies including main category nodes",
-    }),
-    defineField({
-      name: "flowStructure",
-      title: "Flow Chart Structure",
-      type: "object",
-      fields: [
-        defineField({
-          name: "levels",
-          title: "Tree Levels",
-          type: "array",
-          of: [
-            {
-              type: "object",
-              name: "level",
-              title: "Level",
-              fields: [
-                defineField({
-                  name: "level",
-                  title: "Level Number",
-                  type: "number",
-                  validation: (Rule) => Rule.required().min(0).max(3).integer(),
-                }),
-                defineField({
-                  name: "nodes",
-                  title: "Node IDs",
-                  type: "array",
-                  of: [{ type: "string" }],
-                  validation: (Rule) => Rule.required().min(1),
-                  description: "Array of strategy IDs at this level",
-                }),
-                defineField({
-                  name: "parentId",
-                  title: "Parent ID",
-                  type: "string",
-                  description: "ID of parent node (optional)",
-                }),
-                defineField({
-                  name: "childId",
-                  title: "Single Child ID",
-                  type: "string",
-                  description: "ID of single child node (optional)",
-                }),
-                defineField({
-                  name: "childIds",
-                  title: "Multiple Child IDs",
-                  type: "array",
-                  of: [{ type: "string" }],
-                  description: "Array of child node IDs (optional)",
-                }),
-                defineField({
-                  name: "title",
-                  title: "Level Title",
-                  type: "string",
-                  validation: (Rule) => Rule.required(),
-                  description: "Descriptive title for this level",
-                }),
-              ],
-              preview: {
-                select: {
-                  level: "level",
-                  title: "title",
-                  nodes: "nodes",
-                },
-                prepare({ level, title, nodes }) {
-                  return {
-                    title: `Level ${level}: ${title}`,
-                    subtitle: `${nodes?.length || 0} nodes`,
-                  };
-                },
-              },
-            },
-          ],
-          validation: (Rule) => Rule.required().length(4),
-          description: "Exactly 4 levels required for the tree structure",
-        }),
-      ],
-      description: "Defines the hierarchical structure of the flow chart tree",
     }),
   ],
   preview: {

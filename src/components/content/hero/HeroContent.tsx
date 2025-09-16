@@ -6,10 +6,6 @@ import { AnimatedSection } from "@/components/layout/sections/AnimatedSection";
 interface HeroContentProps {
   staticText: string;
   rotatingText: string[];
-  lineDesign?: {
-    enabled: boolean;
-    color: string;
-  };
   ctaButtons?: Array<{
     text: string;
     url: string;
@@ -27,11 +23,11 @@ export function HeroContent({
   return (
     <div
       className={cn(
-        "relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-8 lg:px-12 text-center",
+        "relative z-20 flex items-center justify-center min-h-screen text-center",
         className
       )}
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Sophisticated Pattern Overlays */}
         {/* Diamond Grid Pattern */}
         <div
@@ -49,7 +45,7 @@ export function HeroContent({
 
         {/* Subtle Grid Pattern */}
         <div
-          className="absolute inset-0 opacity-8"
+          className="absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage: `
               linear-gradient(#001670 1px, transparent 1px),
@@ -95,12 +91,14 @@ export function HeroContent({
           <AnimatedSection animation="fadeInUp" delay={200}>
             {/* Single Headline with Rotating Words */}
             <div className="mb-8">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight mb-6">
-                <span className="text-white block mb-2">{staticText}</span>
-                <span className="text-mustard-400 block">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight mb-6 text-center lg:text-left">
+                <span className="text-white text-3xl sm:text-4xl font-semibold lg:text-5xl xl:text-6xl whitespace-nowrap lg:block mb-2">
+                  {staticText}
+                </span>
+                <span className="text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl block">
                   <RotatingText
                     words={rotatingText}
-                    className="text-mustard-400"
+                    className="text-white"
                     animationDuration={3000}
                   />
                 </span>
@@ -114,7 +112,7 @@ export function HeroContent({
           {/* CTA Buttons */}
           {ctaButtons && ctaButtons.length > 0 && (
             <AnimatedSection animation="fadeInUp" delay={400}>
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
                 {ctaButtons.map((button, index) => (
                   <HeroCTA key={index} button={button} />
                 ))}

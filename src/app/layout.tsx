@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import { QueryProvider } from "@/components/layout/providers/QueryProvider";
 import { ClientLayout } from "@/components/layout/providers/ClientLayout";
 import { getLayoutData } from "@/lib/sanity/queries";
@@ -10,6 +10,13 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  subsets: ["latin"], // Specify subsets for smaller bundle size
+  weight: ["400", "700"], // Specify desired weights
+  display: "swap", // Recommended for better performance
 });
 
 export const metadata: Metadata = {
@@ -27,7 +34,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body
+        className={`${inter.variable} ${playfairDisplay.variable} font-sans antialiased`}
+      >
         <QueryProvider>
           <ClientLayout layoutData={layoutData}>{children}</ClientLayout>
         </QueryProvider>
