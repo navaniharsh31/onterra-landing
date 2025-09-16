@@ -60,7 +60,8 @@ export function ContactInfo({ className, contactInfo }: ContactInfoProps) {
             Get in touch
           </h2>
           <p className="text-slate-600">
-            We're here to help you explore real estate investment opportunities.
+            We&apos;re here to help you explore real estate investment
+            opportunities.
           </p>
         </div>
 
@@ -90,9 +91,7 @@ export function ContactInfo({ className, contactInfo }: ContactInfoProps) {
                       {item.value}
                     </a>
                   ) : (
-                    <p className="text-slate-600 break-words">
-                      {item.value}
-                    </p>
+                    <p className="text-slate-600 break-words">{item.value}</p>
                   )}
                 </div>
               </motion.div>
@@ -102,9 +101,10 @@ export function ContactInfo({ className, contactInfo }: ContactInfoProps) {
 
         <div className="mt-8 pt-6 border-t border-gray-200/20">
           <p className="text-sm text-slate-500 leading-relaxed">
-            Ready to start your real estate investment journey? Send us a message 
-            using the form, and our team will get back to you within 24 hours to 
-            discuss your investment goals and how we can help you achieve them.
+            Ready to start your real estate investment journey? Send us a
+            message using the form, and our team will get back to you within 24
+            hours to discuss your investment goals and how we can help you
+            achieve them.
           </p>
         </div>
       </div>

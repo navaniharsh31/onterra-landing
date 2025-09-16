@@ -103,7 +103,7 @@ export function ContactForm({ className, formSettings }: ContactFormProps) {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      await response.json();
 
       if (response.ok) {
         setSubmitStatus("success");
@@ -140,7 +140,7 @@ export function ContactForm({ className, formSettings }: ContactFormProps) {
             Send us a message
           </h2>
           <p className="text-slate-600">
-            Fill out the form below and we'll get back to you as soon as
+            Fill out the form below and we&apos;ll get back to you as soon as
             possible.
           </p>
         </div>
