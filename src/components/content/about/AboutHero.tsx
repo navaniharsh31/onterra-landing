@@ -10,13 +10,15 @@ interface AboutHeroProps {
 }
 
 export function AboutHero({ heroData }: AboutHeroProps) {
-  // Fallback data
-  const title = heroData?.title || "About Us";
-  const description =
-    heroData?.description ||
-    "Building wealth through strategic real estate investment with a team of experienced professionals who combine decades of expertise with innovative strategies.";
+  // Return null if no hero data from Sanity
+  if (!heroData?.title || !heroData?.description) {
+    return null;
+  }
+
+  const title = heroData.title;
+  const description = heroData.description;
   return (
-    <section className="relative py-16 sm:py-20 lg:py-24">
+    <section className="relative py-24 sm:py-32 lg:py-40 overflow-x-hidden">
       {/* Footer-style Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Grid Pattern - Same as Footer */}

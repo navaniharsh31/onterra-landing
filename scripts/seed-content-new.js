@@ -104,7 +104,6 @@ const contentData = {
         id: "about",
         title: "About",
         type: "megamenu",
-        url: "/about",
         megaMenuContent: {
           title: "About",
           sections: [
@@ -112,13 +111,22 @@ const contentData = {
               id: "overview",
               title: "Overview",
               description:
-                "Real estate is transforming rapidly. Financing mechanisms evolving too. Domestic investors kept away from real returns.",
+                "India's real estate is rapidly formalizing and institutionalizing- driven by RERA, developer consolidation, post-COVID housing momentum, GCC growth and REITs - on track to reach $1.5TN by 2034 (~10.5% of GDP) with financing shifting from sales-led models to structured build-and-lease and fractional platforms. Ironically, domestic investors have often been sidelined (foreign capital captured prime returns while many legacy residential credit funds underperformed), underscoring the need for disciplined, aligned, institutionally managed capital.",
+              url: "/about/overview",
             },
             {
               id: "our-approach",
               title: "Our Approach",
               description:
-                "Independent and conflict free. Deep experience, discipline and data driven. Conservative, fair and simple approach.",
+                "Onterra Capital is an independent, conflict-free and domestic real estate investment manager offering Indian family offices and various other investors early, aligned access to residential and commercial offices growth. We combine deep expertise across credit, equity and asset management with a disciplined and data-driven process by keeping structures simple and conservative. Built on trust and integrity, we work to protect capital while unlocking upside across the capital stack.",
+              url: "/about/approach",
+            },
+            {
+              id: "our-team",
+              title: "Our Team",
+              description:
+                "Onward with real discipline, real returns - and the team that makes it happen.",
+              url: "/about/team",
             },
           ],
         },
@@ -472,36 +480,139 @@ const contentData = {
     ],
   },
 
-  aboutPage: {
-    _type: "aboutPage",
-    _id: "about-page-main",
-    pageTitle: "About Us",
+  overviewPage: {
+    _type: "overviewPage",
+    _id: "overview-page-main",
+    pageTitle: "Overview",
     pageSubtitle:
-      "Learn about our team and our approach to real estate investment",
+      "India's real estate is rapidly formalizing and institutionalizing- driven by RERA, developer consolidation, post-COVID housing momentum, GCC growth and REITs - on track to reach $1.5TN by 2034 (~10.5% of GDP) with financing shifting from sales-led models to structured build-and-lease and fractional platforms.",
     hero: {
-      title: "About Us",
+      title: "Overview",
       description:
-        "Building wealth through strategic real estate investment with a team of experienced professionals who combine decades of expertise with innovative strategies.",
-      backgroundStyle: {
-        primaryColor: "navy-900",
-        secondaryColor: "navy-800",
-        accentColor: "mustard-400",
-        showGridPattern: true,
-        showGeometricAccents: true,
+        "India's real estate is rapidly formalizing and institutionalizing- driven by RERA, developer consolidation, post-COVID housing momentum, GCC growth and REITs - on track to reach $1.5TN by 2034 (~10.5% of GDP) with financing shifting from sales-led models to structured build-and-lease and fractional platforms.",
+    },
+    sections: [
+      {
+        id: "real-estate-transforming",
+        title: "Real estate is transforming rapidly",
+        content:
+          "Our journey is powered by a simple belief: India's real estate sector is transforming fast — driven by formalisation, organised capital, and structural reform. The introduction of RERA, ongoing consolidation of developers, strong residential sales momentum since Covid-19, growth in Global Capability Centres (GCCs), and the rise of listed REITs have reshaped the market and drawn new capital.",
+        imagePosition: "left",
+        order: 1,
       },
+      {
+        id: "financing-mechanisms-evolving",
+        title: "Financing mechanisms evolving too",
+        content:
+          "India's real estate market is projected to reach $1.5 trillion by 2034, contributing 10.5% of national GDP — making it one of the most important wealth-creation engines of the next decade. The financing landscape is also evolving. From sale-driven residential credit models to build-and-lease and fractionalisation platforms in commercial office, warehousing, and retail — the shift toward institutional capital and structured investments is accelerating.",
+        imagePosition: "right",
+        order: 2,
+      },
+      {
+        id: "domestic-investors-sidelined",
+        title: "Domestic investors kept away from real returns",
+        content:
+          "Yet, much of India's high-quality commercial real estate is still institutionally owned by foreign capital, which entered in the last decade and enjoyed disproportionate upside. Domestic investors, in many cases, were allowed access only through REITs — often after the majority of returns had already been taken by global sponsors and private equity funds. Similarly, many domestic residential credit funds floated in the past decade showed low returns as they suffered from internal issues amidst a rapidly changing landscape for real estate developers.",
+        imagePosition: "left",
+        order: 3,
+      },
+    ],
+    seo: {
+      metaTitle: "Overview - Onterra Capital",
+      metaDescription:
+        "Learn about India's real estate transformation and the opportunities in the evolving market landscape.",
+      keywords: [
+        "real estate",
+        "India",
+        "RERA",
+        "REITs",
+        "investment",
+        "transformation",
+      ],
+    },
+  },
+
+  approachPage: {
+    _type: "approachPage",
+    _id: "approach-page-main",
+    pageTitle: "Our Approach",
+    pageSubtitle:
+      "Onterra Capital is an independent, conflict-free and domestic real estate investment manager offering Indian family offices and various other investors early, aligned access to residential and commercial offices growth.",
+    hero: {
+      title: "Our Approach",
+      description:
+        "Onterra Capital is an independent, conflict-free and domestic real estate investment manager offering Indian family offices and various other investors early, aligned access to residential and commercial offices growth. We combine deep expertise across credit, equity and asset management with a disciplined and data-driven process.",
+    },
+    sections: [
+      {
+        id: "independent-conflict-free",
+        title: "Independent and conflict free",
+        content:
+          "We are an independent, domestic investment manager focused exclusively on real estate — offering Indian family offices and UHNI investors early, conflict-free access to commercial and residential real estate growth in India. Our platform is built on trust, integrity, resilience, and sustainable value creation. For long-term investors seeking capital protection with meaningful upside, we offer more than financial returns — we offer the chance to fund projects that shape India's urban future.",
+        imagePosition: "left",
+        order: 1,
+      },
+      {
+        id: "deep-experience-discipline",
+        title: "Deep experience, discipline and data driven",
+        content:
+          "We are a platform with deep domain expertise across real estate credit, real estate equity investing and asset management. Our investment process is disciplined, research-driven, and grounded in real-world execution — blending rigorous underwriting with a practical understanding of approvals, financing structures, and exit mechanisms.",
+        imagePosition: "right",
+        order: 2,
+      },
+      {
+        id: "conservative-fair-simple",
+        title: "Conservative, fair and simple approach",
+        content:
+          "In a space where project outcomes can vary dramatically from IC memo to actual exit, we keep things simple, conservative, and fair to all counterparties — a philosophy that has served us well across cycles. What truly sets us apart is our ability to navigate both credit and equity strategies fluently, and to unlock value — regardless of where we sit in the capital stack. Built on deep domain expertise, we aim to evolve into a real assets platform over time - while remaining disciplined, execution driven, conflict free and aligned.",
+        imagePosition: "left",
+        order: 3,
+      },
+    ],
+    seo: {
+      metaTitle: "Our Approach - Onterra Capital",
+      metaDescription:
+        "Discover Onterra Capital's independent, conflict-free approach to real estate investment with deep expertise and disciplined processes.",
+      keywords: [
+        "investment approach",
+        "real estate",
+        "independent",
+        "conflict-free",
+        "discipline",
+      ],
+    },
+  },
+
+  teamPage: {
+    _type: "teamPage",
+    _id: "team-page-main",
+    pageTitle: "Our Team",
+    pageSubtitle:
+      "Onward with real discipline, real returns - and the team that makes it happen.",
+    hero: {
+      title: "Our Team",
+      description:
+        "Onward with real discipline, real returns - and the team that makes it happen.",
     },
     teamSection: {
       title: "Our Team",
       subtitle:
-        "Meet the experienced professionals behind our success, combining decades of real estate expertise with innovative investment strategies.",
+        "Meet the experienced professionals behind our success. Our team combines decades of real estate expertise with innovative investment strategies.",
       teamMembers: [], // Will be populated with references after team members are created
       allowNewTeamMembers: true,
       showInAbout: true,
     },
     seo: {
-      metaTitle: "About Us - Onterra Capital",
+      metaTitle: "Our Team - Onterra Capital",
       metaDescription:
-        "Learn about Onterra Capital's experienced team of real estate investment professionals and our strategic approach to building wealth.",
+        "Meet the experienced professionals behind Onterra Capital's success, combining decades of real estate expertise with innovative strategies.",
+      keywords: [
+        "team",
+        "professionals",
+        "real estate",
+        "expertise",
+        "leadership",
+      ],
     },
   },
 
@@ -649,15 +760,41 @@ async function seedContent() {
       console.log("✅ Investment Strategies created/updated successfully");
     }
 
-    // Seed About Page
-    console.log("\n📄 Seeding About Page...");
-    const existingAboutPage = await client.fetch('*[_type == "aboutPage"][0]');
-    if (existingAboutPage && !forceUpdate) {
-      console.log("⚠️ About Page already exists. Skipping...");
+    // Seed Overview Page
+    console.log("\n📊 Seeding Overview Page...");
+    const existingOverviewPage = await client.fetch(
+      '*[_type == "overviewPage"][0]'
+    );
+    if (existingOverviewPage && !forceUpdate) {
+      console.log("⚠️ Overview Page already exists. Skipping...");
     } else {
-      console.log("🔄 Creating/updating About Page...");
-      await client.createOrReplace(contentData.aboutPage);
-      console.log("✅ About Page created/updated successfully");
+      console.log("🔄 Creating/updating Overview Page...");
+      await client.createOrReplace(contentData.overviewPage);
+      console.log("✅ Overview Page created/updated successfully");
+    }
+
+    // Seed Approach Page
+    console.log("\n🎯 Seeding Approach Page...");
+    const existingApproachPage = await client.fetch(
+      '*[_type == "approachPage"][0]'
+    );
+    if (existingApproachPage && !forceUpdate) {
+      console.log("⚠️ Approach Page already exists. Skipping...");
+    } else {
+      console.log("🔄 Creating/updating Approach Page...");
+      await client.createOrReplace(contentData.approachPage);
+      console.log("✅ Approach Page created/updated successfully");
+    }
+
+    // Seed Team Page
+    console.log("\n👥 Seeding Team Page...");
+    const existingTeamPage = await client.fetch('*[_type == "teamPage"][0]');
+    if (existingTeamPage && !forceUpdate) {
+      console.log("⚠️ Team Page already exists. Skipping...");
+    } else {
+      console.log("🔄 Creating/updating Team Page...");
+      await client.createOrReplace(contentData.teamPage);
+      console.log("✅ Team Page created/updated successfully");
     }
 
     // Seed Team Members

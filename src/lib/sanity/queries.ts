@@ -182,26 +182,76 @@ export const queries = {
     isActive
   }`,
 
-  aboutPage: `*[_type == "aboutPage"][0] {
+  overviewPage: `*[_type == "overviewPage"][0] {
+    pageTitle,
+    pageSubtitle,
     hero {
       title,
-      description,
-      backgroundStyle {
-        primaryColor,
-        secondaryColor,
-        accentColor,
-        showGridPattern,
-        showGeometricAccents
-      }
+      description
+    },
+    sections[] {
+      id,
+      title,
+      content,
+      image {
+        asset->{
+          url
+        },
+        alt
+      },
+      imagePosition,
+      order
+    } | order(order asc),
+    seo {
+      metaTitle,
+      metaDescription,
+      keywords
+    }
+  }`,
+
+  approachPage: `*[_type == "approachPage"][0] {
+    pageTitle,
+    pageSubtitle,
+    hero {
+      title,
+      description
+    },
+    sections[] {
+      id,
+      title,
+      content,
+      image {
+        asset->{
+          url
+        },
+        alt
+      },
+      imagePosition,
+      order
+    } | order(order asc),
+    seo {
+      metaTitle,
+      metaDescription,
+      keywords
+    }
+  }`,
+
+  teamPage: `*[_type == "teamPage"][0] {
+    pageTitle,
+    pageSubtitle,
+    hero {
+      title,
+      description
     },
     teamSection {
       title,
-      description,
-      showInAbout
+      subtitle,
+      allowNewTeamMembers
     },
     seo {
       metaTitle,
-      metaDescription
+      metaDescription,
+      keywords
     }
   }`,
 };
@@ -312,11 +362,75 @@ export async function getLayoutData() {
   }
 }
 
-// About page data fetching
-export async function getAboutPageData() {
+// Overview page data fetching
+export async function getOverviewPageData() {
   try {
-    const [aboutPage, teamMembers] = await Promise.all([
-      client.fetch(queries.aboutPage),
+    const overviewPage = await client.fetch(queries.overviewPage);
+
+    // Transform section image URLs
+    if (overviewPage?.sections) {
+      overviewPage.sections = overviewPage.sections.map((section: any) => ({
+        ...section,
+        image: section?.image?.asset
+          ? {
+              ...section.image,
+              asset: {
+                ...section.image.asset,
+                url: urlFor(section.image).url(),
+              },
+            }
+          : null,
+      }));
+    }
+
+    return {
+      overviewPage: overviewPage || null,
+    };
+  } catch (error) {
+    console.error("Error fetching overview page data:", error);
+    return {
+      overviewPage: null,
+    };
+  }
+}
+
+// Approach page data fetching
+export async function getApproachPageData() {
+  try {
+    const approachPage = await client.fetch(queries.approachPage);
+
+    // Transform section image URLs
+    if (approachPage?.sections) {
+      approachPage.sections = approachPage.sections.map((section: any) => ({
+        ...section,
+        image: section?.image?.asset
+          ? {
+              ...section.image,
+              asset: {
+                ...section.image.asset,
+                url: urlFor(section.image).url(),
+              },
+            }
+          : null,
+      }));
+    }
+
+    return {
+      approachPage: approachPage || null,
+    };
+  } catch (error) {
+    console.error("Error fetching approach page data:", error);
+    return {
+      approachPage: null,
+    };
+  }
+}
+
+// Team page data fetching
+export async function getTeamPageData() {
+  try {
+    const [teamPage, teamMembers] = await Promise.all([
+      client.fetch(queries.teamPage),
       client.fetch(queries.teamMembers),
     ]);
 
@@ -336,14 +450,44 @@ export async function getAboutPageData() {
       })) || [];
 
     return {
-      aboutPage: aboutPage || null,
+      teamPage: teamPage || null,
+      teamMembers: transformedTeamMembers,
+    };
+  } catch (error) {
+    console.error("Error fetching team page data:", error);
+    return {
+      teamPage: null,
+      teamMembers: [],
+    };
+  }
+}
+
+// Legacy about page data fetching (for backward compatibility)
+export async function getAboutPageData() {
+  try {
+    const teamMembers = await client.fetch(queries.teamMembers);
+
+    // Transform team member image URLs
+    const transformedTeamMembers =
+      teamMembers?.map((member: any) => ({
+        ...member,
+        image: member?.image?.asset
+          ? {
+              ...member.image,
+              asset: {
+                ...member.image.asset,
+                url: urlFor(member.image).url(),
+              },
+            }
+          : null,
+      })) || [];
+
+    return {
       teamMembers: transformedTeamMembers,
     };
   } catch (error) {
     console.error("Error fetching about page data:", error);
-    // Return default data instead of throwing to prevent build failure
     return {
-      aboutPage: null,
       teamMembers: [],
     };
   }

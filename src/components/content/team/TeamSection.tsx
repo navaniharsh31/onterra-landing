@@ -131,68 +131,49 @@ export function TeamSection({ className, teamMembers }: TeamSectionProps) {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Premium Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          {/* Professional Title with Sophisticated Styling */}
-          <motion.div
-            className="relative mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-4 tracking-tight">
-              <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-700 bg-clip-text text-transparent">
-                Our Team
-              </span>
-            </h2>
+        {/* No section header - title/subtitle removed */}
 
-            {/* Subtle Professional Glow */}
-            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-transparent via-navy-500/8 to-transparent rounded-2xl blur-xl -z-10" />
-          </motion.div>
-
-          {/* Premium Subtitle */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
-              Meet the experienced professionals behind our success. Our team
-              combines decades of real estate expertise with innovative
-              investment strategies.
-            </p>
-
-            {/* Professional Bottom Accent */}
-            <div className="w-48 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent mx-auto mt-6" />
-          </motion.div>
-        </motion.div>
-
-        {/* Team Members - Vertical Stack */}
+        {/* Team Members - Special Layout */}
         <div className="space-y-12">
-          {teamMembers.map((member, index) => (
+          {/* First member - Full width */}
+          {teamMembers.length > 0 && (
             <motion.div
-              key={member._id}
+              key={teamMembers[0]._id}
+              className="w-full"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.6,
-                delay: index * 0.1,
+                delay: 0,
                 ease: "easeOut",
               }}
               viewport={{ once: true }}
             >
-              <TeamMemberCard member={member} />
+              <TeamMemberCard member={teamMembers[0]} isFullWidth={true} />
             </motion.div>
-          ))}
+          )}
+
+          {/* Remaining members - Half width each */}
+          {teamMembers.length > 1 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {teamMembers.slice(1).map((member, index) => (
+                <motion.div
+                  key={member._id}
+                  className="w-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: (index + 1) * 0.1,
+                    ease: "easeOut",
+                  }}
+                  viewport={{ once: true }}
+                >
+                  <TeamMemberCard member={member} isFullWidth={false} />
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

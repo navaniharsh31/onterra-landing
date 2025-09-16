@@ -12,7 +12,9 @@ import { statisticsSection } from "./content/statisticsSection";
 import { onterraStandards } from "./content/onterraStandards";
 import { investmentStrategies } from "./content/investmentStrategies";
 import { teamMember } from "./content/teamMember";
-import { aboutPage } from "./content/aboutPage";
+import { overviewPage } from "./content/overviewPage";
+import { approachPage } from "./content/approachPage";
+import { teamPage } from "./content/teamPage";
 
 // Shared Components
 import { ctaButton } from "./shared/ctaButton";
@@ -35,7 +37,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     onterraStandards,
     investmentStrategies,
     teamMember,
-    aboutPage,
+    overviewPage,
+    approachPage,
+    teamPage,
 
     // Shared Components
     ctaButton,

@@ -63,13 +63,6 @@ export function FooterSocial({ settings, className }: FooterSocialProps) {
           );
         })}
       </div>
-
-      {/* Newsletter Signup */}
-      <div className="pt-4">
-        <p className="text-sm text-slate-400 mb-3">
-          Stay updated with our latest insights
-        </p>
-      </div>
     </div>
   );
 }

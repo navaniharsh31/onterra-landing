@@ -1,0 +1,131 @@
+import { defineType, defineField } from "sanity";
+
+export const teamPage = defineType({
+  name: "teamPage",
+  title: "Team Page",
+  type: "document",
+  fields: [
+    defineField({
+      name: "pageTitle",
+      title: "Page Title",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+      initialValue: "Our Team",
+    }),
+    defineField({
+      name: "pageSubtitle",
+      title: "Page Subtitle",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+      initialValue: "Onward with real discipline, real returns - and the team that makes it happen.",
+    }),
+    defineField({
+      name: "hero",
+      title: "Hero Section",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Hero Title",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+          initialValue: "Our Team",
+        }),
+        defineField({
+          name: "description",
+          title: "Hero Description",
+          type: "text",
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+          initialValue: "Onward with real discipline, real returns - and the team that makes it happen.",
+        }),
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "teamSection",
+      title: "Team Section",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Section Title",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+          initialValue: "Our Team",
+        }),
+        defineField({
+          name: "subtitle",
+          title: "Section Subtitle",
+          type: "text",
+          rows: 3,
+          validation: (Rule) => Rule.required(),
+          initialValue: "Meet the experienced professionals behind our success. Our team combines decades of real estate expertise with innovative investment strategies.",
+        }),
+        defineField({
+          name: "teamMembers",
+          title: "Team Members",
+          type: "array",
+          of: [
+            {
+              type: "reference",
+              to: [{ type: "teamMember" }],
+            },
+          ],
+          validation: (Rule) => Rule.required().min(1),
+        }),
+        defineField({
+          name: "allowNewTeamMembers",
+          title: "Allow New Team Members",
+          type: "boolean",
+          initialValue: true,
+        }),
+        defineField({
+          name: "showInAbout",
+          title: "Show in About",
+          type: "boolean",
+          initialValue: true,
+        }),
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "seo",
+      title: "SEO Settings",
+      type: "object",
+      fields: [
+        defineField({
+          name: "metaTitle",
+          title: "Meta Title",
+          type: "string",
+          validation: (Rule) => Rule.max(60),
+        }),
+        defineField({
+          name: "metaDescription",
+          title: "Meta Description",
+          type: "text",
+          rows: 3,
+          validation: (Rule) => Rule.max(160),
+        }),
+        defineField({
+          name: "keywords",
+          title: "Keywords",
+          type: "array",
+          of: [{ type: "string" }],
+        }),
+      ],
+    }),
+  ],
+  preview: {
+    select: {
+      title: "pageTitle",
+      subtitle: "pageSubtitle",
+    },
+    prepare({ title, subtitle }) {
+      return {
+        title: title || "Team Page",
+        subtitle: subtitle || "Meet our team of professionals",
+      };
+    },
+  },
+});

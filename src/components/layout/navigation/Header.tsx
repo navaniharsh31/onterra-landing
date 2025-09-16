@@ -50,6 +50,7 @@ export function Header({ className, siteSettings, navigation }: HeaderProps) {
             sections: item.megaMenuContent.sections.map((section: any) => ({
               ...section,
               image: section.image?.asset.url,
+              url: section.url, // Preserve the URL
             })),
           }
         : undefined,

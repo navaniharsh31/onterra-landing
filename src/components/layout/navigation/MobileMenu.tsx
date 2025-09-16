@@ -186,7 +186,7 @@ export function MobileMenu({
                                 (section: any) => (
                                   <a
                                     key={section.id}
-                                    href={`/${section.id}`}
+                                    href={section.url || ``}
                                     className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
                                     onClick={onClose}
                                   >

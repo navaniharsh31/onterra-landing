@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 
@@ -11,6 +12,7 @@ interface MegaMenuSection {
   title: string;
   description: string;
   image?: string;
+  url?: string;
 }
 
 interface MegaMenuContentProps {
@@ -55,14 +57,28 @@ export function MegaMenuContent({ section, className }: MegaMenuContentProps) {
 
         {/* CTA Button */}
         <div className="pt-4">
-          <Button
-            variant="outline"
-            size="sm"
-            className="group rounded-xs font-medium tracking-wide transition-all duration-300 border-slate-300 text-slate-700 hover:bg-slate-100 hover:border-slate-400"
-          >
-            Learn More
-            <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </Button>
+          {section.url ? (
+            <Link href={section.url}>
+              <Button
+                variant="outline"
+                size="sm"
+                className="group rounded-xs font-medium tracking-wide transition-all duration-300 border-slate-300 text-slate-700 hover:bg-slate-100 hover:border-slate-400"
+              >
+                Learn More
+                <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              variant="outline"
+              size="sm"
+              className="group rounded-xs font-medium tracking-wide transition-all duration-300 border-slate-300 text-slate-700 hover:bg-slate-100 hover:border-slate-400"
+              disabled
+            >
+              Learn More
+              <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Button>
+          )}
         </div>
       </div>
     </motion.div>
