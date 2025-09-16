@@ -37,7 +37,8 @@ const contentData = {
     favicon: null, // Will be set manually in Sanity Studio
     seo: {
       defaultMetaTitle: "{pageTitle} | Onterra Capital",
-      defaultMetaDescription: "Strategic real estate investment firm building wealth through innovative investment strategies and proven market expertise.",
+      defaultMetaDescription:
+        "Strategic real estate investment firm building wealth through innovative investment strategies and proven market expertise.",
       organizationSchema: true,
       foundingDate: "2020-01-01",
       industry: "Real Estate Investment",
@@ -241,7 +242,6 @@ const contentData = {
     },
     overlayOpacity: 0.4,
   },
-
 
   // Keep existing content schemas as they are
   onterraStandards: {
@@ -811,7 +811,6 @@ async function seedContent() {
       await client.createOrReplace(contentData.heroSection);
       console.log("✅ Hero Section created/updated successfully");
     }
-
 
     console.log("\n🏛️ Seeding Onterra Standards...");
     const existingStandards = await client.fetch(
