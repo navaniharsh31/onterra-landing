@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     // - SendGrid
     // - Resend
     // - AWS SES
-    
+
     console.log("Contact form submission:", {
       name,
       email,
@@ -81,17 +81,20 @@ export async function POST(request: NextRequest) {
     */
 
     return NextResponse.json(
-      { 
-        success: true, 
-        message: "Thank you for your message! We'll get back to you within 24 hours." 
+      {
+        success: true,
+        message:
+          "Thank you for your message! We'll get back to you within 24 hours.",
       },
       { status: 200 }
     );
-
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json(
-      { error: "Sorry, there was an error sending your message. Please try again or contact us directly." },
+      {
+        error:
+          "Sorry, there was an error sending your message. Please try again or contact us directly.",
+      },
       { status: 500 }
     );
   }
