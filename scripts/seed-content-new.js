@@ -42,7 +42,7 @@ const contentData = {
       googleAnalyticsId: null, // Will be set manually
       googleTagManagerId: null, // Will be set manually
     },
-    copyrightText: "© 2024 Onterra Capital. All rights reserved.",
+    copyrightText: "© 2025 Onterra Capital. All rights reserved.",
     privacyPolicyUrl: "/privacy-policy",
     termsOfServiceUrl: "/terms-of-service",
   },
@@ -67,26 +67,7 @@ const contentData = {
     _type: "socialLinks",
     _id: "social-links-main",
     title: "Social Links",
-    links: [
-      {
-        _type: "socialMediaLink",
-        platform: "linkedin",
-        url: "https://linkedin.com/company/onterra-capital",
-        label: "Follow us on LinkedIn",
-      },
-      {
-        _type: "socialMediaLink",
-        platform: "twitter",
-        url: "https://twitter.com/onterracapital",
-        label: "Follow us on Twitter",
-      },
-      {
-        _type: "socialMediaLink",
-        platform: "youtube",
-        url: "https://youtube.com/onterracapital",
-        label: "Subscribe to our YouTube channel",
-      },
-    ],
+    links: [],
   },
 
   navigation: {
@@ -650,7 +631,107 @@ const contentData = {
       order: 1,
       isActive: true,
     },
+    {
+      _type: "teamMember",
+      _id: "team-member-jinesh-chheda",
+      name: "Jinesh Chheda",
+      title: "Senior Investment Professional",
+      image: null, // Will be set manually in Sanity Studio
+      bio: "13+ years of experience in real estate investing, asset management, and structured credit, with a proven track record of managing over US$ 300 million in investments across key Indian geographies. Jinesh has led the entire investment lifecycle from origination and underwriting to execution and exits with a core focus on residential real estate. His experience also includes structured recoveries from stressed exposures.",
+      education: [
+        "Chartered Accountant",
+        "Commerce Graduate from University of Mumbai",
+      ],
+      careerHighlights: [
+        {
+          period: "2015-25",
+          role: "360 ONE - Residential debt investments; recovery of legacy exposures",
+          description:
+            "Led residential debt investments and managed recovery of legacy exposures across key Indian geographies.",
+        },
+        {
+          period: "2013-15",
+          role: "Aditya Birla Capital - Developer credit",
+          description:
+            "Specialized in developer credit solutions and structured financing for real estate projects.",
+        },
+        {
+          period: "2011-13",
+          role: "Reliance Capital - Construction Finance for residential projects",
+          description:
+            "Focused on construction finance for residential projects, building expertise in project financing.",
+        },
+      ],
+      certifications: [
+        "Chartered Accountant",
+        "Commerce Graduate from University of Mumbai",
+      ],
+      order: 2,
+      isActive: true,
+    },
+    {
+      _type: "teamMember",
+      _id: "team-member-chirayu-mehta",
+      name: "Chirayu Mehta",
+      title: "Senior Investment Professional",
+      image: null, // Will be set manually in Sanity Studio
+      bio: "8+ years of experience across the full investment lifecycle – including deal origination, underwriting, fund-raising, asset management, and exits. His cumulative investments and advisory experience exceeds US$ 300 million. Prior to Onterra Capital, Chirayu was part of the Corporate & Special Situations Advisory team at PL Capital.",
+      education: ["Commerce Graduate from University of Mumbai"],
+      careerHighlights: [
+        {
+          period: "Recent",
+          role: "PL Capital - Corporate & Special Situations Advisory",
+          description:
+            "Part of the Corporate & Special Situations Advisory team, focusing on complex investment scenarios.",
+        },
+        {
+          period: "Previous",
+          role: "NovumLake Partners (Category II AIF) - AUM of US$ 200mn",
+          description:
+            "Focused on value-add completed & greenfield commercial office investments and a US$ 100mn greenfield datacentre development.",
+        },
+      ],
+      certifications: [
+        "CFA (Chartered Financial Analyst)",
+        "CAIA (Chartered Alternative Investment Analyst)",
+        "FRM (Financial Risk Manager)",
+        "CFP (Certified Financial Planner)",
+        "NISM XIX-D (Category 1 and 2 AIF Management)",
+        "Commerce Graduate from University of Mumbai",
+      ],
+      order: 3,
+      isActive: true,
+    },
   ],
+
+  contactPage: {
+    _type: "contactPage",
+    _id: "contact-page-main",
+    title: "Contact Page Content",
+    hero: {
+      title: "Get in Touch",
+      description:
+        "Ready to explore real estate investment opportunities? We'd love to hear from you. Get in touch with our team to discuss your investment goals and how we can help you achieve them.",
+    },
+    contactInfo: {
+      email: "info@onterra.in",
+      phone: "+91 98765 43210",
+      address: "Mumbai, Maharashtra, India",
+      officeHours: "Monday - Friday: 9:00 AM - 6:00 PM IST",
+    },
+    formSettings: {
+      recipientEmail: "info@onterra.in",
+      successMessage:
+        "Thank you for your message! We'll get back to you within 24 hours.",
+      errorMessage:
+        "Sorry, there was an error sending your message. Please try again or contact us directly.",
+    },
+    seo: {
+      metaTitle: "Contact Us - Onterra Capital",
+      metaDescription:
+        "Get in touch with Onterra Capital for real estate investment opportunities. Contact our team to discuss your investment goals and portfolio strategy.",
+    },
+  },
 };
 
 async function seedContent() {
@@ -793,6 +874,19 @@ async function seedContent() {
       console.log("🔄 Creating/updating Team Page...");
       await client.createOrReplace(contentData.teamPage);
       console.log("✅ Team Page created/updated successfully");
+    }
+
+    // Seed Contact Page
+    console.log("\n📞 Seeding Contact Page...");
+    const existingContactPage = await client.fetch(
+      '*[_type == "contactPage"][0]'
+    );
+    if (existingContactPage && !forceUpdate) {
+      console.log("⚠️ Contact Page already exists. Skipping...");
+    } else {
+      console.log("🔄 Creating/updating Contact Page...");
+      await client.createOrReplace(contentData.contactPage);
+      console.log("✅ Contact Page created/updated successfully");
     }
 
     // Seed Team Members

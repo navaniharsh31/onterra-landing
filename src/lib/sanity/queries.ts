@@ -253,6 +253,29 @@ export const queries = {
       keywords
     }
   }`,
+
+  contactPage: `*[_type == "contactPage"][0] {
+    title,
+    hero {
+      title,
+      description
+    },
+    contactInfo {
+      email,
+      phone,
+      address,
+      officeHours
+    },
+    formSettings {
+      recipientEmail,
+      successMessage,
+      errorMessage
+    },
+    seo {
+      metaTitle,
+      metaDescription
+    }
+  }`,
 };
 
 // Homepage data fetching
@@ -457,6 +480,22 @@ export async function getTeamPageData() {
     return {
       teamPage: null,
       teamMembers: [],
+    };
+  }
+}
+
+// Contact page data fetching
+export async function getContactPageData() {
+  try {
+    const contactPage = await client.fetch(queries.contactPage);
+
+    return {
+      contactPage,
+    };
+  } catch (error) {
+    console.error("Error fetching contact page data:", error);
+    return {
+      contactPage: null,
     };
   }
 }
