@@ -1,5 +1,4 @@
 import { HeroSection } from "@/components/content/hero/HeroSection";
-import { StatisticsSection } from "@/components/content/statistics/StatisticsSection";
 import { OnterraStandardsSectionNew } from "@/components/content/onterra-standards/OnterraStandardsSectionNew";
 import { InvestmentStrategiesSectionNew } from "@/components/content/investment-strategies/InvestmentStrategiesSectionNew";
 import { getPageData } from "@/lib/sanity/queries";
@@ -24,11 +23,6 @@ export default async function Home() {
       <div className="min-h-screen">
         {/* Hero Section - Server rendered */}
         <HeroSection content={pageData.hero} />
-
-        {/* Statistics Section - Server rendered */}
-        {pageData.statistics && (
-          <StatisticsSection content={pageData.statistics} />
-        )}
 
         {/* Content Sections - Server rendered */}
         <InvestmentStrategiesSectionNew

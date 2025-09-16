@@ -1,5 +1,6 @@
 import { TeamSection } from "@/components/content/team/TeamSection";
 import { AboutHero } from "@/components/content/about/AboutHero";
+import { StatisticsSection } from "@/components/content/statistics/StatisticsSection";
 import { getTeamPageData } from "@/lib/sanity/queries";
 
 export default async function TeamPage() {
@@ -19,6 +20,9 @@ export default async function TeamPage() {
 
       {/* Team Section - No title/subtitle */}
       <TeamSection teamMembers={teamMembers} />
+      {teamPage?.statistics && (
+        <StatisticsSection content={teamPage.statistics} />
+      )}
     </div>
   );
 }

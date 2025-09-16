@@ -18,7 +18,7 @@ export default async function ContactPage() {
   }
 
   const heroData = contactPage.hero;
-  const contactInfo = contactPage.contactInfo;
+  const contactDetails = contactPage.contactDetails;
   const formSettings = contactPage.formSettings;
 
   return (
@@ -48,7 +48,7 @@ export default async function ContactPage() {
             <ContactForm formSettings={formSettings} />
 
             {/* Contact Information */}
-            <ContactInfo contactInfo={contactInfo} />
+            <ContactInfo contactDetails={contactDetails} />
           </div>
         </div>
       </section>

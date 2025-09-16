@@ -6,21 +6,37 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
 interface ContactInfoProps {
   className?: string;
-  contactInfo?: {
-    email?: string;
+  contactDetails?: {
+    _id?: string;
+    address?: {
+      street?: string;
+      city?: string;
+      state?: string;
+      zipCode?: string;
+      country?: string;
+    };
     phone?: string;
-    address?: string;
-    officeHours?: string;
+    email?: string;
+    businessHours?: string;
   };
 }
 
-export function ContactInfo({ className, contactInfo }: ContactInfoProps) {
-  // Return null if no contact info from Sanity
-  if (!contactInfo) {
+export function ContactInfo({ className, contactDetails }: ContactInfoProps) {
+  // Return null if no contact details from Sanity
+  if (!contactDetails) {
     return null;
   }
 
-  const { email, phone, address, officeHours } = contactInfo;
+  const { email, phone, address, businessHours } = contactDetails;
+
+  // Format address from structured data
+  const formatAddress = (addr: typeof address) => {
+    if (!addr) return "";
+    const parts = [addr.street, addr.city, addr.state, addr.zipCode, addr.country].filter(Boolean);
+    return parts.join(", ");
+  };
+
+  const formattedAddress = formatAddress(address);
 
   const contactItems = [
     {
@@ -38,12 +54,12 @@ export function ContactInfo({ className, contactInfo }: ContactInfoProps) {
     {
       icon: MapPin,
       label: "Address",
-      value: address,
+      value: formattedAddress,
     },
     {
       icon: Clock,
       label: "Office Hours",
-      value: officeHours,
+      value: businessHours,
     },
   ];
 

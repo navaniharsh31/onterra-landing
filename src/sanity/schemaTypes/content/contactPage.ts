@@ -35,37 +35,12 @@ export const contactPage = defineType({
       ],
     }),
     defineField({
-      name: "contactInfo",
-      title: "Contact Information",
-      type: "object",
-      fields: [
-        defineField({
-          name: "email",
-          title: "Email Address",
-          type: "string",
-          initialValue: "info@onterra.in",
-          validation: (Rule) => Rule.required().email(),
-        }),
-        defineField({
-          name: "phone",
-          title: "Phone Number",
-          type: "string",
-          initialValue: "+91 98765 43210",
-        }),
-        defineField({
-          name: "address",
-          title: "Address",
-          type: "text",
-          rows: 3,
-          initialValue: "Mumbai, Maharashtra, India",
-        }),
-        defineField({
-          name: "officeHours",
-          title: "Office Hours",
-          type: "string",
-          initialValue: "Monday - Friday: 9:00 AM - 6:00 PM IST",
-        }),
-      ],
+      name: "contactDetails",
+      title: "Contact Details",
+      type: "reference",
+      to: [{ type: "contactDetails" }],
+      validation: (Rule) => Rule.required(),
+      description: "Reference to the main contact details document",
     }),
     defineField({
       name: "formSettings",

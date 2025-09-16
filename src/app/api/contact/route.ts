@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sendContactEmail, sendAutoReplyEmail } from "@/lib/email";
 
 interface ContactFormData {
   name: string;
@@ -44,41 +45,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // For now, we'll just log the form data
-    // In production, you would integrate with an email service like:
-    // - Nodemailer with SMTP
-    // - SendGrid
-    // - Resend
-    // - AWS SES
-
-    console.log("Contact form submission:", {
+    // Send email notification to Onterra team
+    await sendContactEmail({
       name,
       email,
-      phone: phone || "Not provided",
+      phone,
       message,
-      timestamp: new Date().toISOString(),
     });
 
-    // TODO: Implement actual email sending
-    // Example with a hypothetical email service:
-    /*
-    const emailData = {
-      to: "info@onterra.in",
-      from: "noreply@onterra.in",
-      subject: `New Contact Form Submission from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-        <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
-      `,
-    };
-    
-    await sendEmail(emailData);
-    */
+    // Send auto-reply to user
+    await sendAutoReplyEmail(email, name);
 
     return NextResponse.json(
       {
@@ -89,7 +65,6 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Contact form error:", error);
     return NextResponse.json(
       {
         error:

@@ -45,6 +45,50 @@ export const teamPage = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "statistics",
+      title: "Statistics Section",
+      type: "object",
+      fields: [
+        defineField({
+          name: "title",
+          title: "Section Title",
+          type: "string",
+          validation: (Rule) => Rule.required(),
+          initialValue: "Our Track Record",
+        }),
+        defineField({
+          name: "statistics",
+          title: "Statistics",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({
+                  name: "value",
+                  title: "Value",
+                  type: "string",
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: "label",
+                  title: "Label",
+                  type: "string",
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: "suffix",
+                  title: "Suffix",
+                  type: "string",
+                }),
+              ],
+            },
+          ],
+          validation: (Rule) => Rule.required().min(1),
+        }),
+      ],
+    }),
+    defineField({
       name: "teamSection",
       title: "Team Section",
       type: "object",

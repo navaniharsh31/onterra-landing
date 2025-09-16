@@ -52,15 +52,15 @@ const contentData = {
     _id: "contact-details-main",
     title: "Contact Details",
     address: {
-      street: "123 Investment Plaza",
-      city: "New York",
-      state: "NY",
-      zipCode: "10001",
-      country: "United States",
+      street: "123 Business District",
+      city: "Mumbai",
+      state: "Maharashtra",
+      zipCode: "400001",
+      country: "India",
     },
-    phone: "+1 (555) 123-4567",
-    email: "info@onterracapital.com",
-    businessHours: "Monday - Friday, 9 AM - 6 PM EST",
+    phone: "+91 98765 43210",
+    email: "info@onterra.in",
+    businessHours: "Monday - Friday: 9:00 AM - 6:00 PM IST",
   },
 
   socialLinks: {
@@ -575,6 +575,36 @@ const contentData = {
       description:
         "Onward with real discipline, real returns - and the team that makes it happen.",
     },
+    statistics: {
+      title: "Our Track Record",
+      statistics: [
+        {
+          value: "$500M+",
+          label: "Assets Under Management",
+          suffix: "",
+        },
+        {
+          value: "15+",
+          label: "Years of Combined Experience",
+          suffix: "",
+        },
+        {
+          value: "25+",
+          label: "Successful Projects",
+          suffix: "",
+        },
+        {
+          value: "12%",
+          label: "Average Annual Returns",
+          suffix: "",
+        },
+        {
+          value: "100%",
+          label: "Client Retention Rate",
+          suffix: "",
+        },
+      ],
+    },
     teamSection: {
       title: "Our Team",
       subtitle:
@@ -713,11 +743,9 @@ const contentData = {
       description:
         "Ready to explore real estate investment opportunities? We'd love to hear from you. Get in touch with our team to discuss your investment goals and how we can help you achieve them.",
     },
-    contactInfo: {
-      email: "info@onterra.in",
-      phone: "+91 98765 43210",
-      address: "Mumbai, Maharashtra, India",
-      officeHours: "Monday - Friday: 9:00 AM - 6:00 PM IST",
+    contactDetails: {
+      _type: "reference",
+      _ref: "contact-details-main",
     },
     formSettings: {
       recipientEmail: "info@onterra.in",

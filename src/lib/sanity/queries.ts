@@ -243,6 +243,14 @@ export const queries = {
       title,
       description
     },
+    statistics {
+      title,
+      statistics[] {
+        value,
+        label,
+        suffix
+      }
+    },
     teamSection {
       title,
       subtitle,
@@ -260,11 +268,18 @@ export const queries = {
       title,
       description
     },
-    contactInfo {
-      email,
+    contactDetails-> {
+      _id,
+      address {
+        street,
+        city,
+        state,
+        zipCode,
+        country
+      },
       phone,
-      address,
-      officeHours
+      email,
+      businessHours
     },
     formSettings {
       recipientEmail,
@@ -285,14 +300,12 @@ export async function getPageData() {
       siteSettings,
       navigation,
       hero,
-      statistics,
       investmentStrategies,
       onterraStandards,
     ] = await Promise.all([
       client.fetch(queries.siteSettings),
       client.fetch(queries.navigation),
       client.fetch(queries.hero),
-      client.fetch(queries.statistics),
       client.fetch(queries.investmentStrategies),
       client.fetch(queries.onterraStandards),
     ]);
@@ -326,7 +339,6 @@ export async function getPageData() {
       siteSettings,
       navigation,
       hero,
-      statistics,
       investmentStrategies,
       onterraStandards,
     };
@@ -536,7 +548,6 @@ export interface ServerPageData {
   siteSettings: any;
   navigation: any;
   hero: any;
-  statistics: any;
   investmentStrategies: any;
   onterraStandards: any;
 }
