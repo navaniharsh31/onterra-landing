@@ -107,20 +107,26 @@ export function generateSEOMetadata({
 
   // Add organization schema if enabled
   if (siteWideSEO.organizationSchema) {
-    metadata.other = {
-      ...metadata.other,
+    const organizationData: Record<string, string> = {
       "organization:name": "Onterra Capital",
       "organization:url": "https://onterra.in",
       "organization:logo": "https://onterra.in/logo.png",
       "organization:description":
         siteWideSEO.defaultMetaDescription ||
         "Strategic real estate investment firm",
-      ...(siteWideSEO.foundingDate && {
-        "organization:foundingDate": siteWideSEO.foundingDate,
-      }),
-      ...(siteWideSEO.industry && {
-        "organization:industry": siteWideSEO.industry,
-      }),
+    };
+
+    if (siteWideSEO.foundingDate) {
+      organizationData["organization:foundingDate"] = siteWideSEO.foundingDate;
+    }
+
+    if (siteWideSEO.industry) {
+      organizationData["organization:industry"] = siteWideSEO.industry;
+    }
+
+    metadata.other = {
+      ...metadata.other,
+      ...organizationData,
     };
   }
 
