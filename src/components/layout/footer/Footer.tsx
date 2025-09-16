@@ -49,21 +49,36 @@ export function Footer({
     socialMedia: Array.isArray(socialLinks?.links) ? socialLinks.links : [],
     legal: {
       legalLinks: [
-        {
-          title: "Privacy Policy",
-          url: siteSettings?.privacyPolicyUrl || "/privacy-policy",
-          openInNewTab: false,
-        },
-        {
-          title: "Terms of Service",
-          url: siteSettings?.termsOfServiceUrl || "/terms-of-service",
-          openInNewTab: false,
-        },
-        {
-          title: "Disclaimer",
-          url: siteSettings?.disclaimerUrl || "/disclaimer",
-          openInNewTab: false,
-        },
+        // Only include Privacy Policy if URL is set in Sanity
+        ...(siteSettings?.privacyPolicyUrl
+          ? [
+              {
+                title: "Privacy Policy",
+                url: siteSettings.privacyPolicyUrl,
+                openInNewTab: false,
+              },
+            ]
+          : []),
+        // Only include Terms of Service if URL is set in Sanity
+        ...(siteSettings?.termsOfServiceUrl
+          ? [
+              {
+                title: "Terms of Service",
+                url: siteSettings.termsOfServiceUrl,
+                openInNewTab: false,
+              },
+            ]
+          : []),
+        // Only include Disclaimer if URL is set in Sanity
+        ...(siteSettings?.disclaimerUrl
+          ? [
+              {
+                title: "Disclaimer",
+                url: siteSettings.disclaimerUrl,
+                openInNewTab: false,
+              },
+            ]
+          : []),
       ],
     },
   };

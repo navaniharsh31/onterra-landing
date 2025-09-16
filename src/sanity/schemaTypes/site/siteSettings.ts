@@ -50,7 +50,8 @@ export const siteSettings = defineType({
           name: "defaultMetaTitle",
           title: "Default Meta Title Template",
           type: "string",
-          description: "Default title template for pages (e.g., '{pageTitle} | Onterra Capital')",
+          description:
+            "Default title template for pages (e.g., '{pageTitle} | Onterra Capital')",
           validation: (Rule) => Rule.max(60),
         }),
         defineField({
@@ -64,7 +65,8 @@ export const siteSettings = defineType({
           name: "organizationSchema",
           title: "Enable Organization Schema",
           type: "boolean",
-          description: "Add structured data for better search engine understanding",
+          description:
+            "Add structured data for better search engine understanding",
           initialValue: true,
         }),
         defineField({
@@ -108,6 +110,11 @@ export const siteSettings = defineType({
     defineField({
       name: "termsOfServiceUrl",
       title: "Terms of Service URL",
+      type: "url",
+    }),
+    defineField({
+      name: "disclaimerUrl",
+      title: "Disclaimer URL",
       type: "url",
     }),
   ],

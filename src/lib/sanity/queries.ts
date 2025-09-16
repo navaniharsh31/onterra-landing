@@ -30,7 +30,8 @@ export const queries = {
     },
     copyrightText,
     privacyPolicyUrl,
-    termsOfServiceUrl
+    termsOfServiceUrl,
+    disclaimerUrl
   }`,
 
   navigation: `*[_type == "navigation"][0] {
