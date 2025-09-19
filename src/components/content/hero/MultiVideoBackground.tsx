@@ -24,7 +24,7 @@ export function MultiVideoBackground({
 
     const interval = setInterval(() => {
       setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
-    }, 50000);
+    }, 5000); // Change video every 10 seconds
 
     return () => clearInterval(interval);
   }, [videos.length]);
