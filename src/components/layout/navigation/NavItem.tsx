@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { DropdownMenu } from "./DropdownMenu";
 import { MegaMenu } from "./MegaMenu";
 import { ChevronDownIcon } from "lucide-react";
+import Link from "next/link";
 
 interface NavigationItem {
   id: string;
@@ -59,9 +60,9 @@ export function NavItem({
 
   if (item.type === "link") {
     return (
-      <a href={item.url} className={baseClasses}>
+      <Link href={item.url || "/"} className={baseClasses}>
         <span>{item.title}</span>
-      </a>
+      </Link>
     );
   }
 

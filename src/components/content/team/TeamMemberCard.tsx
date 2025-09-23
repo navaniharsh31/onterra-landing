@@ -45,8 +45,8 @@ export function TeamMemberCard({
         className={cn("w-full", className)}
       >
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Image Container - Enhanced and Larger */}
-          <div className="relative w-full lg:w-96 h-80 lg:h-96 overflow-hidden">
+          {/* Image Container - Reduced Size */}
+          <div className="relative w-full lg:w-80 h-64 lg:h-80 overflow-hidden">
             {member.image?.asset?.url ? (
               <Image
                 src={member.image.asset.url}
@@ -163,7 +163,7 @@ export function TeamMemberCard({
     >
       <div className="space-y-6">
         {/* Image Container - Compact */}
-        <div className="relative w-full max-w-sm mx-auto h-80 overflow-hidden">
+        <div className="relative w-full max-w-xs mx-auto h-64 overflow-hidden">
           {member.image?.asset?.url ? (
             <Image
               src={member.image.asset.url}

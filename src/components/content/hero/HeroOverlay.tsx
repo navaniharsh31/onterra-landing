@@ -38,7 +38,7 @@ export function HeroOverlay({ opacity }: HeroOverlayProps) {
       {/* Additional Text Contrast Layer */}
       <div
         className="absolute inset-0 bg-black/20 z-10"
-        style={{ opacity: opacity * 0.5 }}
+        style={{ opacity: (opacity || 1) * 0.5 }}
         aria-hidden="true"
       />
     </>

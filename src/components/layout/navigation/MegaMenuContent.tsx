@@ -58,16 +58,11 @@ export function MegaMenuContent({ section, className }: MegaMenuContentProps) {
         {/* CTA Button */}
         <div className="pt-4">
           {section.url ? (
-            <Link
-              href={section.url}
-              className="cursor-pointer inline-block"
-              style={{ cursor: "pointer" }}
-            >
+            <Link href={section.url} prefetch={true}>
               <Button
                 variant="outline"
                 size="sm"
                 className="group rounded-xs font-medium tracking-wide transition-all duration-300 border-slate-300 text-slate-700 hover:bg-navy-600 hover:text-white group-hover:border-navy-600 cursor-pointer"
-                style={{ cursor: "pointer" }}
               >
                 Learn More
                 <ArrowRightIcon className="ml-2 h-4 w-4 transition-all duration-300 group-hover:text-white group-hover:translate-x-1" />

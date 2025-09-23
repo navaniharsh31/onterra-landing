@@ -32,7 +32,13 @@ export function ContactInfo({ className, contactDetails }: ContactInfoProps) {
   // Format address from structured data
   const formatAddress = (addr: typeof address) => {
     if (!addr) return "";
-    const parts = [addr.street, addr.city, addr.state, addr.zipCode, addr.country].filter(Boolean);
+    const parts = [
+      addr.street,
+      addr.city,
+      addr.state,
+      addr.zipCode,
+      addr.country,
+    ].filter(Boolean);
     return parts.join(", ");
   };
 
@@ -56,11 +62,7 @@ export function ContactInfo({ className, contactDetails }: ContactInfoProps) {
       label: "Address",
       value: formattedAddress,
     },
-    {
-      icon: Clock,
-      label: "Office Hours",
-      value: businessHours,
-    },
+   
   ];
 
   return (
@@ -113,15 +115,6 @@ export function ContactInfo({ className, contactDetails }: ContactInfoProps) {
               </motion.div>
             );
           })}
-        </div>
-
-        <div className="mt-8 pt-6 border-t border-gray-200/20">
-          <p className="text-sm text-slate-500 leading-relaxed">
-            Ready to start your real estate investment journey? Send us a
-            message using the form, and our team will get back to you within 24
-            hours to discuss your investment goals and how we can help you
-            achieve them.
-          </p>
         </div>
       </div>
     </motion.div>

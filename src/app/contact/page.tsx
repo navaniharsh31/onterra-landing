@@ -54,11 +54,10 @@ export default async function ContactPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* Contact Form */}
-            <ContactForm formSettings={formSettings} />
-
             {/* Contact Information */}
             <ContactInfo contactDetails={contactDetails} />
+            {/* Contact Form */}
+            <ContactForm formSettings={formSettings} />
           </div>
         </div>
       </section>

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendContactEmail, sendAutoReplyEmail } from "@/lib/email";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 interface ContactFormData {
   name: string;
@@ -12,6 +14,24 @@ export async function POST(request: NextRequest) {
   try {
     const body: ContactFormData = await request.json();
     const { name, email, phone, message } = body;
+
+    // Fetch logo data from Sanity
+    const siteSettings = await client.fetch(`*[_type == "siteSettings"][0] {
+      logo {
+        asset->{
+          url
+        },
+        alt
+      }
+    }`);
+
+    // Prepare logo data for email
+    const logoData = siteSettings?.logo?.asset?.url
+      ? {
+          src: urlFor(siteSettings.logo).url(),
+          alt: siteSettings.logo.alt || "Onterra Capital",
+        }
+      : undefined;
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -46,15 +66,18 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email notification to Onterra team
-    await sendContactEmail({
-      name,
-      email,
-      phone,
-      message,
-    });
+    await sendContactEmail(
+      {
+        name,
+        email,
+        phone,
+        message,
+      },
+      logoData
+    );
 
     // Send auto-reply to user
-    await sendAutoReplyEmail(email, name);
+    await sendAutoReplyEmail(email, name, logoData);
 
     return NextResponse.json(
       {
@@ -64,7 +87,7 @@ export async function POST(request: NextRequest) {
       },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (_) {
     return NextResponse.json(
       {
         error:

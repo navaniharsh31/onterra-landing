@@ -255,6 +255,26 @@ export const queries = {
     teamSection {
       title,
       subtitle,
+      teamMembers[]->{
+        _id,
+        name,
+        title,
+        image {
+          asset->{
+            url
+          },
+          alt
+        },
+        bio,
+        education,
+        careerHighlights[] {
+          period,
+          role,
+          description
+        },
+        order,
+        isActive
+      }
     },
     seo {
       metaTitle,
@@ -295,6 +315,21 @@ export const queries = {
       canonicalUrl
     }
   }`,
+
+  homeIntroSection: `*[_type == "homeIntroSection"][0] {
+    title,
+    description,
+    enableBackgroundImage,
+    imagePosition,
+    blendMode,
+    backgroundImage {
+      asset->{
+        url
+      },
+      alt
+    },
+    imageOpacity
+  }`,
 };
 
 // Homepage data fetching
@@ -304,12 +339,14 @@ export async function getPageData() {
       siteSettings,
       navigation,
       hero,
+      homeIntroSection,
       investmentStrategies,
       onterraStandards,
     ] = await Promise.all([
       client.fetch(queries.siteSettings),
       client.fetch(queries.navigation),
       client.fetch(queries.hero),
+      client.fetch(queries.homeIntroSection),
       client.fetch(queries.investmentStrategies),
       client.fetch(queries.onterraStandards),
     ]);
@@ -343,6 +380,7 @@ export async function getPageData() {
       siteSettings,
       navigation,
       hero,
+      homeIntroSection,
       investmentStrategies,
       onterraStandards,
     };
@@ -467,14 +505,14 @@ export async function getApproachPageData() {
 // Team page data fetching
 export async function getTeamPageData() {
   try {
-    const [teamPage, teamMembers] = await Promise.all([
-      client.fetch(queries.teamPage),
-      client.fetch(queries.teamMembers),
-    ]);
+    const teamPage = await client.fetch(queries.teamPage);
+
+    // Get selected team members from the page data
+    const selectedTeamMembers = teamPage?.teamSection?.teamMembers || [];
 
     // Transform team member image URLs
     const transformedTeamMembers =
-      teamMembers?.map((member: any) => ({
+      selectedTeamMembers?.map((member: any) => ({
         ...member,
         image: member?.image?.asset
           ? {

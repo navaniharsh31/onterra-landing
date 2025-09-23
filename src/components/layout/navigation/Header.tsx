@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Navigation } from "./Navigation";
 import { useMobileMenu } from "../providers/MobileMenuProvider";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface HeaderProps {
   className?: string;
@@ -72,7 +73,7 @@ export function Header({ className, siteSettings, navigation }: HeaderProps) {
         <div className="flex items-center justify-between header-height">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href={logoData.url} className="flex items-center">
+            <Link href={logoData.url} className="flex items-center">
               <Image
                 src={logoData.src}
                 alt={logoData.alt}
@@ -84,7 +85,7 @@ export function Header({ className, siteSettings, navigation }: HeaderProps) {
                 )}
                 priority
               />
-            </a>
+            </Link>
           </div>
 
           {/* Navigation and CTA - Desktop */}
@@ -105,7 +106,9 @@ export function Header({ className, siteSettings, navigation }: HeaderProps) {
                       : "bg-white/90 hover:bg-white text-slate-900 backdrop-blur-sm"
                   )}
                 >
-                  <a href={ctaButton.url}>{ctaButton.text}</a>
+                  <Link href={ctaButton.url} prefetch={true}>
+                    {ctaButton.text}
+                  </Link>
                 </Button>
               </div>
             )}

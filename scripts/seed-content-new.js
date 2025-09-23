@@ -31,14 +31,14 @@ const contentData = {
     _id: "site-settings-main",
     title: "Onterra Capital",
     description:
-      "Strategic real estate investment firm building wealth through innovative investment strategies and proven market expertise.",
+      "Real estate investment management firm building wealth through innovative investment strategies and proven market expertise.",
     tagline: "Building wealth through strategic real estate investment",
     logo: null, // Will be set manually in Sanity Studio
     favicon: null, // Will be set manually in Sanity Studio
     seo: {
       defaultMetaTitle: "{pageTitle} | Onterra Capital",
       defaultMetaDescription:
-        "Strategic real estate investment firm building wealth through innovative investment strategies and proven market expertise.",
+        "Real estate investment management firm building wealth through innovative investment strategies and proven market expertise.",
       organizationSchema: true,
       foundingDate: "2020-01-01",
       industry: "Real Estate Investment",
@@ -241,6 +241,26 @@ const contentData = {
       color: "#fff",
     },
     overlayOpacity: 0.4,
+  },
+
+  homeIntroSection: {
+    _type: "homeIntroSection",
+    _id: "home-intro-main",
+    title: "Transforming Real Estate Investment",
+    description:
+      "We combine institutional expertise with innovative technology to deliver exceptional real estate investment opportunities. Our disciplined approach and transparent processes ensure sustainable returns for our investors.",
+    enableBackgroundImage: true,
+    imagePosition: "bottom",
+    blendMode: "overlay",
+    backgroundImage: {
+      _type: "imageWithAlt",
+      asset: {
+        _type: "reference",
+        _ref: "image-home-intro-bg",
+      },
+      alt: "City Skyline Background",
+    },
+    imageOpacity: 0.8,
   },
 
   // Keep existing content schemas as they are
@@ -739,6 +759,19 @@ async function seedContent() {
       console.log("🔄 Creating/updating Hero Section...");
       await client.createOrReplace(contentData.heroSection);
       console.log("✅ Hero Section created/updated successfully");
+    }
+
+    // Seed Home Intro Section
+    console.log("\n🏡 Seeding Home Intro Section...");
+    const existingHomeIntro = await client.fetch(
+      '*[_type == "homeIntroSection"][0]'
+    );
+    if (existingHomeIntro && !forceUpdate) {
+      console.log("⚠️ Home Intro section already exists. Skipping...");
+    } else {
+      console.log("🔄 Creating/updating Home Intro Section...");
+      await client.createOrReplace(contentData.homeIntroSection);
+      console.log("✅ Home Intro Section created/updated successfully");
     }
 
     console.log("\n🏛️ Seeding Onterra Standards...");

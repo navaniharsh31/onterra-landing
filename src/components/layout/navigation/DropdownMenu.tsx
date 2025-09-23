@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface DropdownItem {
   id: string;
@@ -35,13 +36,14 @@ export function DropdownMenu({
     >
       <div className="py-2">
         {items.map((item, index) => (
-          <a
+          <Link
             key={item.id}
             href={item.url}
             className="block px-4 py-3 text-sm font-medium transition-colors duration-150 text-slate-700 hover:text-slate-900 hover:bg-slate-100/80"
+            prefetch={true}
           >
             {item.title}
-          </a>
+          </Link>
         ))}
       </div>
     </motion.div>

@@ -11,12 +11,12 @@ interface ContactHeroProps {
 
 export function ContactHero({ heroData }: ContactHeroProps) {
   // Return null if no hero data from Sanity
-  if (!heroData?.title || !heroData?.description) {
+  if (!heroData?.title) {
     return null;
   }
 
   const title = heroData.title;
-  const description = heroData.description;
+  const description = heroData.description || "";
 
   return (
     <section className="relative py-24 sm:py-32 lg:py-40 overflow-x-hidden">

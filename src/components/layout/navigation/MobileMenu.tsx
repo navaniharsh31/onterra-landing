@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { X, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
@@ -80,13 +81,14 @@ export function MobileMenu({
               {navItems.map((item: any) => (
                 <div key={item.id}>
                   {item.type === "link" ? (
-                    <a
-                      href={item.url}
+                    <Link
+                      href={item.url || "/"}
                       className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
                       onClick={onClose}
+                      prefetch={true}
                     >
                       {item.title}
-                    </a>
+                    </Link>
                   ) : item.type === "dropdown" ? (
                     <div>
                       <button
@@ -114,14 +116,15 @@ export function MobileMenu({
                           >
                             <div className="ml-4 mt-2 space-y-1">
                               {item.dropdownItems.map((dropdownItem: any) => (
-                                <a
+                                <Link
                                   key={dropdownItem.id}
                                   href={dropdownItem.url}
                                   className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
                                   onClick={onClose}
+                                  prefetch={true}
                                 >
                                   {dropdownItem.title}
-                                </a>
+                                </Link>
                               ))}
                             </div>
                           </motion.div>
@@ -132,13 +135,14 @@ export function MobileMenu({
                     <div>
                       {item.url ? (
                         <div className="flex items-center">
-                          <a
+                          <Link
                             href={item.url}
                             className="flex-1 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
                             onClick={onClose}
+                            prefetch={true}
                           >
                             {item.title}
-                          </a>
+                          </Link>
                           <button
                             onClick={() => handleDropdownToggle(item.id)}
                             className="px-2 py-3 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
@@ -184,16 +188,17 @@ export function MobileMenu({
                               </h3>
                               {item.megaMenuContent.sections.map(
                                 (section: any) => (
-                                  <a
+                                  <Link
                                     key={section.id}
-                                    href={section.url || ``}
+                                    href={section.url || "/"}
                                     className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
                                     onClick={onClose}
+                                    prefetch={true}
                                   >
                                     <div className="font-medium">
                                       {section.title}
                                     </div>
-                                  </a>
+                                  </Link>
                                 )
                               )}
                             </div>
@@ -215,9 +220,9 @@ export function MobileMenu({
                   size="lg"
                   className="w-full rounded-xs font-medium"
                 >
-                  <a href={ctaButton.url} onClick={onClose}>
+                  <Link href={ctaButton.url} onClick={onClose} prefetch={true}>
                     {ctaButton.text}
-                  </a>
+                  </Link>
                 </Button>
               </div>
             )}

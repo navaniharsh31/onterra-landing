@@ -47,7 +47,7 @@ export function generateSEOMetadata({
     pageSEO?.metaDescription ||
     siteWideSEO.defaultMetaDescription ||
     pageDescription ||
-    "Strategic real estate investment firm building wealth through innovative investment strategies and proven market expertise.";
+    "Real estate investment management firm building wealth through innovative investment strategies and proven market expertise.";
 
   // Build keywords array
   const keywords = [
@@ -113,7 +113,7 @@ export function generateSEOMetadata({
       "organization:logo": "https://onterra.in/logo.png",
       "organization:description":
         siteWideSEO.defaultMetaDescription ||
-        "Strategic real estate investment firm",
+        "Real estate investment management firm",
     };
 
     if (siteWideSEO.foundingDate) {
@@ -147,7 +147,7 @@ export function generateOrganizationSchema(siteWideSEO: SiteWideSEO) {
     logo: "https://onterra.in/logo.png",
     description:
       siteWideSEO.defaultMetaDescription ||
-      "Strategic real estate investment firm",
+      "Real estate investment management firm",
     ...(siteWideSEO.foundingDate && { foundingDate: siteWideSEO.foundingDate }),
     ...(siteWideSEO.industry && { industry: siteWideSEO.industry }),
     sameAs: [

@@ -34,7 +34,7 @@ export function Footer({
       name: siteSettings?.siteTitle || "Onterra Capital",
       description:
         siteSettings?.siteDescription ||
-        "Strategic real estate investment firm",
+        "Real estate investment management firm",
     },
     contact: {
       phone: contactDetails?.phone,

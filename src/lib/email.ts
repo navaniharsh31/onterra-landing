@@ -7,6 +7,11 @@ interface ContactFormData {
   message: string;
 }
 
+interface LogoData {
+  src: string;
+  alt: string;
+}
+
 interface EmailConfig {
   host: string;
   port: number;
@@ -42,7 +47,10 @@ function createTransporter(): nodemailer.Transporter {
 }
 
 // Generate HTML email template
-function generateContactEmailHTML(data: ContactFormData): string {
+function generateContactEmailHTML(
+  data: ContactFormData,
+  logoData?: LogoData
+): string {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -76,6 +84,10 @@ function generateContactEmailHTML(data: ContactFormData): string {
           font-weight: bold;
           color: #1e40af;
           margin-bottom: 10px;
+        }
+        .logo img {
+          max-height: 40px;
+          width: auto;
         }
         .subtitle {
           color: #6b7280;
@@ -124,7 +136,9 @@ function generateContactEmailHTML(data: ContactFormData): string {
     <body>
       <div class="container">
         <div class="header">
-          <div class="logo">Onterra Capital</div>
+          <div class="logo">
+            ${logoData ? `<img src="${logoData.src}" alt="${logoData.alt}" />` : "Onterra Capital"}
+          </div>
           <div class="subtitle">New Contact Form Submission</div>
         </div>
 
@@ -194,7 +208,10 @@ This message was sent from the Onterra Capital contact form.
 }
 
 // Send contact form email
-export async function sendContactEmail(data: ContactFormData): Promise<void> {
+export async function sendContactEmail(
+  data: ContactFormData,
+  logoData?: LogoData
+): Promise<void> {
   try {
     const transporter = createTransporter();
 
@@ -213,7 +230,7 @@ export async function sendContactEmail(data: ContactFormData): Promise<void> {
       to: toEmail,
       subject: `New Contact Form Submission from ${data.name}`,
       text: generateContactEmailText(data),
-      html: generateContactEmailHTML(data),
+      html: generateContactEmailHTML(data, logoData),
     };
 
     await transporter.sendMail(mailOptions);
@@ -225,7 +242,8 @@ export async function sendContactEmail(data: ContactFormData): Promise<void> {
 // Send auto-reply email to user
 export async function sendAutoReplyEmail(
   userEmail: string,
-  userName: string
+  userName: string,
+  logoData?: LogoData
 ): Promise<void> {
   try {
     const transporter = createTransporter();
@@ -285,6 +303,10 @@ Real Estate Investment Solutions
               color: #1e40af;
               margin-bottom: 10px;
             }
+            .logo img {
+              max-height: 50px;
+              width: auto;
+            }
             .message {
               font-size: 16px;
               line-height: 1.8;
@@ -301,13 +323,15 @@ Real Estate Investment Solutions
         <body>
           <div class="container">
             <div class="header">
-              <div class="logo">Onterra Capital</div>
+              <div class="logo">
+                ${logoData ? `<img src="${logoData.src}" alt="${logoData.alt}" />` : "Onterra Capital"}
+              </div>
             </div>
             
             <div class="message">
               <p>Dear ${userName},</p>
               
-              <p>Thank you for reaching out to Onterra Capital. We have received your message and will get back to you within 24 hours.</p>
+              <p>Thank you for reaching out to Onterra Capital. We have received your message and will get back to you shortly.</p>
               
               <p>Best regards,<br>
               The Onterra Capital Team</p>
