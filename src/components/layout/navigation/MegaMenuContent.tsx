@@ -39,7 +39,7 @@ export function MegaMenuContent({ section, className }: MegaMenuContentProps) {
         </div>
 
         {/* Section Description */}
-        <p className="text-base leading-relaxed text-slate-600">
+        <p className="text-lg leading-relaxed text-slate-600">
           {section.description}
         </p>
 
