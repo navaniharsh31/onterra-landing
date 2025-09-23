@@ -31,63 +31,70 @@ export function InvestmentStrategiesGrid({
   onStrategySelect,
   className,
 }: InvestmentStrategiesGridProps) {
-  // Group strategies by mainPoint
-  const groupedStrategies = strategies.reduce(
-    (acc, strategy) => {
-      const mainPoint = strategy.mainPoint;
-      if (!acc[mainPoint]) {
-        acc[mainPoint] = [];
-      }
-      acc[mainPoint].push(strategy);
-      return acc;
-    },
-    {} as Record<string, Strategy[]>
+  // Simple data filtering by category
+  const residentialStrategies = strategies.filter(
+    (strategy) => strategy.category === "residential"
   );
 
-  // Sort strategies within each group by column
-  Object.keys(groupedStrategies).forEach((mainPoint) => {
-    groupedStrategies[mainPoint].sort(
-      (a, b) => a.gridPosition.column - b.gridPosition.column
-    );
-  });
-
-  // Get main points in order
-  const mainPoints = Object.keys(groupedStrategies).sort((a, b) => {
-    const firstStrategyA = groupedStrategies[a][0];
-    const firstStrategyB = groupedStrategies[b][0];
-    return firstStrategyA.gridPosition.row - firstStrategyB.gridPosition.row;
-  });
+  const commercialStrategies = strategies.filter(
+    (strategy) => strategy.category === "commercial"
+  );
 
   return (
     <div className={cn("relative w-full", className)}>
-      {/* Grid Container */}
-      <div className="space-y-12">
-        {mainPoints.map((mainPoint) => (
-          <div key={mainPoint} className="space-y-6">
-            {/* Main Point Header - Styled like previous main category nodes */}
-            <div className="flex justify-center mb-6">
-              <div className="relative p-4 rounded-xs border-2 bg-slate-100 border-slate-300 text-slate-700 cursor-default shadow-sm">
-                <h3 className="text-center leading-tight font-semibold text-[16px] uppercase font-bold text-slate-700">
-                  {mainPoint}
-                </h3>
-              </div>
-            </div>
-
-            {/* Strategy Titles Row */}
-            <div className="flex justify-center items-center gap-6">
-              {groupedStrategies[mainPoint].map((strategy) => (
-                <div key={strategy.id} className="relative">
-                  <FlowChartNode
-                    strategy={strategy}
-                    isActive={activeStrategy?.id === strategy.id}
-                    onClick={() => onStrategySelect(strategy)}
-                    className="w-44 h-24"
-                  />
-                </div>
-              ))}
+      {/* Table-like Grid Container */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+        {/* Residential Column */}
+        <div className="space-y-4">
+          {/* Residential Header */}
+          <div className="flex justify-center mb-4">
+            <div className="relative p-4 rounded-xs border-2 bg-slate-100 border-slate-300 text-slate-700 cursor-default shadow-sm w-full max-w-xs">
+              <h3 className="text-center leading-tight font-semibold text-[16px] uppercase font-bold text-slate-700">
+                Residential
+              </h3>
             </div>
           </div>
-        ))}
+
+          {/* Residential Strategies */}
+          <div className="space-y-3">
+            {residentialStrategies.map((strategy) => (
+              <div key={strategy.id} className="flex justify-center">
+                <FlowChartNode
+                  strategy={strategy}
+                  isActive={activeStrategy?.id === strategy.id}
+                  onClick={() => onStrategySelect(strategy)}
+                  className="w-full max-w-xs h-20 md:h-24"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Commercial Column */}
+        <div className="space-y-4">
+          {/* Commercial Header */}
+          <div className="flex justify-center mb-4">
+            <div className="relative p-4 rounded-xs border-2 bg-slate-100 border-slate-300 text-slate-700 cursor-default shadow-sm w-full max-w-xs">
+              <h3 className="text-center leading-tight font-semibold text-[16px] uppercase font-bold text-slate-700">
+                Commercial
+              </h3>
+            </div>
+          </div>
+
+          {/* Commercial Strategies */}
+          <div className="space-y-3">
+            {commercialStrategies.map((strategy) => (
+              <div key={strategy.id} className="flex justify-center">
+                <FlowChartNode
+                  strategy={strategy}
+                  isActive={activeStrategy?.id === strategy.id}
+                  onClick={() => onStrategySelect(strategy)}
+                  className="w-full max-w-xs h-20 md:h-24"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

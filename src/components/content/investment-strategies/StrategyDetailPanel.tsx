@@ -30,12 +30,12 @@ export function StrategyDetailPanel({
     return (
       <div className={cn("w-full", className)}>
         <div className="text-center text-slate-600">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-slate-900 mb-4 tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-slate-900 mb-4 tracking-tight">
             <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-700 bg-clip-text text-transparent">
               Investment Strategies
             </span>
           </h2>
-          <p className="text-base text-slate-600 leading-relaxed font-light">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-light">
             Select an investment strategy to view details
           </p>
         </div>
@@ -52,21 +52,21 @@ export function StrategyDetailPanel({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        {/* Strategy Title - Same styling as Onterra Standards */}
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-slate-900 mb-4 tracking-tight">
+        {/* Strategy Title - Responsive styling */}
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-slate-900 mb-4 tracking-tight">
           <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-700 bg-clip-text text-transparent">
             {strategy.title}
           </span>
         </h2>
 
-        {/* Strategy Description - Same styling as Onterra Standards */}
-        <p className="text-lg text-slate-600 leading-relaxed mb-8 font-light">
+        {/* Strategy Description - Responsive styling */}
+        <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed mb-6 md:mb-8 font-light">
           {strategy.description}
         </p>
 
-        {/* Key Points - Same styling as Onterra Standards */}
+        {/* Key Points - Responsive styling */}
         {strategy.keyPoints && strategy.keyPoints.length > 0 && (
-          <ul className="space-y-4">
+          <ul className="space-y-3 md:space-y-4">
             {strategy.keyPoints.map((point: string, index: number) => (
               <motion.li
                 key={index}

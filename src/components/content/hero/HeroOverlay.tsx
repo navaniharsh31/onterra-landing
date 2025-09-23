@@ -2,7 +2,8 @@ interface HeroOverlayProps {
   opacity?: number;
 }
 
-export function HeroOverlay({ opacity = 0.8 }: HeroOverlayProps) {
+export function HeroOverlay({ opacity }: HeroOverlayProps) {
+  console.log(opacity);
   return (
     <>
       {/* Primary Dark Overlay - Enhanced for better visibility */}
@@ -15,7 +16,7 @@ export function HeroOverlay({ opacity = 0.8 }: HeroOverlayProps) {
       {/* Text Readability Overlay - Specific for content area */}
       <div
         className="absolute inset-0 bg-gradient-radial from-transparent via-black/40 to-black/80 z-10"
-        style={{ opacity: opacity * 0.9 }}
+        style={{ opacity: opacity ? opacity * 0.9 : 0.9 }}
         aria-hidden="true"
       />
 
@@ -29,7 +30,7 @@ export function HeroOverlay({ opacity = 0.8 }: HeroOverlayProps) {
             radial-gradient(circle at bottom left, transparent 0%, black/60 70%),
             radial-gradient(circle at bottom right, transparent 0%, black/60 70%)
           `,
-          opacity: opacity * 0.7,
+          opacity: (opacity || 1) * 0.7,
         }}
         aria-hidden="true"
       />

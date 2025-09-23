@@ -83,7 +83,7 @@ export function InvestmentStrategiesSectionNew({
       {/* Desktop Version - Show on lg and larger screens */}
       <section
         className={cn(
-          "relative section-full-height hidden lg:flex items-center overflow-hidden",
+          "relative min-h-screen max-h-[120vh] hidden lg:flex items-center overflow-hidden",
           className
         )}
       >
@@ -201,10 +201,10 @@ export function InvestmentStrategiesSectionNew({
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 sm:py-24 lg:py-32">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
           {/* Premium Section Header */}
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -218,7 +218,7 @@ export function InvestmentStrategiesSectionNew({
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-4 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mb-4 tracking-tight">
                 <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-700 bg-clip-text text-transparent">
                   {sanityData.sectionTitle}
                 </span>
@@ -236,7 +236,7 @@ export function InvestmentStrategiesSectionNew({
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
                 {sanityData.sectionDescription}
               </p>
 
@@ -245,11 +245,11 @@ export function InvestmentStrategiesSectionNew({
             </motion.div>
           </motion.div>
 
-          {/* Premium Split-Screen Layout - Same as Onterra Standards */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-32 items-center">
+          {/* Premium Split-Screen Layout - Responsive Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
             {/* Left Panel - Investment Strategies Grid */}
             <motion.div
-              className="lg:col-span-2 flex items-center justify-center"
+              className="md:col-span-1 lg:col-span-1 xl:col-span-2 flex items-center justify-center"
               initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -265,9 +265,9 @@ export function InvestmentStrategiesSectionNew({
               </div>
             </motion.div>
 
-            {/* Right Panel - Simple Text Content - Same as Onterra Standards */}
+            {/* Right Panel - Simple Text Content - Responsive */}
             <motion.div
-              className="lg:col-span-3 flex items-center justify-center"
+              className="md:col-span-2 lg:col-span-3 xl:col-span-3 flex items-center justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}

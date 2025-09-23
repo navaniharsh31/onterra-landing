@@ -193,9 +193,6 @@ export function MobileMenu({
                                     <div className="font-medium">
                                       {section.title}
                                     </div>
-                                    <div className="text-xs text-gray-500 mt-1">
-                                      {section.description}
-                                    </div>
                                   </a>
                                 )
                               )}

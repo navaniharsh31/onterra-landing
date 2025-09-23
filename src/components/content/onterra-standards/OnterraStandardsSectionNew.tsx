@@ -68,7 +68,7 @@ export function OnterraStandardsSectionNew({
       {/* Desktop Version - Show on lg and larger screens */}
       <section
         className={cn(
-          "relative section-full-height hidden lg:flex items-center overflow-hidden",
+          "relative min-h-screen max-h-[120vh] hidden lg:flex items-center overflow-hidden",
           className
         )}
       >
@@ -175,12 +175,12 @@ export function OnterraStandardsSectionNew({
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20 sm:py-24 lg:py-32">
-          {/* Premium Split-Screen Layout - No Header */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-32 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
+          {/* Premium Split-Screen Layout - Responsive Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
             {/* Left Panel - Premium Content Panel */}
             <motion.div
-              className="lg:col-span-2 flex items-center justify-center"
+              className="md:col-span-1 lg:col-span-1 xl:col-span-2 flex items-center justify-center"
               initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -193,15 +193,15 @@ export function OnterraStandardsSectionNew({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                   >
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-slate-900 mb-4 tracking-tight">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-slate-900 mb-4 tracking-tight">
                       <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-700 bg-clip-text text-transparent">
                         {activePrinciple.title}
                       </span>
                     </h2>
-                    <p className="text-lg text-slate-600 leading-relaxed mb-8 font-light">
+                    <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed mb-6 md:mb-8 font-light">
                       {activePrinciple.description}
                     </p>
-                    <ul className="space-y-4">
+                    <ul className="space-y-3 md:space-y-4">
                       {activePrinciple.points.map(
                         (point: string, index: number) => (
                           <motion.li
@@ -222,12 +222,12 @@ export function OnterraStandardsSectionNew({
                   </motion.div>
                 ) : (
                   <div>
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-slate-900 mb-4 tracking-tight">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-slate-900 mb-4 tracking-tight">
                       <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-700 bg-clip-text text-transparent">
                         {transformedData.sectionTitle}
                       </span>
                     </h2>
-                    <p className="text-base text-slate-600 leading-relaxed font-light">
+                    <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-light">
                       {transformedData.description}
                     </p>
                   </div>
@@ -237,7 +237,7 @@ export function OnterraStandardsSectionNew({
 
             {/* Right Panel - Enhanced Orbital Display */}
             <motion.div
-              className="lg:col-span-3 flex items-center justify-center"
+              className="md:col-span-2 lg:col-span-3 xl:col-span-3 flex items-center justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}

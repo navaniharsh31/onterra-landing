@@ -217,6 +217,18 @@
     max-height: var(--content-height);
   }
 
+  /* Flexible height utilities for better responsive design */
+  .section-flexible-height {
+    min-height: 100vh;
+    max-height: 120vh;
+  }
+
+  .section-content-aware {
+    min-height: 100vh;
+    max-height: 120vh;
+    overflow-y: auto;
+  }
+
   /* Header height utilities */
   .header-height {
     height: var(--header-height-mobile);
@@ -237,6 +249,32 @@
     .menu-top-positioned {
       top: calc(var(--header-height-desktop) - 1px);
     }
+  }
+
+  /* Responsive spacing utilities */
+  .responsive-padding {
+    @apply py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32;
+  }
+
+  .responsive-gap {
+    @apply gap-8 md:gap-12 lg:gap-16 xl:gap-20;
+  }
+
+  .responsive-space-y {
+    @apply space-y-8 md:space-y-10 lg:space-y-12;
+  }
+
+  /* Responsive typography utilities */
+  .responsive-title {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  .responsive-subtitle {
+    @apply text-sm sm:text-base md:text-lg lg:text-xl;
+  }
+
+  .responsive-body {
+    @apply text-sm sm:text-base md:text-lg;
   }
 }
 

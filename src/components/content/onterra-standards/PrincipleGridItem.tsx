@@ -26,10 +26,10 @@ export function PrincipleGridItem({
   return (
     <motion.div
       className={cn(
-        "cursor-pointer group z-10",
+        "cursor-pointer group z-10 relative",
         "w-full h-36 rounded-xs bg-white",
         "flex flex-col items-center justify-center p-6",
-        "border border-gray-200 hover:border-mustard-300",
+        "border border-gray-200 hover:border-navy-300",
         "shadow-lg hover:shadow-xl",
         "transition-all duration-200 ease-out",
         isActive && "ring-2 ring-navy-400 ring-opacity-60",
@@ -51,16 +51,22 @@ export function PrincipleGridItem({
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
-      {/* Simple Icon */}
-      {Icon && (
-        <div className="w-12 h-12 rounded-full bg-navy-100 flex items-center justify-center mb-4 group-hover:bg-navy-200 transition-colors duration-200">
-          <Icon className="w-6 h-6 text-navy-600" />
-        </div>
-      )}
+      {/* Background overlay for hover effects */}
+      <div className="absolute inset-0 bg-navy-600 rounded-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
 
-      {/* Simple Title */}
-      <div className="text-base font-semibold text-gray-800 text-center leading-tight group-hover:text-navy-700 transition-colors duration-200">
-        {shortTitle}
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full w-full">
+        {/* Simple Icon */}
+        {Icon && (
+          <div className="w-12 h-12 rounded-full bg-navy-50 group-hover:bg-navy-400 flex items-center justify-center mb-4 transition-colors duration-200">
+            <Icon className="w-6 h-6 text-navy-600 group-hover:text-white transition-colors duration-200" />
+          </div>
+        )}
+
+        {/* Simple Title */}
+        <div className="text-base font-semibold text-gray-800 group-hover:text-white text-center leading-tight transition-colors duration-200">
+          {shortTitle}
+        </div>
       </div>
     </motion.div>
   );

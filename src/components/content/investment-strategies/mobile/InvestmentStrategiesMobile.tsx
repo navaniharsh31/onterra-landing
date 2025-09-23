@@ -22,7 +22,7 @@ export function InvestmentStrategiesMobile({
   return (
     <section
       className={cn(
-        "relative py-16 sm:py-20 lg:py-24 flex items-center overflow-hidden",
+        "relative py-12 sm:py-16 md:py-20 flex items-center overflow-hidden",
         className
       )}
     >
@@ -140,10 +140,10 @@ export function InvestmentStrategiesMobile({
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 sm:py-12 md:py-16">
         {/* Premium Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -157,7 +157,7 @@ export function InvestmentStrategiesMobile({
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4 tracking-tight">
               <span className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-700 bg-clip-text text-transparent">
                 {sanityData.sectionTitle}
               </span>
@@ -175,7 +175,7 @@ export function InvestmentStrategiesMobile({
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
+            <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
               {sanityData.sectionDescription}
             </p>
 

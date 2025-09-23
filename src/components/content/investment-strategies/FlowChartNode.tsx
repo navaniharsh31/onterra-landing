@@ -75,10 +75,10 @@ export function FlowChartNode({
           ? "bg-slate-100 border-slate-300 text-slate-700 cursor-default shadow-sm "
           : isSelectable
             ? cn(
-                "group hover:shadow-lg hover:border-mustard-300 cursor-pointer",
+                "group hover:shadow-lg hover:border-gray-300 cursor-pointer",
                 isActive
                   ? "bg-navy-600 border-navy-600 text-white shadow-lg scale-105"
-                  : "bg-white border-gray-200 text-gray-900 hover:bg-mustard-50"
+                  : "bg-white border-gray-200 text-gray-900 hover:bg-gray-50"
               )
             : "bg-gray-100 border-gray-300 text-gray-500 cursor-not-allowed",
         className

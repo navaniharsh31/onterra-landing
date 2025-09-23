@@ -51,10 +51,15 @@ export function PrincipleGrid({
   });
 
   return (
-    <div className={cn("relative w-full max-w-2xl", className)}>
+    <div
+      className={cn(
+        "relative w-full max-w-xl md:max-w-2xl lg:max-w-3xl",
+        className
+      )}
+    >
       {/* Grid Container */}
       <div
-        className="grid gap-4 w-full"
+        className="grid gap-3 md:gap-4 lg:gap-6 w-full"
         style={{
           gridTemplateColumns: `repeat(${gridLayout.cols}, 1fr)`,
           gridTemplateRows: `repeat(${gridLayout.rows}, 1fr)`,
