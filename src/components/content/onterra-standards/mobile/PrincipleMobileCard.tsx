@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { LucideIcon, ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface PrincipleMobileCardProps {
   principle: {
@@ -21,7 +21,7 @@ export function PrincipleMobileCard({
   className,
 }: PrincipleMobileCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { title, shortTitle, description, points } = principle;
+  const {  shortTitle, description, points } = principle;
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -46,10 +46,6 @@ export function PrincipleMobileCard({
 
         {/* Sophisticated Border Treatment - Light Theme */}
         <div className="absolute inset-0 ring-1 ring-inset ring-slate-200/50 rounded-xs" />
-
-        {/* Professional Accent Points - Light Theme */}
-        <div className="absolute top-3 right-3 w-1 h-1 bg-navy-500/60 rounded-full blur-[0.5px]" />
-        <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-slate-400/40 rounded-full blur-[0.5px]" />
 
         {/* Premium Edge Highlights */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent" />

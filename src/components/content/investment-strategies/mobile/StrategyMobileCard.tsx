@@ -40,10 +40,6 @@ export function StrategyMobileCard({
         {/* Sophisticated Border Treatment - Light Theme */}
         <div className="absolute inset-0 ring-1 ring-inset ring-slate-200/50 rounded-xs" />
 
-        {/* Professional Accent Points - Light Theme */}
-        <div className="absolute top-3 right-3 w-1 h-1 bg-navy-500/60 rounded-full blur-[0.5px]" />
-        <div className="absolute bottom-3 left-3 w-1.5 h-1.5 bg-slate-400/40 rounded-full blur-[0.5px]" />
-
         {/* Premium Edge Highlights */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent" />
         <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-slate-300/40 to-transparent" />
