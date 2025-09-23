@@ -163,7 +163,6 @@ export function ContactForm({ className, formSettings }: ContactFormProps) {
                 "rounded-xs",
                 errors.name && "border-red-500 focus:border-red-500"
               )}
-              placeholder="Your full name"
             />
             {errors.name && (
               <p className="text-sm text-red-600">{errors.name}</p>
@@ -187,7 +186,6 @@ export function ContactForm({ className, formSettings }: ContactFormProps) {
                 "rounded-xs",
                 errors.email && "border-red-500 focus:border-red-500"
               )}
-              placeholder="your.email@example.com"
             />
             {errors.email && (
               <p className="text-sm text-red-600">{errors.email}</p>
@@ -210,8 +208,7 @@ export function ContactForm({ className, formSettings }: ContactFormProps) {
               className={cn(
                 "rounded-xs",
                 errors.phone && "border-red-500 focus:border-red-500"
-              )}
-              placeholder="+91 98765 43210"
+              )}  
             />
             {errors.phone && (
               <p className="text-sm text-red-600">{errors.phone}</p>
@@ -234,7 +231,6 @@ export function ContactForm({ className, formSettings }: ContactFormProps) {
                 "rounded-xs min-h-[120px]",
                 errors.message && "border-red-500 focus:border-red-500"
               )}
-              placeholder="Tell us about your investment goals and how we can help..."
             />
             <div className="flex justify-between items-center">
               {errors.message ? (
