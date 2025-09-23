@@ -46,8 +46,9 @@ const contentData = {
       googleTagManagerId: null, // Will be set manually
     },
     copyrightText: "© 2025 Onterra Capital. All rights reserved.",
-    privacyPolicyUrl: "/privacy-policy",
-    termsOfServiceUrl: "/terms-of-service",
+    privacyPolicyUrl: "/legal/privacy-policy",
+    termsOfServiceUrl: "/legal/terms-conditions",
+    disclaimerUrl: "/legal/disclaimer",
   },
 
   contactDetails: {
@@ -262,6 +263,361 @@ const contentData = {
     },
     imageOpacity: 0.8,
   },
+
+  // Legal Pages
+  legalPages: [
+    {
+      _type: "legalPage",
+      _id: "legal-privacy-policy",
+      pageType: "privacy-policy",
+      title: "Privacy Policy",
+      hero: {
+        title: "Privacy Policy",
+      },
+      content: [
+        {
+          _type: "block",
+          _key: "intro",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "intro-text",
+              text: "At Onterra Capital, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-1",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-1-text",
+              text: "Information We Collect",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "info-collect",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "info-collect-text",
+              text: "We may collect personal information that you voluntarily provide to us when you:",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "list-1",
+          listItem: "bullet",
+          children: [
+            {
+              _type: "span",
+              _key: "list-1-1",
+              text: "Fill out contact forms or request information",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "list-2",
+          listItem: "bullet",
+          children: [
+            {
+              _type: "span",
+              _key: "list-2-1",
+              text: "Subscribe to our newsletter or updates",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "list-3",
+          listItem: "bullet",
+          children: [
+            {
+              _type: "span",
+              _key: "list-3-1",
+              text: "Communicate with us via email or phone",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-2",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-2-text",
+              text: "How We Use Your Information",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "use-info",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "use-info-text",
+              text: "We use the information we collect to provide, maintain, and improve our services, communicate with you, and comply with legal obligations.",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-3",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-3-text",
+              text: "Contact Us",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "contact",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "contact-text",
+              text: "If you have any questions about this Privacy Policy, please contact us at info@onterra.in",
+            },
+          ],
+        },
+      ],
+      lastUpdated: "2024-01-15",
+      isActive: true,
+      seo: {
+        metaTitle: "Privacy Policy | Onterra Capital",
+        metaDescription:
+          "Learn how Onterra Capital protects your privacy and personal information. Our comprehensive privacy policy outlines our data collection and usage practices.",
+        keywords:
+          "privacy policy, data protection, personal information, Onterra Capital",
+        canonicalUrl: "https://onterra.in/legal/privacy-policy",
+      },
+    },
+    {
+      _type: "legalPage",
+      _id: "legal-terms-conditions",
+      pageType: "terms-conditions",
+      title: "Terms & Conditions",
+      hero: {
+        title: "Terms & Conditions",
+      },
+      content: [
+        {
+          _type: "block",
+          _key: "intro",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "intro-text",
+              text: "Welcome to Onterra Capital. These Terms and Conditions govern your use of our website and services. By accessing or using our website, you agree to be bound by these terms.",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-1",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-1-text",
+              text: "Acceptance of Terms",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "acceptance",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "acceptance-text",
+              text: "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-2",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-2-text",
+              text: "Use License",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "license",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "license-text",
+              text: "Permission is granted to temporarily download one copy of the materials on Onterra Capital's website for personal, non-commercial transitory viewing only.",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-3",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-3-text",
+              text: "Disclaimer",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "disclaimer",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "disclaimer-text",
+              text: "The materials on Onterra Capital's website are provided on an 'as is' basis. Onterra Capital makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.",
+            },
+          ],
+        },
+      ],
+      lastUpdated: "2024-01-15",
+      isActive: true,
+      seo: {
+        metaTitle: "Terms & Conditions | Onterra Capital",
+        metaDescription:
+          "Read Onterra Capital's terms and conditions for using our website and services. Understand your rights and obligations when engaging with our platform.",
+        keywords:
+          "terms and conditions, website terms, user agreement, Onterra Capital",
+        canonicalUrl: "https://onterra.in/legal/terms-conditions",
+      },
+    },
+    {
+      _type: "legalPage",
+      _id: "legal-disclaimer",
+      pageType: "disclaimer",
+      title: "Disclaimer",
+      hero: {
+        title: "Disclaimer",
+      },
+      content: [
+        {
+          _type: "block",
+          _key: "intro",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "intro-text",
+              text: "This disclaimer applies to all information, materials, and services provided by Onterra Capital. Please read this disclaimer carefully before using our website or services.",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-1",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-1-text",
+              text: "Investment Risks",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "risks",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "risks-text",
+              text: "All investments carry risk, including the potential loss of principal. Past performance does not guarantee future results. Real estate investments are subject to market risks and may not be suitable for all investors.",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-2",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-2-text",
+              text: "No Investment Advice",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "no-advice",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "no-advice-text",
+              text: "The information provided on this website is for informational purposes only and does not constitute investment advice, financial advice, or recommendations to buy or sell any securities.",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "h2-3",
+          style: "h2",
+          children: [
+            {
+              _type: "span",
+              _key: "h2-3-text",
+              text: "Professional Consultation",
+            },
+          ],
+        },
+        {
+          _type: "block",
+          _key: "consultation",
+          style: "normal",
+          children: [
+            {
+              _type: "span",
+              _key: "consultation-text",
+              text: "Before making any investment decisions, you should consult with qualified financial advisors and consider your individual circumstances, risk tolerance, and investment objectives.",
+            },
+          ],
+        },
+      ],
+      lastUpdated: "2024-01-15",
+      isActive: true,
+      seo: {
+        metaTitle: "Disclaimer | Onterra Capital",
+        metaDescription:
+          "Important disclaimers regarding Onterra Capital's investment services, risks, and limitations. Read before making investment decisions.",
+        keywords:
+          "investment disclaimer, risk warning, financial disclaimer, Onterra Capital",
+        canonicalUrl: "https://onterra.in/legal/disclaimer",
+      },
+    },
+  ],
 
   // Keep existing content schemas as they are
   onterraStandards: {
@@ -846,6 +1202,20 @@ async function seedContent() {
       console.log("🔄 Creating/updating Contact Page...");
       await client.createOrReplace(contentData.contactPage);
       console.log("✅ Contact Page created/updated successfully");
+    }
+
+    console.log("\n⚖️ Seeding Legal Pages...");
+    for (const legalPage of contentData.legalPages) {
+      const existingLegalPage = await client.fetch(
+        `*[_type == "legalPage" && _id == "${legalPage._id}"][0]`
+      );
+      if (existingLegalPage && !forceUpdate) {
+        console.log(`⚠️ ${legalPage.title} already exists. Skipping...`);
+      } else {
+        console.log(`🔄 Creating/updating ${legalPage.title}...`);
+        await client.createOrReplace(legalPage);
+        console.log(`✅ ${legalPage.title} created/updated successfully`);
+      }
     }
 
     // Seed Team Members

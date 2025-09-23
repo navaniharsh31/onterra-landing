@@ -105,17 +105,22 @@ export const siteSettings = defineType({
     defineField({
       name: "privacyPolicyUrl",
       title: "Privacy Policy URL",
-      type: "url",
+      type: "string",
+      description:
+        "URL path for privacy policy page (e.g., '/legal/privacy-policy')",
     }),
     defineField({
       name: "termsOfServiceUrl",
       title: "Terms of Service URL",
-      type: "url",
+      type: "string",
+      description:
+        "URL path for terms of service page (e.g., '/legal/terms-conditions')",
     }),
     defineField({
       name: "disclaimerUrl",
       title: "Disclaimer URL",
-      type: "url",
+      type: "string",
+      description: "URL path for disclaimer page (e.g., '/legal/disclaimer')",
     }),
   ],
   preview: {

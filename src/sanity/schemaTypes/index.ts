@@ -16,6 +16,7 @@ import { approachPage } from "./content/approachPage";
 import { teamPage } from "./content/teamPage";
 import { contactPage } from "./content/contactPage";
 import { homeIntroSection } from "./content/homeIntroSection";
+import { legalPage } from "./content/legalPage";
 
 // Shared Components
 import { ctaButton } from "./shared/ctaButton";
@@ -42,6 +43,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     teamPage,
     contactPage,
     homeIntroSection,
+    legalPage,
 
     // Shared Components
     ctaButton,

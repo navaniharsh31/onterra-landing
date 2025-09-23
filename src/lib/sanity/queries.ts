@@ -330,6 +330,23 @@ export const queries = {
     },
     imageOpacity
   }`,
+
+  legalPage: `*[_type == "legalPage" && pageType == $type && isActive == true][0] {
+    pageType,
+    title,
+    hero {
+      title
+    },
+    content,
+    lastUpdated,
+    isActive,
+    seo {
+      metaTitle,
+      metaDescription,
+      keywords,
+      canonicalUrl
+    }
+  }`,
 };
 
 // Homepage data fetching
@@ -550,6 +567,22 @@ export async function getContactPageData() {
     console.error("Error fetching contact page data:", error);
     return {
       contactPage: null,
+    };
+  }
+}
+
+// Legal page data fetching
+export async function getLegalPageData(type: string) {
+  try {
+    const legalPage = await client.fetch(queries.legalPage, { type });
+
+    return {
+      legalPage: legalPage || null,
+    };
+  } catch (error) {
+    console.error("Error fetching legal page data:", error);
+    return {
+      legalPage: null,
     };
   }
 }
