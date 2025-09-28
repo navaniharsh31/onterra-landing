@@ -89,29 +89,20 @@ export const teamPage = defineType({
       ],
     }),
     defineField({
-      name: "teamSection",
-      title: "Team Section",
+      name: "listViewSettings",
+      title: "List View Settings",
       type: "object",
       fields: [
         defineField({
-          name: "title",
-          title: "Section Title",
-          type: "string",
-          validation: (Rule) => Rule.required(),
-          initialValue: "Our Team",
+          name: "showAllMembers",
+          title: "Show All Active Members",
+          type: "boolean",
+          description: "Show all active team members or only selected ones",
+          initialValue: true,
         }),
         defineField({
-          name: "subtitle",
-          title: "Section Subtitle",
-          type: "text",
-          rows: 3,
-          validation: (Rule) => Rule.required(),
-          initialValue:
-            "Meet the experienced professionals behind our success. Our team combines decades of real estate expertise with innovative investment strategies.",
-        }),
-        defineField({
-          name: "teamMembers",
-          title: "Team Members",
+          name: "selectedMembers",
+          title: "Selected Team Members",
           type: "array",
           of: [
             {
@@ -119,7 +110,37 @@ export const teamPage = defineType({
               to: [{ type: "teamMember" }],
             },
           ],
-          validation: (Rule) => Rule.required().min(1),
+          hidden: ({ parent }) => parent?.showAllMembers,
+          validation: (Rule) =>
+            Rule.custom((value, context) => {
+              const parent = context.parent as any;
+              if (!parent?.showAllMembers && (!value || value.length === 0)) {
+                return "At least one team member must be selected when not showing all members";
+              }
+              return true;
+            }),
+        }),
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "detailViewSettings",
+      title: "Detail View Settings",
+      type: "object",
+      fields: [
+        defineField({
+          name: "enableDetailView",
+          title: "Enable Detail View",
+          type: "boolean",
+          description: "Enable detailed view functionality for team members",
+          initialValue: true,
+        }),
+        defineField({
+          name: "detailViewTitle",
+          title: "Detail View Title",
+          type: "string",
+          description: "Title shown in detail view modal/section",
+          initialValue: "Team Member Details",
         }),
       ],
       validation: (Rule) => Rule.required(),

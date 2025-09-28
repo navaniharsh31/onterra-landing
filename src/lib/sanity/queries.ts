@@ -168,6 +168,7 @@ export const queries = {
       alt
     },
     bio,
+    briefDescription,
     education,
     careerHighlights[] {
       period,
@@ -176,6 +177,8 @@ export const queries = {
     },
     certifications,
     order,
+    listOrder,
+    showInList,
     isActive
   }`,
 
@@ -252,10 +255,9 @@ export const queries = {
         suffix
       }
     },
-    teamSection {
-      title,
-      subtitle,
-      teamMembers[]->{
+    listViewSettings {
+      showAllMembers,
+      selectedMembers[]->{
         _id,
         name,
         title,
@@ -266,15 +268,23 @@ export const queries = {
           alt
         },
         bio,
+        briefDescription,
         education,
         careerHighlights[] {
           period,
           role,
           description
         },
+        certifications,
         order,
+        listOrder,
+        showInList,
         isActive
       }
+    },
+    detailViewSettings {
+      enableDetailView,
+      detailViewTitle
     },
     seo {
       metaTitle,
@@ -524,12 +534,30 @@ export async function getTeamPageData() {
   try {
     const teamPage = await client.fetch(queries.teamPage);
 
-    // Get selected team members from the page data
-    const selectedTeamMembers = teamPage?.teamSection?.teamMembers || [];
+    // Get team members based on settings
+    let teamMembers = [];
+
+    if (teamPage?.listViewSettings?.showAllMembers) {
+      // Fetch all active team members
+      const allMembers = await client.fetch(queries.teamMembers);
+      teamMembers =
+        allMembers?.filter((member: any) => member.showInList) || [];
+    } else {
+      // Use selected members from page settings
+      teamMembers = teamPage?.listViewSettings?.selectedMembers || [];
+    }
+
+    // Sort by listOrder, then by name
+    teamMembers = teamMembers.sort((a: any, b: any) => {
+      if (a.listOrder !== b.listOrder) {
+        return (a.listOrder || 0) - (b.listOrder || 0);
+      }
+      return (a.name || "").localeCompare(b.name || "");
+    });
 
     // Transform team member image URLs
     const transformedTeamMembers =
-      selectedTeamMembers?.map((member: any) => ({
+      teamMembers?.map((member: any) => ({
         ...member,
         image: member?.image?.asset
           ? {

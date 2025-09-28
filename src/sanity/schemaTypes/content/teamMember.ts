@@ -33,6 +33,14 @@ export const teamMember = defineType({
       validation: (Rule) => Rule.required().min(100),
     }),
     defineField({
+      name: "briefDescription",
+      title: "Brief Description",
+      type: "text",
+      rows: 3,
+      description: "Short description for list view (2-3 lines max)",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "education",
       title: "Education",
       type: "array",
@@ -92,6 +100,20 @@ export const teamMember = defineType({
       type: "number",
       description: "Lower numbers appear first",
       initialValue: 0,
+    }),
+    defineField({
+      name: "listOrder",
+      title: "List View Order",
+      type: "number",
+      description: "Order in list view (separate from main order)",
+      initialValue: 0,
+    }),
+    defineField({
+      name: "showInList",
+      title: "Show in List View",
+      type: "boolean",
+      description: "Display this member in the team list view",
+      initialValue: true,
     }),
     defineField({
       name: "isActive",

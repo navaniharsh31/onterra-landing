@@ -1,4 +1,4 @@
-import { TeamSection } from "@/components/content/team/TeamSection";
+import { TeamListSection } from "@/components/content/team/TeamListSection";
 import { AboutHero } from "@/components/content/about/AboutHero";
 import { StatisticsSection } from "@/components/content/statistics/StatisticsSection";
 import { getTeamPageData, getLayoutData } from "@/lib/sanity/queries";
@@ -29,13 +29,22 @@ export default async function TeamPage() {
       "Onward with real discipline, real returns - and the team that makes it happen.",
   };
 
+  // Use Sanity data or fallback for detail view settings
+  const detailViewSettings = teamPage?.detailViewSettings || {
+    enableDetailView: true,
+    detailViewTitle: "Team Member Details",
+  };
+
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* Team-specific Hero Section */}
       <AboutHero heroData={heroData} />
 
-      {/* Team Section - No title/subtitle */}
-      <TeamSection teamMembers={teamMembers} />
+      {/* Team Section with new list view */}
+      <TeamListSection
+        teamMembers={teamMembers}
+        detailViewSettings={detailViewSettings}
+      />
       {teamPage?.statistics && (
         <StatisticsSection content={teamPage.statistics} />
       )}

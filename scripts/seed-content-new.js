@@ -982,6 +982,7 @@ const contentData = {
       title: "Managing Partner and CEO",
       image: null, // Will be set manually in Sanity Studio
       bio: "20 years of leadership experience in real estate finance, has delivered from various vantage points from the time India opened up its real estate sector to foreign investor participation in 2005. In this period, successfully originated, structured, managed more than 90 transformative credit and equity transactions aggregating to over US$ 4bn for 40+ developers, many of who were first timers to tap external financing in the market. Before entering real estate, had a robust 10-year career – spending 6 years financing large-scale infrastructure projects (toll roads, power and telecom) during India's deregulation phase and 4 years in Technology consulting.",
+      briefDescription: "20+ years of leadership in real estate finance, successfully managed over US$ 4bn in transformative credit and equity transactions for 40+ developers.",
       education: ["BE Electrical (Hons.) from VJTI", "MMS from NMIMS"],
       careerHighlights: [
         {
@@ -1008,6 +1009,8 @@ const contentData = {
         "Recently of NISM, having successfully cleared the XIX-D certification for managing Category 1 and 2 AIFs",
       ],
       order: 1,
+      listOrder: 1,
+      showInList: true,
       isActive: true,
     },
   ],
