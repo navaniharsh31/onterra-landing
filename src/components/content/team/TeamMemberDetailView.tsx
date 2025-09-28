@@ -81,9 +81,7 @@ export function TeamMemberDetailView({
               <h2 className="text-xl font-semibold text-slate-900 mb-4">
                 Biography
               </h2>
-              <p className="text-slate-600 leading-relaxed">
-                {member.bio}
-              </p>
+              <p className="text-slate-600 leading-relaxed">{member.bio}</p>
             </div>
 
             {/* Education */}
@@ -110,7 +108,10 @@ export function TeamMemberDetailView({
                 </h2>
                 <div className="space-y-6">
                   {member.careerHighlights.map((highlight, index) => (
-                    <div key={index} className="border-l-2 border-slate-200 pl-4">
+                    <div
+                      key={index}
+                      className="border-l-2 border-slate-200 pl-4"
+                    >
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
                         <h3 className="text-lg font-medium text-slate-900">
                           {highlight.role}
@@ -149,4 +150,3 @@ export function TeamMemberDetailView({
     </div>
   );
 }
-
