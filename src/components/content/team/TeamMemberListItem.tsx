@@ -93,7 +93,7 @@ export function TeamMemberListItem({
             variant="outline"
             className="group/btn rounded-xs font-medium tracking-wide transition-all duration-300 border-slate-300 text-slate-700 group-hover:bg-navy-600 group-hover:text-white group-hover:border-navy-600 hover:bg-navy-600 hover:text-white hover:border-navy-600 cursor-pointer w-full"
           >
-            View Full Detail
+            Know More
           </Button>
         </div>
       </div>
