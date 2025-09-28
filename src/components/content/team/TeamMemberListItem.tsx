@@ -55,7 +55,7 @@ export function TeamMemberListItem({
                 src={member.image.asset.url}
                 alt={member.image?.alt || member.name}
                 fill
-                className="object-cover object-center"
+                className="object-cover object-top"
                 sizes="160px"
               />
             ) : (
