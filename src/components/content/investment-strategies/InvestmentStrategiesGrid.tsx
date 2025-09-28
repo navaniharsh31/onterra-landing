@@ -42,14 +42,14 @@ export function InvestmentStrategiesGrid({
 
   return (
     <div className={cn("relative w-full", className)}>
-      {/* Table-like Grid Container */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+      {/* Table-like Flex Container */}
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6 lg:gap-8">
         {/* Residential Column */}
-        <div className="space-y-4">
+        <div className="flex-1 space-y-4">
           {/* Residential Header */}
           <div className="flex justify-center mb-4">
             <div className="relative p-4 rounded-xs border-2 bg-slate-100 border-slate-300 text-slate-700 cursor-default shadow-sm w-full max-w-xs">
-              <h3 className="text-center leading-tight font-semibold text-[16px] uppercase font-bold text-slate-700">
+              <h3 className="text-center leading-tight font-bold text-[16px] uppercase text-slate-700">
                 Residential
               </h3>
             </div>
@@ -71,11 +71,11 @@ export function InvestmentStrategiesGrid({
         </div>
 
         {/* Commercial Column */}
-        <div className="space-y-4">
+        <div className="flex-1 space-y-4">
           {/* Commercial Header */}
           <div className="flex justify-center mb-4">
             <div className="relative p-4 rounded-xs border-2 bg-slate-100 border-slate-300 text-slate-700 cursor-default shadow-sm w-full max-w-xs">
-              <h3 className="text-center leading-tight font-semibold text-[16px] uppercase font-bold text-slate-700">
+              <h3 className="text-center leading-tight font-bold text-[16px] uppercase text-slate-700">
                 Commercial
               </h3>
             </div>

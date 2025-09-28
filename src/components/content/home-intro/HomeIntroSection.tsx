@@ -87,6 +87,9 @@ export function HomeIntroSection({
             </h2>
           </motion.div>
 
+          {/* Professional Bottom Accent */}
+          <div className="w-48 h-px bg-gradient-to-r from-transparent via-slate-800/60 to-transparent mx-auto my-6" />
+
           {/* Premium Subtitle */}
           <motion.div
             className="relative"
@@ -95,12 +98,9 @@ export function HomeIntroSection({
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
+            <p className="text-md sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-5xl mx-auto font-light">
               {content.description}
             </p>
-
-            {/* Professional Bottom Accent */}
-            <div className="w-48 h-px bg-gradient-to-r from-transparent via-slate-300/60 to-transparent mx-auto mt-6" />
           </motion.div>
         </motion.div>
       </div>

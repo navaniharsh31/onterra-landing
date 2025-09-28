@@ -180,7 +180,7 @@ export function OnterraStandardsSectionNew({
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
             {/* Left Panel - Premium Content Panel */}
             <motion.div
-              className="md:col-span-1 lg:col-span-1 xl:col-span-2 flex items-center justify-center"
+              className="md:col-span-1 lg:col-span-2 xl:col-span-2 flex items-center justify-center"
               initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -227,7 +227,7 @@ export function OnterraStandardsSectionNew({
                         {transformedData.sectionTitle}
                       </span>
                     </h2>
-                    <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-light">
+                    <p className="text-md sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed font-light">
                       {transformedData.description}
                     </p>
                   </div>
@@ -237,7 +237,7 @@ export function OnterraStandardsSectionNew({
 
             {/* Right Panel - Enhanced Orbital Display */}
             <motion.div
-              className="md:col-span-2 lg:col-span-3 xl:col-span-3 flex items-center justify-center"
+              className="md:col-span-2 lg:col-span-2 xl:col-span-3 flex items-center justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}

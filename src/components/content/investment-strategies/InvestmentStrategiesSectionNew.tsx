@@ -83,7 +83,7 @@ export function InvestmentStrategiesSectionNew({
       {/* Desktop Version - Show on lg and larger screens */}
       <section
         className={cn(
-          "relative min-h-screen max-h-[120vh] hidden lg:flex items-center overflow-hidden",
+          "relative  hidden lg:flex items-center overflow-hidden",
           className
         )}
       >
@@ -236,7 +236,7 @@ export function InvestmentStrategiesSectionNew({
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
+              <p className="text-md sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
                 {sanityData.sectionDescription}
               </p>
 
@@ -245,11 +245,11 @@ export function InvestmentStrategiesSectionNew({
             </motion.div>
           </motion.div>
 
-          {/* Premium Split-Screen Layout - Responsive Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
+          {/* Premium Split-Screen Layout - Simple Flex */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16 items-center">
             {/* Left Panel - Investment Strategies Grid */}
             <motion.div
-              className="md:col-span-1 lg:col-span-1 xl:col-span-2 flex items-center justify-center"
+              className="flex-1 flex items-center justify-center"
               initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -265,9 +265,9 @@ export function InvestmentStrategiesSectionNew({
               </div>
             </motion.div>
 
-            {/* Right Panel - Simple Text Content - Responsive */}
+            {/* Right Panel - Simple Text Content */}
             <motion.div
-              className="md:col-span-2 lg:col-span-3 xl:col-span-3 flex items-center justify-center"
+              className="flex-1 flex items-center justify-center"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}

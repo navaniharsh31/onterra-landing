@@ -37,7 +37,7 @@ export function AboutHero({ heroData }: AboutHeroProps) {
               {title}
             </span>
           </h1>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-4xl mx-auto font-light">
+          <p className="text-md sm:text-lg md:text-xl lg:text-2xl text-slate-300 leading-relaxed max-w-4xl mx-auto font-light">
             {description}
           </p>
           <div className="w-48 h-px bg-gradient-to-r from-transparent via-mustard-400/60 to-transparent mx-auto mt-6" />
