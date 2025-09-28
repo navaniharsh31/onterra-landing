@@ -1,6 +1,6 @@
 "use client";
 
-import { FooterSettings, formatAddress } from "@/hooks/useFooterContent";
+import { FooterSettings } from "@/hooks/useFooterContent";
 
 interface FooterSEOProps {
   settings: FooterSettings;

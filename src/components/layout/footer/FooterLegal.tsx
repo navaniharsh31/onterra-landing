@@ -26,7 +26,7 @@ export function FooterLegal({ settings, className }: FooterLegalProps) {
       {/* Copyright */}
       <div className="text-sm text-slate-400">
         {settings.copyrightText ||
-          `© ${currentYear} ${settings.company.name}. All rights reserved.`}
+          `© ${currentYear} ${company.name}. All rights reserved.`}
       </div>
 
       {/* Legal Links */}

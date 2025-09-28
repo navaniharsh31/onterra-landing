@@ -1,7 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-import { client } from "@/sanity/lib/client";
-
-// Footer Settings Type
 export interface FooterSettings {
   siteTitle: string;
   siteDescription: string;
@@ -135,74 +131,4 @@ export function getSocialIcon(platform: string): string {
   };
 
   return iconMap[platform.toLowerCase()] || "link";
-}
-
-// Hook to fetch footer content
-export function useFooterContent() {
-  return useQuery({
-    queryKey: ["footer-content"],
-    queryFn: async (): Promise<FooterData> => {
-      const [siteSettings, navigation, contactDetails, socialLinks] =
-        await Promise.all([
-          client.fetch(`*[_type == "siteSettings"][0]`),
-          client.fetch(`*[_type == "navigation"][0]`),
-          client.fetch(`*[_type == "contactDetails"][0]`),
-          client.fetch(`*[_type == "socialLinks"][0]`),
-        ]);
-
-      // Transform the data to match the expected structure
-      const transformedSiteSettings: FooterSettings = {
-        ...siteSettings,
-        company: {
-          name: siteSettings?.siteTitle || "Onterra Capital",
-          description:
-            siteSettings?.siteDescription ||
-            "Real estate investment management firm",
-        },
-        contact: {
-          phone: contactDetails?.phone,
-          email: contactDetails?.email,
-          address: contactDetails?.address,
-        },
-        seo: siteSettings?.seo || {
-          organizationSchema: true,
-          foundingDate: "2020-01-01",
-          industry: "Real Estate Investment",
-        },
-        socialMedia: socialLinks?.links || [],
-        legal: {
-          legalLinks: [
-            {
-              title: "Privacy Policy",
-              url: siteSettings?.privacyPolicyUrl || "/privacy-policy",
-              openInNewTab: false,
-            },
-            {
-              title: "Terms of Service",
-              url: siteSettings?.termsOfServiceUrl || "/terms-of-service",
-              openInNewTab: false,
-            },
-            {
-              title: "Disclaimer",
-              url: siteSettings?.disclaimerUrl || "/disclaimer",
-              openInNewTab: false,
-            },
-          ],
-        },
-      };
-
-      const transformedNavigation: FooterNavigation = {
-        ...navigation,
-        linkSections: navigation?.additionalSections || [],
-      };
-
-      return {
-        siteSettings: transformedSiteSettings,
-        navigation: transformedNavigation,
-        contactDetails,
-        socialLinks: socialLinks?.links || [],
-      };
-    },
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
 }

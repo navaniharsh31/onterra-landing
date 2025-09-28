@@ -30,11 +30,13 @@ export function Footer({
   // Transform the data to match the expected structure
   const transformedSiteSettings = {
     ...siteSettings,
+    siteTitle: siteSettings?.title || "Onterra Capital",
+    siteDescription:
+      siteSettings?.description || "Real estate investment management firm",
     company: {
-      name: siteSettings?.siteTitle || "Onterra Capital",
+      name: siteSettings?.title || "Onterra Capital",
       description:
-        siteSettings?.siteDescription ||
-        "Real estate investment management firm",
+        siteSettings?.description || "Real estate investment management firm",
     },
     contact: {
       phone: contactDetails?.phone,

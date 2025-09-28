@@ -157,7 +157,7 @@ export const queries = {
     }
   }`,
 
-  teamMembers: `*[_type == "teamMember" && isActive == true] | order(order asc, name asc) {
+  teamMembers: `*[_type == "teamMember"] | order(order asc, name asc) {
     _id,
     name,
     title,
@@ -177,9 +177,7 @@ export const queries = {
     },
     certifications,
     order,
-    listOrder,
-    showInList,
-    isActive
+    listOrder
   }`,
 
   overviewPage: `*[_type == "overviewPage"][0] {
@@ -277,9 +275,7 @@ export const queries = {
         },
         certifications,
         order,
-        listOrder,
-        showInList,
-        isActive
+        listOrder
       }
     },
     detailViewSettings {
@@ -538,10 +534,8 @@ export async function getTeamPageData() {
     let teamMembers = [];
 
     if (teamPage?.listViewSettings?.showAllMembers) {
-      // Fetch all active team members
-      const allMembers = await client.fetch(queries.teamMembers);
-      teamMembers =
-        allMembers?.filter((member: any) => member.showInList) || [];
+      // Fetch all team members
+      teamMembers = await client.fetch(queries.teamMembers);
     } else {
       // Use selected members from page settings
       teamMembers = teamPage?.listViewSettings?.selectedMembers || [];

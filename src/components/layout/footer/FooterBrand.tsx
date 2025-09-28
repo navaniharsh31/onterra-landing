@@ -39,11 +39,6 @@ export function FooterBrand({ settings, className }: FooterBrandProps) {
       <p className="text-slate-300 leading-relaxed max-w-sm">
         {company.description}
       </p>
-
-      {/* Tagline */}
-      <p className="text-sm text-slate-400 font-light">
-        {settings.siteDescription}
-      </p>
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 interface TeamMemberListItemProps {
   member: {
@@ -42,7 +43,10 @@ export function TeamMemberListItem({
         className
       )}
     >
-      <div className="p-6" onClick={() => onViewDetails(member)}>
+      <div
+        className="p-6 h-full flex flex-col"
+        onClick={() => onViewDetails(member)}
+      >
         {/* Profile Image */}
         <div className="flex justify-center mb-4">
           <div className="relative w-40 h-40 rounded-full overflow-hidden ring-2 ring-slate-100 group-hover:ring-slate-200 transition-colors duration-300">
@@ -72,11 +76,25 @@ export function TeamMemberListItem({
           <p className="text-base text-slate-600 font-medium">{member.title}</p>
         </div>
 
-        {/* Brief Description */}
-        <div className="text-center mb-6">
+        {/* Brief Description - Flexible content */}
+        <div className="text-center mb-6 flex-1">
           <p className="text-base text-slate-600 leading-relaxed">
             {member.briefDescription}
           </p>
+        </div>
+
+        {/* View Full Detail Button - Always at bottom */}
+        <div className="mt-auto">
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails(member);
+            }}
+            variant="outline"
+            className="group/btn rounded-xs font-medium tracking-wide transition-all duration-300 border-slate-300 text-slate-700 group-hover:bg-navy-600 group-hover:text-white group-hover:border-navy-600 hover:bg-navy-600 hover:text-white hover:border-navy-600 cursor-pointer w-full"
+          >
+            View Full Detail
+          </Button>
         </div>
       </div>
     </motion.div>

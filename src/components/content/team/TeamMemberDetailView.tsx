@@ -43,7 +43,7 @@ export function TeamMemberDetailView({
       >
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Image Container */}
-          <div className="relative w-full lg:w-80 h-64 lg:h-80 overflow-hidden rounded-lg">
+          <div className="relative w-full lg:w-86 h-72 lg:h-96 overflow-hidden rounded-xs">
             {member.image?.asset?.url ? (
               <Image
                 src={member.image.asset.url}

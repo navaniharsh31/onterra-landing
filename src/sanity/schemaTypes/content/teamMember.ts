@@ -75,7 +75,6 @@ export const teamMember = defineType({
               title: "Description",
               type: "text",
               rows: 3,
-              validation: (Rule) => Rule.required(),
             }),
           ],
           preview: {
@@ -107,20 +106,6 @@ export const teamMember = defineType({
       type: "number",
       description: "Order in list view (separate from main order)",
       initialValue: 0,
-    }),
-    defineField({
-      name: "showInList",
-      title: "Show in List View",
-      type: "boolean",
-      description: "Display this member in the team list view",
-      initialValue: true,
-    }),
-    defineField({
-      name: "isActive",
-      title: "Active Team Member",
-      type: "boolean",
-      description: "Show this team member on the website",
-      initialValue: true,
     }),
   ],
   preview: {

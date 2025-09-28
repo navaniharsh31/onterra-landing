@@ -1,6 +1,9 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { StatisticCard } from "./StatisticCard";
 import { AnimatedSection } from "@/components/layout/sections/AnimatedSection";
+import { motion } from "framer-motion";
 import React from "react";
 
 interface StatisticsSectionProps {
@@ -22,8 +25,111 @@ export function StatisticsSection({
   const { title, statistics } = content;
 
   return (
-    <section className={cn("py-16  bg-gray-0", className)}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={cn("py-16 relative overflow-hidden", className)}>
+      {/* Premium Light Background with Animated Orbs */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">
+        {/* Dynamic Bouncing Gradient Orbs */}
+
+        {/* Blue Orb */}
+        <motion.div
+          className="absolute w-96 h-96 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 40%, transparent 70%)",
+          }}
+          animate={{
+            x: [
+              "calc(20vw - 192px)",
+              "calc(80vw - 192px)",
+              "calc(80vw - 192px)",
+              "calc(20vw - 192px)",
+              "calc(20vw - 192px)",
+            ],
+            y: [
+              "calc(20vh - 192px)",
+              "calc(20vh - 192px)",
+              "calc(80vh - 192px)",
+              "calc(80vh - 192px)",
+              "calc(20vh - 192px)",
+            ],
+          }}
+          transition={{
+            duration: 24,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Slate Orb */}
+        <motion.div
+          className="absolute w-80 h-80 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(100, 116, 139, 0.06) 0%, rgba(100, 116, 139, 0.03) 50%, transparent 70%)",
+          }}
+          animate={{
+            x: [
+              "calc(10vw - 160px)",
+              "calc(50vw - 160px)",
+              "calc(90vw - 160px)",
+              "calc(50vw - 160px)",
+              "calc(10vw - 160px)",
+            ],
+            y: [
+              "calc(50vh - 160px)",
+              "calc(10vh - 160px)",
+              "calc(50vh - 160px)",
+              "calc(90vh - 160px)",
+              "calc(50vh - 160px)",
+            ],
+          }}
+          transition={{
+            duration: 28,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Purple Orb */}
+        <motion.div
+          className="absolute w-[28rem] h-[28rem] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0.02) 45%, transparent 65%)",
+          }}
+          animate={{
+            x: [
+              "calc(0vw)",
+              "calc(25vw - 224px)",
+              "calc(50vw - 224px)",
+              "calc(75vw - 224px)",
+              "calc(100vw - 448px)",
+              "calc(75vw - 224px)",
+              "calc(50vw - 224px)",
+              "calc(25vw - 224px)",
+              "calc(0vw)",
+            ],
+            y: [
+              "calc(50vh - 224px)",
+              "calc(25vh - 224px)",
+              "calc(50vh - 224px)",
+              "calc(75vh - 224px)",
+              "calc(50vh - 224px)",
+              "calc(25vh - 224px)",
+              "calc(50vh - 224px)",
+              "calc(75vh - 224px)",
+              "calc(50vh - 224px)",
+            ],
+          }}
+          transition={{
+            duration: 32,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {title && (
           <div className="text-center mb-16 lg:mb-20">
             {/* Institutional-Grade Section Title */}

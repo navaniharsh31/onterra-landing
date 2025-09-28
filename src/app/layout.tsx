@@ -35,7 +35,7 @@ export default async function RootLayout({
 }>) {
   // Fetch layout data server-side
   const layoutData = await getLayoutData();
-
+  console.log(layoutData);
   return (
     <html lang="en">
       <body
