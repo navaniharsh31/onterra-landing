@@ -32,11 +32,11 @@ export function Footer({
     ...siteSettings,
     siteTitle: siteSettings?.title || "Onterra Capital",
     siteDescription:
-      siteSettings?.description || "Real estate investment management firm",
+      siteSettings?.description || "Real estate investment management",
     company: {
       name: siteSettings?.title || "Onterra Capital",
       description:
-        siteSettings?.description || "Real estate investment management firm",
+        siteSettings?.description || "Real estate investment management",
     },
     contact: {
       phone: contactDetails?.phone,

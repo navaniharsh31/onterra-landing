@@ -31,14 +31,14 @@ const contentData = {
     _id: "site-settings-main",
     title: "Onterra Capital",
     description:
-      "Real estate investment management firm building wealth through innovative investment strategies and proven market expertise.",
+      "Real estate investment management building wealth through innovative investment strategies and proven market expertise.",
     tagline: "Building wealth through strategic real estate investment",
     logo: null, // Will be set manually in Sanity Studio
     favicon: null, // Will be set manually in Sanity Studio
     seo: {
       defaultMetaTitle: "{pageTitle} | Onterra Capital",
       defaultMetaDescription:
-        "Real estate investment management firm building wealth through innovative investment strategies and proven market expertise.",
+        "Real estate investment management building wealth through innovative investment strategies and proven market expertise.",
       organizationSchema: true,
       foundingDate: "2020-01-01",
       industry: "Real Estate Investment",
@@ -982,7 +982,8 @@ const contentData = {
       title: "Managing Partner and CEO",
       image: null, // Will be set manually in Sanity Studio
       bio: "20 years of leadership experience in real estate finance, has delivered from various vantage points from the time India opened up its real estate sector to foreign investor participation in 2005. In this period, successfully originated, structured, managed more than 90 transformative credit and equity transactions aggregating to over US$ 4bn for 40+ developers, many of who were first timers to tap external financing in the market. Before entering real estate, had a robust 10-year career – spending 6 years financing large-scale infrastructure projects (toll roads, power and telecom) during India's deregulation phase and 4 years in Technology consulting.",
-      briefDescription: "20+ years of leadership in real estate finance, successfully managed over US$ 4bn in transformative credit and equity transactions for 40+ developers.",
+      briefDescription:
+        "20+ years of leadership in real estate finance, successfully managed over US$ 4bn in transformative credit and equity transactions for 40+ developers.",
       education: ["BE Electrical (Hons.) from VJTI", "MMS from NMIMS"],
       careerHighlights: [
         {

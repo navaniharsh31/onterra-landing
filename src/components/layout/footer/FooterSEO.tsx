@@ -19,8 +19,7 @@ export function FooterSEO({ settings, contact, socialMedia }: FooterSEOProps) {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: company?.name || "Onterra Capital",
-    description:
-      company?.description || "Real estate investment management firm",
+    description: company?.description || "Real estate investment management",
     url: typeof window !== "undefined" ? window.location.origin : "",
     logo: settings.logo?.asset?.url,
     foundingDate: seo?.foundingDate || "2020-01-01",
