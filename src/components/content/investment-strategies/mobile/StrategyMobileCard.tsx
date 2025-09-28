@@ -51,12 +51,6 @@ export function StrategyMobileCard({
             <h3 className="text-xl font-light text-slate-900 leading-tight pr-4">
               {title}
             </h3>
-            <Badge
-              variant="secondary"
-              className="bg-slate-100/80 text-slate-700 border-slate-200/60 text-xs px-2 py-1"
-            >
-              {category === "residential" ? "Residential" : "Commercial"}
-            </Badge>
           </div>
 
           {/* Description */}

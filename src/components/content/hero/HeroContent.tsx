@@ -54,32 +54,31 @@ export function HeroContent({
           }}
         />
 
-        {/* Corner Geometric Accents */}
-        <div className="absolute top-0 left-0 w-32 h-32 pointer-events-none">
+        {/* Corner Geometric Accents - Hidden on mobile */}
+        <div className="absolute top-0 left-0 w-32 h-32 pointer-events-none hidden md:block">
           <div className="w-full h-full border-l-2 border-t-2 border-mustard-400/60" />
           <div className="absolute top-4 left-4 w-24 h-24 border-l border-t border-navy-500/40" />
           <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-mustard-300/30" />
         </div>
 
-        <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
+        <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none hidden md:block">
           <div className="w-full h-full border-r-2 border-t-2 border-mustard-400/60" />
           <div className="absolute top-4 right-4 w-24 h-24 border-r border-t border-navy-500/40" />
           <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-mustard-300/30" />
         </div>
 
-        <div className="absolute bottom-0 left-0 w-32 h-32 pointer-events-none">
+        <div className="absolute bottom-0 left-0 w-32 h-32 pointer-events-none hidden md:block">
           <div className="w-full h-full border-l-2 border-b-2 border-mustard-400/60" />
           <div className="absolute bottom-4 left-4 w-24 h-24 border-l border-b border-navy-500/40" />
           <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-mustard-300/30" />
         </div>
 
-        <div className="absolute bottom-0 right-0 w-32 h-32 pointer-events-none">
+        <div className="absolute bottom-0 right-0 w-32 h-32 pointer-events-none hidden md:block">
           <div className="w-full h-full border-r-2 border-b-2 border-mustard-400/60" />
           <div className="absolute bottom-4 right-4 w-24 h-24 border-r border-b border-navy-500/40" />
           <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-mustard-300/30" />
         </div>
 
-    
         {/* Main Content Container */}
         <div className="relative">
           <AnimatedSection animation="fadeInUp" delay={200}>

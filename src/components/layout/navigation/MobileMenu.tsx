@@ -183,9 +183,6 @@ export function MobileMenu({
                             className="overflow-hidden"
                           >
                             <div className="ml-4 mt-2 space-y-3">
-                              <h3 className="text-sm font-medium text-gray-900 px-4 py-2">
-                                {item.megaMenuContent.title}
-                              </h3>
                               {item.megaMenuContent.sections.map(
                                 (section: any) => (
                                   <Link
