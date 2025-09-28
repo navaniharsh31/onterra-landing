@@ -132,7 +132,7 @@ export function OverviewContent({ className, content }: OverviewContentProps) {
           {sections.map((section, index) => (
             <motion.div
               key={section.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 20 }}
               transition={{
@@ -150,7 +150,7 @@ export function OverviewContent({ className, content }: OverviewContentProps) {
                 }`}
               >
                 {section.image?.asset?.url ? (
-                  <div className="relative w-full h-64 rounded-xs overflow-hidden">
+                  <div className="relative w-full h-full min-h-64 rounded-xs overflow-hidden">
                     <Image
                       src={section.image.asset.url}
                       alt={section.image.alt || section.title}
@@ -160,7 +160,7 @@ export function OverviewContent({ className, content }: OverviewContentProps) {
                     />
                   </div>
                 ) : (
-                  <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xs p-8 h-64 flex items-center justify-center">
+                  <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-xs p-8 h-full min-h-64 flex items-center justify-center">
                     <p className="text-slate-500 text-center">
                       Visual placeholder for {section.title.toLowerCase()}
                     </p>
