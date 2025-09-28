@@ -28,7 +28,6 @@ export function HeroContent({
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {/* Sophisticated Pattern Overlays */}
         {/* Diamond Grid Pattern */}
         <div
           className="absolute inset-0 opacity-5"
@@ -80,12 +79,7 @@ export function HeroContent({
           <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-mustard-300/30" />
         </div>
 
-        {/* Floating Geometric Elements */}
-        <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-navy-500/30 to-mustard-500/30 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -right-20 w-32 h-32 bg-gradient-to-tl from-mustard-500/30 to-navy-500/30 rounded-full blur-2xl" />
-        <div className="absolute top-1/4 -right-10 w-20 h-20 bg-gradient-to-br from-mustard-400/20 to-navy-600/20 rounded-full blur-xl" />
-        <div className="absolute bottom-1/4 -left-10 w-24 h-24 bg-gradient-to-tl from-navy-400/20 to-mustard-600/20 rounded-full blur-xl" />
-
+    
         {/* Main Content Container */}
         <div className="relative">
           <AnimatedSection animation="fadeInUp" delay={200}>

@@ -45,8 +45,8 @@ export function TeamListSection({
         className
       )}
     >
-      {/* Premium Light Background with Animated Orbs */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50 overflow-hidden">
+      {/* Premium Light Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">
         {/* Optional Subtle Grid Pattern */}
         <div className="absolute inset-0 opacity-[0.12]">
           <div
@@ -57,65 +57,6 @@ export function TeamListSection({
             }}
           />
         </div>
-
-        {/* Dynamic Bouncing Gradient Orbs */}
-        <motion.div
-          className="absolute w-96 h-96 rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 40%, transparent 70%)",
-          }}
-          animate={{
-            x: [
-              "calc(10vw - 192px)",
-              "calc(90vw - 192px)",
-              "calc(90vw - 192px)",
-              "calc(10vw - 192px)",
-              "calc(10vw - 192px)",
-            ],
-            y: [
-              "calc(10vh - 192px)",
-              "calc(10vh - 192px)",
-              "calc(90vh - 192px)",
-              "calc(90vh - 192px)",
-              "calc(10vh - 192px)",
-            ],
-          }}
-          transition={{
-            duration: 24,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        <motion.div
-          className="absolute w-80 h-80 rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(100, 116, 139, 0.06) 0%, rgba(100, 116, 139, 0.03) 50%, transparent 70%)",
-          }}
-          animate={{
-            x: [
-              "calc(5vw - 160px)",
-              "calc(50vw - 160px)",
-              "calc(95vw - 160px)",
-              "calc(50vw - 160px)",
-              "calc(5vw - 160px)",
-            ],
-            y: [
-              "calc(50vh - 160px)",
-              "calc(5vh - 160px)",
-              "calc(50vh - 160px)",
-              "calc(95vh - 160px)",
-              "calc(50vh - 160px)",
-            ],
-          }}
-          transition={{
-            duration: 28,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
