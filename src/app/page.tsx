@@ -10,9 +10,7 @@ export async function generateMetadata() {
 
   return generateSEOMetadata({
     siteWideSEO: pageData.siteSettings?.seo || {},
-    pageTitle: "Onterra Capital - Real Estate Investment Firm",
-    pageDescription:
-      "Real estate investment management firm building wealth through innovative investment strategies and proven market expertise.",
+    pageDescription: "Real estate investment management.",
   });
 }
 

@@ -46,8 +46,7 @@ export function generateSEOMetadata({
   const finalDescription =
     pageSEO?.metaDescription ||
     siteWideSEO.defaultMetaDescription ||
-    pageDescription ||
-    "Real estate investment management firm building wealth through innovative investment strategies and proven market expertise.";
+    pageDescription;
 
   // Build keywords array
   const keywords = [

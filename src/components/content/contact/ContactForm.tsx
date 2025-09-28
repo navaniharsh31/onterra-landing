@@ -208,7 +208,7 @@ export function ContactForm({ className, formSettings }: ContactFormProps) {
               className={cn(
                 "rounded-xs",
                 errors.phone && "border-red-500 focus:border-red-500"
-              )}  
+              )}
             />
             {errors.phone && (
               <p className="text-sm text-red-600">{errors.phone}</p>
@@ -247,7 +247,7 @@ export function ContactForm({ className, formSettings }: ContactFormProps) {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-xs font-medium tracking-wide transition-all duration-300"
+            className="w-full rounded-xs font-medium tracking-wide transition-all duration-300 bg-navy-600 hover:bg-navy-700 text-white"
           >
             {isSubmitting ? (
               <>

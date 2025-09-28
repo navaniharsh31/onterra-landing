@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 interface ContactInfoProps {
   className?: string;
@@ -27,7 +27,7 @@ export function ContactInfo({ className, contactDetails }: ContactInfoProps) {
     return null;
   }
 
-  const { email, phone, address, businessHours } = contactDetails;
+  const { email, phone, address } = contactDetails;
 
   // Format address from structured data
   const formatAddress = (addr: typeof address) => {
@@ -62,7 +62,6 @@ export function ContactInfo({ className, contactDetails }: ContactInfoProps) {
       label: "Address",
       value: formattedAddress,
     },
-   
   ];
 
   return (
@@ -94,7 +93,7 @@ export function ContactInfo({ className, contactDetails }: ContactInfoProps) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 * index }}
               >
-                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-xs flex items-center justify-center shadow-sm border border-gray-200/20">
+                <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center">
                   <Icon className="h-5 w-5 text-slate-600" />
                 </div>
                 <div className="flex-1 min-w-0">
