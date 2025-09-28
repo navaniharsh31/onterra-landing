@@ -30,16 +30,18 @@ export function RotatingText({
 
   return (
     <div className={cn("relative inline-block", className)}>
-      <span className="inline-block transition-all duration-700 ease-in-out transform hover:scale-105">
+      <span
+        className="inline-block transition-all duration-700 ease-in-out transform hover:scale-105"
+        style={{
+          textShadow: `
+            0 0 8px rgba(255, 255, 255, 0.25),
+            0 0 16px rgba(255, 255, 255, 0.15),
+            0 0 24px rgba(255, 255, 255, 0.08)
+          `,
+        }}
+      >
         {words[currentIndex]}
       </span>
-
-      {/* Premium Text Glow Effect */}
-      <div className="absolute inset-0 blur-sm opacity-50 transition-all duration-700 ease-in-out">
-        <span className={cn("inline-block", className)}>
-          {words[currentIndex]}
-        </span>
-      </div>
     </div>
   );
 }
