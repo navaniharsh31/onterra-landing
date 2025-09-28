@@ -227,7 +227,7 @@ export function OnterraStandardsSectionNew({
                         {transformedData.sectionTitle}
                       </span>
                     </h2>
-                    <p className="text-md sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed font-light">
+                    <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed mb-6 md:mb-8 font-light">
                       {transformedData.description}
                     </p>
                   </div>
