@@ -31,12 +31,10 @@ export function Footer({
   const transformedSiteSettings = {
     ...siteSettings,
     siteTitle: siteSettings?.title || "Onterra Capital",
-    siteDescription:
-      siteSettings?.description || "Real estate investment management",
+    siteDescription: siteSettings?.description || "Investment Management",
     company: {
       name: siteSettings?.title || "Onterra Capital",
-      description:
-        siteSettings?.description || "Real estate investment management",
+      description: siteSettings?.description || "Investment Management",
     },
     contact: {
       phone: contactDetails?.phone,

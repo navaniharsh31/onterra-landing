@@ -111,8 +111,7 @@ export function generateSEOMetadata({
       "organization:url": "https://onterra.in",
       "organization:logo": "https://onterra.in/logo.png",
       "organization:description":
-        siteWideSEO.defaultMetaDescription ||
-        "Real estate investment management",
+        siteWideSEO.defaultMetaDescription || "Investment Management",
     };
 
     if (siteWideSEO.foundingDate) {
@@ -144,8 +143,7 @@ export function generateOrganizationSchema(siteWideSEO: SiteWideSEO) {
     name: "Onterra Capital",
     url: "https://onterra.in",
     logo: "https://onterra.in/logo.png",
-    description:
-      siteWideSEO.defaultMetaDescription || "Real estate investment management",
+    description: siteWideSEO.defaultMetaDescription || "Investment Management",
     ...(siteWideSEO.foundingDate && { foundingDate: siteWideSEO.foundingDate }),
     ...(siteWideSEO.industry && { industry: siteWideSEO.industry }),
     sameAs: [

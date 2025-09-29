@@ -31,14 +31,14 @@ const contentData = {
     _id: "site-settings-main",
     title: "Onterra Capital",
     description:
-      "Real estate investment management building wealth through innovative investment strategies and proven market expertise.",
+      "Investment Management building wealth through innovative investment strategies and proven market expertise.",
     tagline: "Building wealth through strategic real estate investment",
     logo: null, // Will be set manually in Sanity Studio
     favicon: null, // Will be set manually in Sanity Studio
     seo: {
       defaultMetaTitle: "{pageTitle} | Onterra Capital",
       defaultMetaDescription:
-        "Real estate investment management building wealth through innovative investment strategies and proven market expertise.",
+        "Investment Management building wealth through innovative investment strategies and proven market expertise.",
       organizationSchema: true,
       foundingDate: "2020-01-01",
       industry: "Real Estate Investment",

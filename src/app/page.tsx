@@ -10,7 +10,7 @@ export async function generateMetadata() {
 
   return generateSEOMetadata({
     siteWideSEO: pageData.siteSettings?.seo || {},
-    pageDescription: "Real estate investment management.",
+    pageDescription: "Investment Management.",
   });
 }
 
