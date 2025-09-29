@@ -10,6 +10,9 @@ export const { sanityFetch, SanityLive } = defineLive({
     // https://www.sanity.io/docs/api-versioning
     apiVersion: "vX",
   }),
+  // Disable tokens to silence warnings (only published content will be live)
+  serverToken: false,
+  browserToken: false,
 });
 
 // Live content queries for real-time updates

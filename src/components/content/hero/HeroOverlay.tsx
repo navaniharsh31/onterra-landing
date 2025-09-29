@@ -3,7 +3,6 @@ interface HeroOverlayProps {
 }
 
 export function HeroOverlay({ opacity }: HeroOverlayProps) {
-  console.log(opacity);
   return (
     <>
       {/* Primary Dark Overlay - Enhanced for better visibility */}

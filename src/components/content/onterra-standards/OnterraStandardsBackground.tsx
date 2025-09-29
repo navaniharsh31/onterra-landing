@@ -28,8 +28,6 @@ export function OnterraStandardsBackground({
   );
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  console.log("OnterraStandardsBackground:", { defaultImage, currentImage, displayImage });
-
   useEffect(() => {
     if (!currentImage) {
       // Reset to default image

@@ -21,7 +21,6 @@ export default async function Home() {
   try {
     // Server-side data fetching
     const pageData = await getPageData();
-    console.log(pageData);
 
     // Prepare logo data for components
     const logoData = pageData.siteSettings?.logo?.asset?.url
