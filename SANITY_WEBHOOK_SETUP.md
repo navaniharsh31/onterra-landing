@@ -11,7 +11,8 @@ Add these environment variables to your Vercel project:
 SANITY_REVALIDATE_SECRET=your_super_secret_key_here
 ```
 
-**Important**: 
+**Important**:
+
 - ✅ **Correct**: `SANITY_REVALIDATE_SECRET` (server-side only)
 - ❌ **Wrong**: `NEXT_PUBLIC_SANITY_REVALIDATE_SECRET` (would expose secret to client)
 - Use a strong, random secret key. You can generate one with:

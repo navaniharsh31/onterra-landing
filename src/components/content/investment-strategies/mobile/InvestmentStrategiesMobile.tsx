@@ -64,7 +64,7 @@ export function InvestmentStrategiesMobile({
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
+            <p className="whitespace-pre-line text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
               {sanityData.sectionDescription}
             </p>
 
