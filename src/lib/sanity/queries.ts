@@ -58,7 +58,8 @@ export const queries = {
             },
             alt
           },
-          url
+          url,
+          ctaText
         }
       }
     },
@@ -353,6 +354,27 @@ export const queries = {
       canonicalUrl
     }
   }`,
+
+  insightPdf: `*[_type == "insightPdf" && isActive == true] | order(publishedDate desc) {
+    _id,
+    title,
+    description,
+    pdfFile {
+      asset->{
+        url,
+        originalFilename,
+        size,
+        _id
+      }
+    },
+    publishedDate,
+    isActive,
+    seo {
+      metaTitle,
+      metaDescription,
+      keywords
+    }
+  }`,
 };
 
 // Homepage data fetching
@@ -605,6 +627,22 @@ export async function getLegalPageData(type: string) {
     console.error("Error fetching legal page data:", error);
     return {
       legalPage: null,
+    };
+  }
+}
+
+// PDF data fetching
+export async function getInsightPdfs() {
+  try {
+    const pdfs = await client.fetch(queries.insightPdf);
+
+    return {
+      pdfs: pdfs || [],
+    };
+  } catch (error) {
+    console.error("Error fetching PDF data:", error);
+    return {
+      pdfs: [],
     };
   }
 }

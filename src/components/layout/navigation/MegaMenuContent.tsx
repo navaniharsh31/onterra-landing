@@ -13,6 +13,7 @@ interface MegaMenuSection {
   description: string;
   image?: string;
   url?: string;
+  ctaText?: string;
 }
 
 interface MegaMenuContentProps {
@@ -21,6 +22,8 @@ interface MegaMenuContentProps {
 }
 
 export function MegaMenuContent({ section, className }: MegaMenuContentProps) {
+  const buttonText = section.ctaText || "Learn More";
+
   return (
     <motion.div
       key={section.id}
@@ -64,7 +67,7 @@ export function MegaMenuContent({ section, className }: MegaMenuContentProps) {
                 size="sm"
                 className="group rounded-xs font-medium tracking-wide transition-all duration-300 border-slate-300 text-slate-700 hover:bg-navy-600 hover:text-white group-hover:border-navy-600 cursor-pointer"
               >
-                Learn More
+                {buttonText}
                 <ArrowRightIcon className="ml-2 h-4 w-4 transition-all duration-300 group-hover:text-white group-hover:translate-x-1" />
               </Button>
             </Link>
@@ -75,7 +78,7 @@ export function MegaMenuContent({ section, className }: MegaMenuContentProps) {
               className="group rounded-xs font-medium tracking-wide transition-all duration-300 border-slate-300 text-slate-700 hover:bg-navy-600 hover:text-white group-hover:border-navy-600 cursor-not-allowed"
               disabled
             >
-              Learn More
+              {buttonText}
               <ArrowRightIcon className="ml-2 h-4 w-4 transition-all duration-300 group-hover:text-white group-hover:translate-x-1" />
             </Button>
           )}

@@ -1050,6 +1050,45 @@ const contentData = {
       canonicalUrl: "https://onterra.in/contact",
     },
   },
+
+  // Sample PDF data
+  insightPdfs: [
+    {
+      _id: "insight-pdf-sept-2025",
+      _type: "insightPdf",
+      title: "September 2025 Market Insights",
+      description:
+        "Comprehensive analysis of real estate market trends and investment opportunities for September 2025.",
+      publishedDate: "2025-09-01",
+      isActive: true,
+      seo: {
+        metaTitle: "September 2025 Market Insights - Onterra Capital",
+        metaDescription:
+          "Latest real estate market insights and investment opportunities for September 2025.",
+        keywords: [
+          "market insights",
+          "real estate",
+          "investment",
+          "september 2025",
+        ],
+      },
+    },
+    {
+      _id: "insight-pdf-aug-2025",
+      _type: "insightPdf",
+      title: "August 2025 Investment Report",
+      description:
+        "Monthly investment report covering market performance and strategic recommendations.",
+      publishedDate: "2025-08-01",
+      isActive: true,
+      seo: {
+        metaTitle: "August 2025 Investment Report - Onterra Capital",
+        metaDescription:
+          "Comprehensive investment report and market analysis for August 2025.",
+        keywords: ["investment report", "market analysis", "august 2025"],
+      },
+    },
+  ],
 };
 
 async function seedContent() {
@@ -1238,6 +1277,21 @@ async function seedContent() {
         console.log(
           `✅ Team member ${teamMember.name} created/updated successfully`
         );
+      }
+    }
+
+    // Seed Insight PDFs
+    console.log("\n📄 Seeding Insight PDFs...");
+    for (const pdf of contentData.insightPdfs) {
+      const existingPdf = await client.fetch(
+        `*[_type == "insightPdf" && _id == "${pdf._id}"][0]`
+      );
+      if (existingPdf && !forceUpdate) {
+        console.log(`⚠️ PDF ${pdf.title} already exists. Skipping...`);
+      } else {
+        console.log(`🔄 Creating/updating PDF: ${pdf.title}...`);
+        await client.createOrReplace(pdf);
+        console.log(`✅ PDF ${pdf.title} created/updated successfully`);
       }
     }
 

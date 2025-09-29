@@ -13,6 +13,7 @@ interface MegaMenuSection {
   description: string;
   image?: string;
   url?: string;
+  ctaText?: string;
 }
 
 interface MegaMenuContentType {

@@ -142,6 +142,15 @@ export const navigation = defineType({
                           type: "string",
                           validation: (Rule) => Rule.required(),
                         }),
+                        defineField({
+                          name: "ctaText",
+                          title: "CTA Button Text",
+                          type: "string",
+                          description:
+                            "Custom text for the Learn More button (defaults to 'Learn More')",
+                          validation: (Rule) => Rule.max(30),
+                          initialValue: "Learn More",
+                        }),
                       ],
                       preview: {
                         select: {
@@ -231,7 +240,8 @@ export const navigation = defineType({
                           name: "url",
                           title: "URL",
                           type: "string",
-                          description: "Relative URL (e.g., /privacy, /terms) or full URL",
+                          description:
+                            "Relative URL (e.g., /privacy, /terms) or full URL",
                           validation: (Rule) => Rule.required(),
                         }),
                         defineField({
@@ -266,7 +276,8 @@ export const navigation = defineType({
               },
             },
           ],
-          description: "Additional footer sections beyond main navigation (e.g., Legal, Resources)",
+          description:
+            "Additional footer sections beyond main navigation (e.g., Legal, Resources)",
         }),
       ],
     }),
