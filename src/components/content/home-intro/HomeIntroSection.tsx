@@ -87,8 +87,6 @@ export function HomeIntroSection({
             </h2>
           </motion.div>
 
-          {/* Professional Bottom Accent */}
-          <div className="w-48 h-px bg-gradient-to-r from-transparent via-slate-800/60 to-transparent mx-auto my-6" />
 
           {/* Premium Subtitle */}
           <motion.div
