@@ -125,7 +125,7 @@ export function InvestmentStrategiesSectionNew({
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <p className="text-md sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
+              <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto font-light">
                 {sanityData.sectionDescription}
               </p>
 
