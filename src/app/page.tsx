@@ -5,6 +5,9 @@ import { InvestmentStrategiesSectionNew } from "@/components/content/investment-
 import { getPageData } from "@/lib/sanity/queries";
 import { generateSEOMetadata } from "@/lib/seo";
 
+// Revalidate every 60 seconds for faster content updates
+export const revalidate = 60;
+
 export async function generateMetadata() {
   const pageData = await getPageData();
 

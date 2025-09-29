@@ -388,12 +388,48 @@ export async function getPageData() {
       investmentStrategies,
       onterraStandards,
     ] = await Promise.all([
-      client.fetch(queries.siteSettings),
-      client.fetch(queries.navigation),
-      client.fetch(queries.hero),
-      client.fetch(queries.homeIntroSection),
-      client.fetch(queries.investmentStrategies),
-      client.fetch(queries.onterraStandards),
+      client.fetch(
+        queries.siteSettings,
+        {},
+        {
+          next: { tags: ["layout-data", "homepage-data"] },
+        }
+      ),
+      client.fetch(
+        queries.navigation,
+        {},
+        {
+          next: { tags: ["layout-data", "homepage-data"] },
+        }
+      ),
+      client.fetch(
+        queries.hero,
+        {},
+        {
+          next: { tags: ["homepage-data"] },
+        }
+      ),
+      client.fetch(
+        queries.homeIntroSection,
+        {},
+        {
+          next: { tags: ["homepage-data"] },
+        }
+      ),
+      client.fetch(
+        queries.investmentStrategies,
+        {},
+        {
+          next: { tags: ["homepage-data"] },
+        }
+      ),
+      client.fetch(
+        queries.onterraStandards,
+        {},
+        {
+          next: { tags: ["homepage-data"] },
+        }
+      ),
     ]);
 
     // Transform navigation image URLs
@@ -440,10 +476,34 @@ export async function getLayoutData() {
   try {
     const [siteSettings, navigation, contactDetails, socialLinks] =
       await Promise.all([
-        client.fetch(queries.siteSettings),
-        client.fetch(queries.navigation),
-        client.fetch(queries.contactDetails),
-        client.fetch(queries.socialLinks),
+        client.fetch(
+          queries.siteSettings,
+          {},
+          {
+            next: { tags: ["layout-data"] },
+          }
+        ),
+        client.fetch(
+          queries.navigation,
+          {},
+          {
+            next: { tags: ["layout-data"] },
+          }
+        ),
+        client.fetch(
+          queries.contactDetails,
+          {},
+          {
+            next: { tags: ["layout-data"] },
+          }
+        ),
+        client.fetch(
+          queries.socialLinks,
+          {},
+          {
+            next: { tags: ["layout-data"] },
+          }
+        ),
       ]);
 
     // Transform navigation image URLs

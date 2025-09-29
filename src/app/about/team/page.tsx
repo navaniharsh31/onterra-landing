@@ -4,6 +4,9 @@ import { StatisticsSection } from "@/components/content/statistics/StatisticsSec
 import { getTeamPageData, getLayoutData } from "@/lib/sanity/queries";
 import { generateSEOMetadata } from "@/lib/seo";
 
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
 export async function generateMetadata() {
   const [{ teamPage }, { siteSettings }] = await Promise.all([
     getTeamPageData(),

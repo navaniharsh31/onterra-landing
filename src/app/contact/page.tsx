@@ -4,6 +4,9 @@ import { ContactInfo } from "@/components/content/contact/ContactInfo";
 import { getContactPageData, getLayoutData } from "@/lib/sanity/queries";
 import { generateSEOMetadata } from "@/lib/seo";
 
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
 export async function generateMetadata() {
   const [{ contactPage }, { siteSettings }] = await Promise.all([
     getContactPageData(),

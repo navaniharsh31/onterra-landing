@@ -3,6 +3,9 @@ import { ApproachContent } from "@/components/content/about/ApproachContent";
 import { getApproachPageData, getLayoutData } from "@/lib/sanity/queries";
 import { generateSEOMetadata } from "@/lib/seo";
 
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
 export async function generateMetadata() {
   const [{ approachPage }, { siteSettings }] = await Promise.all([
     getApproachPageData(),

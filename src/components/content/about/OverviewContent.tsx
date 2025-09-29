@@ -50,18 +50,7 @@ export function OverviewContent({ className, content }: OverviewContentProps) {
       )}
     >
       {/* Premium Light Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50">
-        {/* Optional Subtle Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.12]">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `linear-gradient(rgba(71,85,105,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(71,85,105,0.3) 1px, transparent 1px)`,
-              backgroundSize: "60px 60px",
-            }}
-          />
-        </div>
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

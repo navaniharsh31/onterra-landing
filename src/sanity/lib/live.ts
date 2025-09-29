@@ -2,12 +2,22 @@
 // Before using it, import and render "<SanityLive />" in your layout, see
 // https://github.com/sanity-io/next-sanity#live-content-api for more information.
 import { defineLive } from "next-sanity";
-import { client } from './client'
+import { client } from "./client";
 
-export const { sanityFetch, SanityLive } = defineLive({ 
-  client: client.withConfig({ 
+export const { sanityFetch, SanityLive } = defineLive({
+  client: client.withConfig({
     // Live content is currently only available on the experimental API
     // https://www.sanity.io/docs/api-versioning
-    apiVersion: 'vX' 
-  }) 
+    apiVersion: "vX",
+  }),
 });
+
+// Live content queries for real-time updates
+export const liveQueries = {
+  siteSettings: `*[_type == "siteSettings"][0]`,
+  navigation: `*[_type == "navigation"][0]`,
+  hero: `*[_type == "heroSection"][0]`,
+  homeIntroSection: `*[_type == "homeIntroSection"][0]`,
+  investmentStrategies: `*[_type == "investmentStrategies"][0]`,
+  onterraStandards: `*[_type == "onterraStandards"][0]`,
+};

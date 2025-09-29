@@ -4,6 +4,9 @@ import { LegalContent } from "@/components/content/legal/LegalContent";
 import { getLegalPageData, getLayoutData } from "@/lib/sanity/queries";
 import { generateSEOMetadata } from "@/lib/seo";
 
+// Revalidate every 60 seconds
+export const revalidate = 60;
+
 interface LegalPageProps {
   params: Promise<{
     type: string;
@@ -56,9 +59,7 @@ export default async function LegalPage({ params }: LegalPageProps) {
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* Legal Page Hero Section */}
-      <LegalHero
-        title={heroData.title}
-      />
+      <LegalHero title={heroData.title} />
 
       {/* Legal Content */}
       <LegalContent content={legalPage?.content} />
