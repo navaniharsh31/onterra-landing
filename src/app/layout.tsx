@@ -5,6 +5,8 @@ import { ClientLayout } from "@/components/layout/providers/ClientLayout";
 import { getLayoutData } from "@/lib/sanity/queries";
 import { generateSEOMetadata } from "@/lib/seo";
 import { SanityLive } from "@/sanity/lib/live";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Revalidate layout data every 60 seconds
@@ -46,6 +48,8 @@ export default async function RootLayout({
       >
         <QueryProvider>
           <SanityLive />
+          <SpeedInsights />
+          <Analytics />
           <ClientLayout layoutData={layoutData}>{children}</ClientLayout>
         </QueryProvider>
       </body>

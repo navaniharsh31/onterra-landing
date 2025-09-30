@@ -76,10 +76,6 @@ export function ContactInfo({ className, contactDetails }: ContactInfoProps) {
           <h2 className="text-2xl font-light text-slate-900 mb-2">
             Get in touch
           </h2>
-          <p className="text-slate-600">
-            We&apos;re here to help you explore real estate investment
-            opportunities.
-          </p>
         </div>
 
         <div className="space-y-6">
