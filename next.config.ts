@@ -26,8 +26,6 @@ const nextConfig: NextConfig = {
   },
   // Enable ISR for better content updates
   trailingSlash: false,
-  // Optimize bundle size
-  swcMinify: true,
 };
 
 export default nextConfig;
