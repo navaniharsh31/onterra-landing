@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendContactEmail, sendAutoReplyEmail } from "@/lib/email";
+import { sendContactEmail } from "@/lib/email";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -75,9 +75,6 @@ export async function POST(request: NextRequest) {
       },
       logoData
     );
-
-    // Send auto-reply to user
-    await sendAutoReplyEmail(email, name, logoData);
 
     return NextResponse.json(
       {
