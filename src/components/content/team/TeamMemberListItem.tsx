@@ -39,7 +39,7 @@ export function TeamMemberListItem({
         ease: "easeOut",
       }}
       className={cn(
-        "group relative bg-white rounded-xs shadow-sm hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden cursor-pointer border border-slate-100 hover:border-slate-200",
+        "group relative bg-white rounded-xs shadow-sm hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden cursor-pointer border border-slate-100 hover:border-slate-200 w-full h-full",
         className
       )}
     >

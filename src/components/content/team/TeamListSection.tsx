@@ -1,10 +1,16 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { useState } from "react";
 import { TeamMemberListItem } from "./TeamMemberListItem";
 import { TeamMemberDetailModal } from "./TeamMemberDetailModal";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface TeamListSectionProps {
   teamMembers: any[];
@@ -48,18 +54,38 @@ export function TeamListSection({
       {/* Premium Light Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-slate-50" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Team Members Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
-          {teamMembers.map((member, index) => (
-            <TeamMemberListItem
-              key={member._id}
-              member={member}
-              onViewDetails={handleViewDetails}
-              index={index}
-            />
-          ))}
-        </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        {/* Team Members Carousel */}
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+            dragFree: true,
+            containScroll: "trimSnaps",
+          }}
+          className="w-full overflow-visible"
+        >
+          <CarouselContent className="-ml-4 flex items-stretch py-2 overflow-visible">
+            {teamMembers.map((member, index) => (
+              <CarouselItem
+                key={member._id}
+                className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3 flex"
+              >
+                <div className="w-full px-1">
+                  <TeamMemberListItem
+                    member={member}
+                    onViewDetails={handleViewDetails}
+                    index={index}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          {/* Navigation Arrows */}
+          <CarouselPrevious className="absolute left-2 sm:-left-12 top-1/2 -translate-y-1/2 bg-navy-600 hover:bg-navy-700 text-white border-navy-600 hover:border-navy-700 shadow-lg size-8 sm:size-10" />
+          <CarouselNext className="absolute right-2 sm:-right-12 top-1/2 -translate-y-1/2 bg-navy-600 hover:bg-navy-700 text-white border-navy-600 hover:border-navy-700 shadow-lg size-8 sm:size-10" />
+        </Carousel>
       </div>
 
       {/* Detail Modal */}
