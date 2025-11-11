@@ -1,6 +1,44 @@
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
+// Utility function for center-out team member placement
+function reorderTeamMembersFromCenter(members: any[]): any[] {
+  if (members.length <= 1) return members;
+
+  // First sort by listOrder, then by name (original sorting logic)
+  const sortedMembers = members.sort((a: any, b: any) => {
+    if (a.listOrder !== b.listOrder) {
+      return (a.listOrder || 0) - (b.listOrder || 0);
+    }
+    return (a.name || "").localeCompare(b.name || "");
+  });
+
+  const result = new Array(sortedMembers.length);
+  const centerIndex = Math.floor(sortedMembers.length / 2);
+
+  // Place first member (highest priority) in center
+  result[centerIndex] = sortedMembers[0];
+
+  let leftIndex = centerIndex - 1;
+  let rightIndex = centerIndex + 1;
+
+  // Alternate placement left/right from center
+  for (let i = 1; i < sortedMembers.length; i++) {
+    if (i % 2 === 1 && leftIndex >= 0) {
+      // Odd indices go left
+      result[leftIndex--] = sortedMembers[i];
+    } else if (rightIndex < sortedMembers.length) {
+      // Even indices go right
+      result[rightIndex++] = sortedMembers[i];
+    } else if (leftIndex >= 0) {
+      // Fill remaining left positions
+      result[leftIndex--] = sortedMembers[i];
+    }
+  }
+
+  return result.filter(Boolean); // Remove any undefined slots
+}
+
 // Consolidated server-side data fetching queries
 export const queries = {
   siteSettings: `*[_type == "siteSettings"][0] {
@@ -622,14 +660,8 @@ export async function getTeamPageData() {
       // Use selected members from page settings
       teamMembers = teamPage?.listViewSettings?.selectedMembers || [];
     }
-
-    // Sort by listOrder, then by name
-    teamMembers = teamMembers.sort((a: any, b: any) => {
-      if (a.listOrder !== b.listOrder) {
-        return (a.listOrder || 0) - (b.listOrder || 0);
-      }
-      return (a.name || "").localeCompare(b.name || "");
-    });
+    // Apply center-out placement algorithm
+    teamMembers = reorderTeamMembersFromCenter(teamMembers);
 
     // Transform team member image URLs
     const transformedTeamMembers =

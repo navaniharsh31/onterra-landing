@@ -34,6 +34,13 @@ export function TeamListSection({
     return null;
   }
 
+  // Calculate the center member index for initial carousel position
+  const centerMemberIndex = Math.floor(teamMembers.length / 2);
+
+  // Calculate start index to center the carousel on the center member
+  // For 3 visible cards, we want the center member to be in the middle card
+  const startIndex = Math.max(0, centerMemberIndex - 1);
+
   const handleViewDetails = (member: any) => {
     setSelectedMember(member);
     setIsDetailOpen(true);
@@ -62,6 +69,7 @@ export function TeamListSection({
             loop: true,
             dragFree: true,
             containScroll: "trimSnaps",
+            startIndex: startIndex,
           }}
           className="w-full overflow-visible"
         >
