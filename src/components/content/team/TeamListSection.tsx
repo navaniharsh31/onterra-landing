@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { TeamMemberListItem } from "./TeamMemberListItem";
 import { TeamMemberDetailModal } from "./TeamMemberDetailModal";
 import {
@@ -28,6 +29,7 @@ export function TeamListSection({
 }: TeamListSectionProps) {
   const [selectedMember, setSelectedMember] = useState<any | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   // Return null if no team members
   if (!teamMembers || teamMembers.length === 0) {
@@ -37,9 +39,10 @@ export function TeamListSection({
   // Calculate the center member index for initial carousel position
   const centerMemberIndex = Math.floor(teamMembers.length / 2);
 
-  // Calculate start index to center the carousel on the center member
-  // For 3 visible cards, we want the center member to be in the middle card
-  const startIndex = Math.max(0, centerMemberIndex - 1);
+  // Calculate responsive start index based on screen size
+  const startIndex = isMobile
+    ? centerMemberIndex // Mobile: start directly at center member (Amar shows first)
+    : Math.max(0, centerMemberIndex - 1); // Desktop: offset by -1 so center member appears in middle position
 
   const handleViewDetails = (member: any) => {
     setSelectedMember(member);
@@ -91,8 +94,8 @@ export function TeamListSection({
           </CarouselContent>
 
           {/* Navigation Arrows */}
-          <CarouselPrevious className="absolute left-2 sm:-left-12 top-1/2 -translate-y-1/2 bg-navy-600 hover:bg-navy-700 text-white border-navy-600 hover:border-navy-700 shadow-lg size-8 sm:size-10" />
-          <CarouselNext className="absolute right-2 sm:-right-12 top-1/2 -translate-y-1/2 bg-navy-600 hover:bg-navy-700 text-white border-navy-600 hover:border-navy-700 shadow-lg size-8 sm:size-10" />
+          <CarouselPrevious className="absolute left-2 sm:-left-12 top-1/2 -translate-y-1/2 bg-navy-600 hover:bg-navy-700 hover:scale-105 active:scale-95 active:bg-navy-800 text-white hover:text-white active:text-white border-navy-600 hover:border-navy-700 active:border-navy-800 shadow-lg hover:shadow-xl transition-all duration-150 ease-in-out size-8 sm:size-10 [&>svg]:text-white [&>svg]:hover:text-white [&>svg]:active:text-white" />
+          <CarouselNext className="absolute right-2 sm:-right-12 top-1/2 -translate-y-1/2 bg-navy-600 hover:bg-navy-700 hover:scale-105 active:scale-95 active:bg-navy-800 text-white hover:text-white active:text-white border-navy-600 hover:border-navy-700 active:border-navy-800 shadow-lg hover:shadow-xl transition-all duration-150 ease-in-out size-8 sm:size-10 [&>svg]:text-white [&>svg]:hover:text-white [&>svg]:active:text-white" />
         </Carousel>
       </div>
 

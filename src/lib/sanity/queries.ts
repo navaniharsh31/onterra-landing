@@ -1,11 +1,9 @@
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
-// Utility function for center-out team member placement
 function reorderTeamMembersFromCenter(members: any[]): any[] {
   if (members.length <= 1) return members;
 
-  // First sort by listOrder, then by name (original sorting logic)
   const sortedMembers = members.sort((a: any, b: any) => {
     if (a.listOrder !== b.listOrder) {
       return (a.listOrder || 0) - (b.listOrder || 0);
@@ -16,30 +14,24 @@ function reorderTeamMembersFromCenter(members: any[]): any[] {
   const result = new Array(sortedMembers.length);
   const centerIndex = Math.floor(sortedMembers.length / 2);
 
-  // Place first member (highest priority) in center
   result[centerIndex] = sortedMembers[0];
 
   let leftIndex = centerIndex - 1;
   let rightIndex = centerIndex + 1;
 
-  // Alternate placement left/right from center
   for (let i = 1; i < sortedMembers.length; i++) {
     if (i % 2 === 1 && leftIndex >= 0) {
-      // Odd indices go left
       result[leftIndex--] = sortedMembers[i];
     } else if (rightIndex < sortedMembers.length) {
-      // Even indices go right
       result[rightIndex++] = sortedMembers[i];
     } else if (leftIndex >= 0) {
-      // Fill remaining left positions
       result[leftIndex--] = sortedMembers[i];
     }
   }
 
-  return result.filter(Boolean); // Remove any undefined slots
+  return result.filter(Boolean);
 }
 
-// Consolidated server-side data fetching queries
 export const queries = {
   siteSettings: `*[_type == "siteSettings"][0] {
     title,
@@ -415,7 +407,6 @@ export const queries = {
   }`,
 };
 
-// Homepage data fetching
 export async function getPageData() {
   try {
     const [
@@ -509,7 +500,6 @@ export async function getPageData() {
   }
 }
 
-// Layout data fetching (for Header/Footer)
 export async function getLayoutData() {
   try {
     const [siteSettings, navigation, contactDetails, socialLinks] =
@@ -581,7 +571,6 @@ export async function getLayoutData() {
   }
 }
 
-// Overview page data fetching
 export async function getOverviewPageData() {
   try {
     const overviewPage = await client.fetch(queries.overviewPage);
@@ -613,7 +602,6 @@ export async function getOverviewPageData() {
   }
 }
 
-// Approach page data fetching
 export async function getApproachPageData() {
   try {
     const approachPage = await client.fetch(queries.approachPage);
@@ -645,7 +633,6 @@ export async function getApproachPageData() {
   }
 }
 
-// Team page data fetching
 export async function getTeamPageData() {
   try {
     const teamPage = await client.fetch(queries.teamPage);
@@ -691,7 +678,6 @@ export async function getTeamPageData() {
   }
 }
 
-// Contact page data fetching
 export async function getContactPageData() {
   try {
     const contactPage = await client.fetch(queries.contactPage);
@@ -707,7 +693,6 @@ export async function getContactPageData() {
   }
 }
 
-// Legal page data fetching
 export async function getLegalPageData(type: string) {
   try {
     const legalPage = await client.fetch(queries.legalPage, { type });
@@ -723,7 +708,6 @@ export async function getLegalPageData(type: string) {
   }
 }
 
-// PDF data fetching
 export async function getInsightPdfs() {
   try {
     const pdfs = await client.fetch(queries.insightPdf);
