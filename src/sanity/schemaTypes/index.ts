@@ -18,6 +18,7 @@ import { contactPage } from "./content/contactPage";
 import { homeIntroSection } from "./content/homeIntroSection";
 import { legalPage } from "./content/legalPage";
 import { insightPdf } from "./content/insightPdf";
+import { insightsPage } from "./content/insightsPage";
 
 // Shared Components
 import { ctaButton } from "./shared/ctaButton";
@@ -46,6 +47,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homeIntroSection,
     legalPage,
     insightPdf,
+    insightsPage,
 
     // Shared Components
     ctaButton,

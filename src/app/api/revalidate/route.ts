@@ -67,9 +67,20 @@ export async function POST(request: NextRequest) {
         break;
 
       case "insightPdf":
-        // Revalidate navigation and any pages that show PDFs
+        // Revalidate insights listing and individual pages
+        revalidatePath("/insights");
+        if (slug) {
+          revalidatePath(`/insights/${slug}`);
+        }
         revalidatePath("/", "layout");
+        revalidateTag("insights-data");
         revalidateTag("pdf-data");
+        break;
+
+      case "insightsPage":
+        // Revalidate insights page settings
+        revalidatePath("/insights");
+        revalidateTag("insights-data");
         break;
 
       default:

@@ -388,15 +388,44 @@ export const queries = {
   insightPdf: `*[_type == "insightPdf" && isActive == true] | order(publishedDate desc) {
     _id,
     title,
-    description,
-    pdfFile {
-      asset->{
-        url,
-        originalFilename,
-        size,
-        _id
-      }
+    slug,
+    shortDescription,
+    content,
+    publishedDate,
+    isActive,
+    seo {
+      metaTitle,
+      metaDescription,
+      keywords
+    }
+  }`,
+
+  insightsPage: `*[_type == "insightsPage"][0] {
+    title,
+    hero {
+      title,
+      description
     },
+    formSettings {
+      formTitle,
+      formDescription,
+      successMessage,
+      errorMessage
+    },
+    seo {
+      metaTitle,
+      metaDescription,
+      keywords,
+      canonicalUrl
+    }
+  }`,
+
+  insightBySlug: `*[_type == "insightPdf" && slug.current == $slug && isActive == true][0] {
+    _id,
+    title,
+    slug,
+    shortDescription,
+    content,
     publishedDate,
     isActive,
     seo {
@@ -719,6 +748,59 @@ export async function getInsightPdfs() {
     console.error("Error fetching PDF data:", error);
     return {
       pdfs: [],
+    };
+  }
+}
+
+export async function getInsightsPageData() {
+  try {
+    const [insightsPage, pdfs] = await Promise.all([
+      client.fetch(
+        queries.insightsPage,
+        {},
+        {
+          next: { tags: ["insights-data"] },
+        }
+      ),
+      client.fetch(
+        queries.insightPdf,
+        {},
+        {
+          next: { tags: ["insights-data"] },
+        }
+      ),
+    ]);
+
+    return {
+      insightsPage: insightsPage || null,
+      pdfs: pdfs || [],
+    };
+  } catch (error) {
+    console.error("Error fetching insights page data:", error);
+    return {
+      insightsPage: null,
+      pdfs: [],
+    };
+  }
+}
+
+export async function getInsightBySlug(slug: string) {
+  try {
+    const insight = await client.fetch(
+      queries.insightBySlug,
+      { slug },
+      {
+        next: { tags: ["insights-data"] },
+      }
+    );
+
+    return {
+      insight: insight || null,
+    };
+  } catch (error) {
+    console.error("Error fetching insight by slug:", error);
+    return {
+      insight: null,
     };
   }
 }
