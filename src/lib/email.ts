@@ -245,9 +245,10 @@ export async function sendContactEmail(
 
 interface InsightRequestFormData {
   name: string;
+  organisation: string;
+  designation: string;
   email: string;
-  phone?: string;
-  profession: string;
+  city: string;
   insightTitle: string;
   insightId: string;
 }
@@ -376,24 +377,23 @@ function generateInsightRequestEmailHTML(
         </div>
 
         <div class="field">
+          <div class="field-label">Organisation</div>
+          <div class="field-value">${data.organisation}</div>
+        </div>
+
+        <div class="field">
+          <div class="field-label">Designation</div>
+          <div class="field-value">${data.designation}</div>
+        </div>
+
+        <div class="field">
           <div class="field-label">Email</div>
           <div class="field-value">${data.email}</div>
         </div>
 
-        ${
-          data.phone
-            ? `
         <div class="field">
-          <div class="field-label">Phone</div>
-          <div class="field-value">${data.phone}</div>
-        </div>
-        `
-            : ""
-        }
-
-        <div class="field">
-          <div class="field-label">Profession</div>
-          <div class="field-value">${data.profession}</div>
+          <div class="field-label">City</div>
+          <div class="field-value">${data.city}</div>
         </div>
 
         <div class="footer">
@@ -426,9 +426,10 @@ New Insight Report Request - Onterra Capital
 Requested Report: ${data.insightTitle}
 
 Name: ${data.name}
+Organisation: ${data.organisation}
+Designation: ${data.designation}
 Email: ${data.email}
-${data.phone ? `Phone: ${data.phone}` : ""}
-Profession: ${data.profession}
+City: ${data.city}
 
 Submitted on: ${new Date().toLocaleString()}
 

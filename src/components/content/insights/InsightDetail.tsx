@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 import { PortableText } from "@portabletext/react";
-import { Calendar, ArrowLeft } from "lucide-react";
-import Link from "next/link";
 import { InsightRequestForm } from "./InsightRequestForm";
 
 interface InsightDetailProps {
@@ -11,7 +9,6 @@ interface InsightDetailProps {
     _id: string;
     title: string;
     content: any[];
-    publishedDate: string;
   };
   formSettings?: {
     formTitle?: string;
@@ -51,15 +48,6 @@ const portableTextComponents = {
 };
 
 export function InsightDetail({ insight, formSettings }: InsightDetailProps) {
-  const formattedDate = new Date(insight.publishedDate).toLocaleDateString(
-    "en-US",
-    {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    }
-  );
-
   return (
     <section className="relative py-16 sm:py-20 lg:py-32 overflow-x-hidden">
       {/* Background */}
@@ -76,47 +64,14 @@ export function InsightDetail({ insight, formSettings }: InsightDetailProps) {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Back link */}
-        <motion.div
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mb-10"
-        >
-          <Link
-            href="/insights"
-            className="inline-flex items-center space-x-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors duration-200"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span>Back to Insights</span>
-          </Link>
-        </motion.div>
-
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Content — takes 3 of 5 columns */}
+          {/* Content — 3 of 5 columns */}
           <motion.div
             className="lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Date */}
-            <div className="flex items-center space-x-2 mb-4">
-              <Calendar className="h-4 w-4 text-slate-400" />
-              <span className="text-sm text-slate-500 font-medium">
-                {formattedDate}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h1 className="text-3xl sm:text-4xl font-light tracking-tight text-slate-900 mb-6">
-              {insight.title}
-            </h1>
-
-            {/* Divider */}
-            <div className="w-16 h-px bg-gradient-to-r from-navy-500/40 to-transparent mb-8" />
-
-            {/* Portable Text Content */}
             <div className="prose prose-slate max-w-none">
               <PortableText
                 value={insight.content}
@@ -125,7 +80,7 @@ export function InsightDetail({ insight, formSettings }: InsightDetailProps) {
             </div>
           </motion.div>
 
-          {/* Form — takes 2 of 5 columns, sticky on desktop */}
+          {/* Form — 2 of 5 columns, sticky */}
           <div className="lg:col-span-2">
             <div className="lg:sticky lg:top-28">
               <InsightRequestForm

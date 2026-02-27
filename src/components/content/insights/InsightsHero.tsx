@@ -7,22 +7,25 @@ interface InsightsHeroProps {
     title?: string;
     description?: string;
   };
+  /** Reserved for future use — breadcrumb not shown yet */
+  breadcrumb?: { label: string; href: string };
 }
 
 export function InsightsHero({ heroData }: InsightsHeroProps) {
+  // breadcrumb prop accepted for API compatibility; not rendered yet
   const title = heroData?.title || "Insights";
   const description =
     heroData?.description ||
     "Our running view of the market — data-led perspectives on residential and commercial real estate, buyer behaviour, capital flows, and our outlook for the future.";
 
   return (
-    <section className="relative py-24 sm:py-32 lg:py-40 overflow-x-hidden">
+    <section className="relative py-20 sm:py-24 lg:py-28 overflow-x-hidden flex items-center min-h-[200px] sm:min-h-[220px] lg:min-h-[240px]">
       {/* Background — matches ContactHero */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 30 }}

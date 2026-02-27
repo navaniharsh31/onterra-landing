@@ -5,9 +5,10 @@ import { urlFor } from "@/sanity/lib/image";
 
 interface InsightRequestFormData {
   name: string;
+  organisation: string;
+  designation: string;
   email: string;
-  phone?: string;
-  profession: string;
+  city: string;
   insightTitle: string;
   insightId: string;
 }
@@ -15,7 +16,7 @@ interface InsightRequestFormData {
 export async function POST(request: NextRequest) {
   try {
     const body: InsightRequestFormData = await request.json();
-    const { name, email, phone, profession, insightTitle, insightId } = body;
+    const { name, organisation, designation, email, city, insightTitle, insightId } = body;
 
     // Fetch logo data from Sanity
     const siteSettings = await client.fetch(`*[_type == "siteSettings"][0] {
@@ -36,9 +37,9 @@ export async function POST(request: NextRequest) {
       : undefined;
 
     // Validate required fields
-    if (!name || !email || !profession || !insightTitle) {
+    if (!name || !organisation || !designation || !email || !city || !insightTitle) {
       return NextResponse.json(
-        { error: "Name, email, profession, and insight title are required" },
+        { error: "All fields are required" },
         { status: 400 }
       );
     }
@@ -52,47 +53,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate name length
-    if (name.trim().length < 2) {
-      return NextResponse.json(
-        { error: "Name must be at least 2 characters" },
-        { status: 400 }
-      );
-    }
-
     // Send email notification to Onterra team
     await sendInsightRequestEmail(
-      {
-        name,
-        email,
-        phone,
-        profession,
-        insightTitle,
-        insightId,
-      },
+      { name, organisation, designation, email, city, insightTitle, insightId },
       logoData
     );
 
     return NextResponse.json(
       {
         success: true,
-        message:
-          "Thank you! Our team will share the report with you shortly.",
+        message: "Thank you! Our team will share the report with you shortly.",
       },
       { status: 200 }
     );
   } catch (_) {
     return NextResponse.json(
       {
-        error:
-          "Sorry, there was an error processing your request. Please try again or contact us directly.",
+        error: "Sorry, there was an error processing your request. Please try again or contact us directly.",
       },
       { status: 500 }
     );
   }
 }
 
-// Handle preflight requests
 export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,

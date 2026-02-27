@@ -22,16 +22,18 @@ interface InsightRequestFormProps {
 
 interface FormData {
   name: string;
+  organisation: string;
+  designation: string;
   email: string;
-  phone: string;
-  profession: string;
+  city: string;
 }
 
 interface FormErrors {
   name?: string;
+  organisation?: string;
+  designation?: string;
   email?: string;
-  phone?: string;
-  profession?: string;
+  city?: string;
 }
 
 export function InsightRequestForm({
@@ -42,9 +44,10 @@ export function InsightRequestForm({
 }: InsightRequestFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
+    organisation: "",
+    designation: "",
     email: "",
-    phone: "",
-    profession: "",
+    city: "",
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -62,23 +65,22 @@ export function InsightRequestForm({
       newErrors.name = "Name must be at least 2 characters";
     }
 
+    if (!formData.organisation.trim()) {
+      newErrors.organisation = "Organisation is required";
+    }
+
+    if (!formData.designation.trim()) {
+      newErrors.designation = "Designation is required";
+    }
+
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
 
-    if (
-      formData.phone &&
-      !/^[\+]?[1-9][\d]{0,15}$/.test(formData.phone.replace(/\s/g, ""))
-    ) {
-      newErrors.phone = "Please enter a valid phone number";
-    }
-
-    if (!formData.profession.trim()) {
-      newErrors.profession = "Profession is required";
-    } else if (formData.profession.trim().length < 2) {
-      newErrors.profession = "Profession must be at least 2 characters";
+    if (!formData.city.trim()) {
+      newErrors.city = "City is required";
     }
 
     setErrors(newErrors);
@@ -112,7 +114,7 @@ export function InsightRequestForm({
 
       if (response.ok) {
         setSubmitStatus("success");
-        setFormData({ name: "", email: "", phone: "", profession: "" });
+        setFormData({ name: "", organisation: "", designation: "", email: "", city: "" });
       } else {
         setSubmitStatus("error");
       }
@@ -197,13 +199,61 @@ export function InsightRequestForm({
               )}
             </div>
 
+            {/* Organisation */}
+            <div className="space-y-2">
+              <Label
+                htmlFor="insight-organisation"
+                className="text-sm font-medium text-slate-700"
+              >
+                Organisation *
+              </Label>
+              <Input
+                id="insight-organisation"
+                type="text"
+                placeholder="Your company or organisation"
+                value={formData.organisation}
+                onChange={(e) => handleInputChange("organisation", e.target.value)}
+                className={cn(
+                  "rounded-xs",
+                  errors.organisation && "border-red-500 focus:border-red-500"
+                )}
+              />
+              {errors.organisation && (
+                <p className="text-sm text-red-600">{errors.organisation}</p>
+              )}
+            </div>
+
+            {/* Designation */}
+            <div className="space-y-2">
+              <Label
+                htmlFor="insight-designation"
+                className="text-sm font-medium text-slate-700"
+              >
+                Designation *
+              </Label>
+              <Input
+                id="insight-designation"
+                type="text"
+                placeholder="e.g. Director, VP — Investments, Analyst"
+                value={formData.designation}
+                onChange={(e) => handleInputChange("designation", e.target.value)}
+                className={cn(
+                  "rounded-xs",
+                  errors.designation && "border-red-500 focus:border-red-500"
+                )}
+              />
+              {errors.designation && (
+                <p className="text-sm text-red-600">{errors.designation}</p>
+              )}
+            </div>
+
             {/* Email */}
             <div className="space-y-2">
               <Label
                 htmlFor="insight-email"
                 className="text-sm font-medium text-slate-700"
               >
-                Email *
+                Email ID *
               </Label>
               <Input
                 id="insight-email"
@@ -221,53 +271,27 @@ export function InsightRequestForm({
               )}
             </div>
 
-            {/* Phone */}
+            {/* City */}
             <div className="space-y-2">
               <Label
-                htmlFor="insight-phone"
+                htmlFor="insight-city"
                 className="text-sm font-medium text-slate-700"
               >
-                Phone
+                City *
               </Label>
               <Input
-                id="insight-phone"
-                type="tel"
-                placeholder="+91 98765 43210"
-                value={formData.phone}
-                onChange={(e) => handleInputChange("phone", e.target.value)}
-                className={cn(
-                  "rounded-xs",
-                  errors.phone && "border-red-500 focus:border-red-500"
-                )}
-              />
-              {errors.phone && (
-                <p className="text-sm text-red-600">{errors.phone}</p>
-              )}
-            </div>
-
-            {/* Profession */}
-            <div className="space-y-2">
-              <Label
-                htmlFor="insight-profession"
-                className="text-sm font-medium text-slate-700"
-              >
-                Profession *
-              </Label>
-              <Input
-                id="insight-profession"
+                id="insight-city"
                 type="text"
-                placeholder="e.g. Real Estate Developer, Investor, Analyst"
-                value={formData.profession}
-                onChange={(e) =>
-                  handleInputChange("profession", e.target.value)
-                }
+                placeholder="e.g. Mumbai, Dubai, Singapore"
+                value={formData.city}
+                onChange={(e) => handleInputChange("city", e.target.value)}
                 className={cn(
                   "rounded-xs",
-                  errors.profession && "border-red-500 focus:border-red-500"
+                  errors.city && "border-red-500 focus:border-red-500"
                 )}
               />
-              {errors.profession && (
-                <p className="text-sm text-red-600">{errors.profession}</p>
+              {errors.city && (
+                <p className="text-sm text-red-600">{errors.city}</p>
               )}
             </div>
 

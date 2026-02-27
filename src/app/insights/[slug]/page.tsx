@@ -67,23 +67,26 @@ export default async function InsightDetailPage({
     notFound();
   }
 
+  const formattedDate = new Date(insight.publishedDate).toLocaleDateString(
+    "en-US",
+    { year: "numeric", month: "long" }
+  );
+
   return (
     <div className="min-h-screen overflow-x-hidden">
-      {/* Hero — shows the insight title */}
+      {/* Hero — title + date, with breadcrumb back to /insights */}
       <InsightsHero
         heroData={{
           title: insight.title,
-          description: new Date(insight.publishedDate).toLocaleDateString(
-            "en-US",
-            {
-              year: "numeric",
-              month: "long",
-            }
-          ),
+          description: formattedDate,
+        }}
+        breadcrumb={{
+          label: "Insights",
+          href: "/insights",
         }}
       />
 
-      {/* Detail Content + Form */}
+      {/* Content + Form */}
       <InsightDetail
         insight={insight}
         formSettings={insightsPage?.formSettings}
