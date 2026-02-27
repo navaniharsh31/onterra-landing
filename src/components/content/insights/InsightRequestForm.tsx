@@ -186,7 +186,6 @@ export function InsightRequestForm({
               <Input
                 id="insight-name"
                 type="text"
-                placeholder="Your full name"
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
                 className={cn(
@@ -210,7 +209,6 @@ export function InsightRequestForm({
               <Input
                 id="insight-organisation"
                 type="text"
-                placeholder="Your company or organisation"
                 value={formData.organisation}
                 onChange={(e) => handleInputChange("organisation", e.target.value)}
                 className={cn(
@@ -234,7 +232,6 @@ export function InsightRequestForm({
               <Input
                 id="insight-designation"
                 type="text"
-                placeholder="e.g. Director, VP — Investments, Analyst"
                 value={formData.designation}
                 onChange={(e) => handleInputChange("designation", e.target.value)}
                 className={cn(
@@ -258,7 +255,6 @@ export function InsightRequestForm({
               <Input
                 id="insight-email"
                 type="email"
-                placeholder="your@email.com"
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
                 className={cn(
@@ -281,8 +277,7 @@ export function InsightRequestForm({
               </Label>
               <Input
                 id="insight-city"
-                type="text"
-                placeholder="e.g. Mumbai, Dubai, Singapore"
+                type="text" 
                 value={formData.city}
                 onChange={(e) => handleInputChange("city", e.target.value)}
                 className={cn(
