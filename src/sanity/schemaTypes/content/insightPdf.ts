@@ -61,6 +61,18 @@ export const insightPdf = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "pdfFile",
+      title: "PDF File",
+      type: "file",
+      options: {
+        accept: ".pdf",
+        storeOriginalFilename: true,
+      },
+      description:
+        "Upload the PDF report. This will be automatically emailed to users who request it. The original filename is preserved.",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "publishedDate",
       title: "Published Date",
       type: "date",
@@ -86,17 +98,20 @@ export const insightPdf = defineType({
     select: {
       title: "title",
       subtitle: "publishedDate",
+      filename: "pdfFile.asset.originalFilename",
     },
     prepare(selection) {
-      const { title, subtitle } = selection;
+      const { title, subtitle, filename } = selection;
+      const date = subtitle
+        ? new Date(subtitle).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+          })
+        : "No date set";
+      const pdfInfo = filename ? ` · 📄 ${filename}` : "";
       return {
         title: title || "Untitled Insight",
-        subtitle: subtitle
-          ? new Date(subtitle).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-            })
-          : "No date set",
+        subtitle: `${date}${pdfInfo}`,
       };
     },
   },

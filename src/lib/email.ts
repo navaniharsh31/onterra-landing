@@ -470,6 +470,176 @@ export async function sendInsightRequestEmail(
   }
 }
 
+// =========================================
+// Send PDF Report to User
+// =========================================
+
+interface InsightPdfUserData {
+  name: string;
+  email: string;
+  insightTitle: string;
+}
+
+interface PdfAttachment {
+  buffer: Buffer;
+  filename: string;
+}
+
+function generateInsightPdfUserEmailHTML(
+  data: InsightPdfUserData,
+  pdfFilename: string,
+  logoData?: LogoData
+): string {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Your Requested Report - Onterra Capital</title>
+      <style>
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #f8f9fa;
+        }
+        .container {
+          background: white;
+          border-radius: 8px;
+          padding: 30px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+          text-align: center;
+          margin-bottom: 30px;
+          padding-bottom: 20px;
+          border-bottom: 2px solid #e9ecef;
+        }
+        .logo {
+          font-size: 28px;
+          font-weight: bold;
+          color: #1e40af;
+          margin-bottom: 10px;
+        }
+        .logo img {
+          max-height: 50px;
+          width: auto;
+        }
+        .message {
+          font-size: 16px;
+          line-height: 1.8;
+          margin-bottom: 30px;
+        }
+        .report-box {
+          background: #f0f2ff;
+          border: 1px solid #c3ccff;
+          border-radius: 6px;
+          padding: 20px;
+          margin: 25px 0;
+          text-align: center;
+        }
+        .report-box-label {
+          font-size: 12px;
+          font-weight: 600;
+          color: #001670;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 8px;
+        }
+        .report-box-title {
+          font-size: 18px;
+          font-weight: 600;
+          color: #001670;
+          margin-bottom: 8px;
+        }
+        .report-box-file {
+          font-size: 14px;
+          color: #4b5563;
+        }
+        .footer {
+          border-top: 1px solid #e9ecef;
+          padding-top: 20px;
+          color: #6b7280;
+          font-size: 14px;
+          text-align: center;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            ${logoData ? `<img src="${logoData.src}" alt="${logoData.alt}" />` : "Onterra Capital"}
+          </div>
+        </div>
+
+        <div class="message">
+          <p>Dear ${data.name},</p>
+
+          <p>Thank you for your interest in our insights. Please find the requested report attached to this email.</p>
+
+          <div class="report-box">
+            <div class="report-box-label">Attached Report</div>
+            <div class="report-box-title">${data.insightTitle}</div>
+            <div class="report-box-file">📄 ${pdfFilename}</div>
+          </div>
+
+          <p>If you have any questions about this report or would like to discuss further, please don't hesitate to reach out.</p>
+
+          <p>Warm regards,<br>
+          The Onterra Capital Team</p>
+        </div>
+
+        <div class="footer">
+          <p><strong>Onterra Capital</strong><br>
+          Real Estate Investment Solutions</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+export async function sendInsightPdfToUser(
+  data: InsightPdfUserData,
+  pdf: PdfAttachment,
+  logoData?: LogoData
+): Promise<void> {
+  try {
+    const transporter = createTransporter();
+
+    const fromEmail = process.env.FROM_EMAIL || process.env.SMTP_USER;
+
+    if (!fromEmail) {
+      throw new Error("FROM_EMAIL environment variable is required");
+    }
+
+    const mailOptions = {
+      from: `"Onterra Capital" <${fromEmail}>`,
+      to: data.email,
+      subject: `${data.insightTitle} — Onterra Capital`,
+      text: `Dear ${data.name},\n\nThank you for your interest in our insights. Please find the requested report "${data.insightTitle}" attached to this email.\n\nWarm regards,\nThe Onterra Capital Team`,
+      html: generateInsightPdfUserEmailHTML(data, pdf.filename, logoData),
+      attachments: [
+        {
+          filename: pdf.filename,
+          content: pdf.buffer,
+          contentType: "application/pdf",
+        },
+      ],
+    };
+
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    // Don't throw — we don't want a failed user email to break the team notification
+    console.error("Failed to send PDF to user:", error);
+  }
+}
+
 // Send auto-reply email to user
 export async function sendAutoReplyEmail(
   userEmail: string,

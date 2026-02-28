@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendInsightRequestEmail } from "@/lib/email";
+import { sendInsightRequestEmail, sendInsightPdfToUser } from "@/lib/email";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -18,24 +18,6 @@ export async function POST(request: NextRequest) {
     const body: InsightRequestFormData = await request.json();
     const { name, organisation, designation, email, city, insightTitle, insightId } = body;
 
-    // Fetch logo data from Sanity
-    const siteSettings = await client.fetch(`*[_type == "siteSettings"][0] {
-      logo {
-        asset->{
-          url
-        },
-        alt
-      }
-    }`);
-
-    // Prepare logo data for email
-    const logoData = siteSettings?.logo?.asset?.url
-      ? {
-          src: urlFor(siteSettings.logo).url(),
-          alt: siteSettings.logo.alt || "Onterra Capital",
-        }
-      : undefined;
-
     // Validate required fields
     if (!name || !organisation || !designation || !email || !city || !insightTitle) {
       return NextResponse.json(
@@ -53,16 +35,84 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send email notification to Onterra team
-    await sendInsightRequestEmail(
-      { name, organisation, designation, email, city, insightTitle, insightId },
-      logoData
-    );
+    // Fetch logo + PDF data from Sanity in parallel
+    const [siteSettings, insightData] = await Promise.all([
+      client.fetch(`*[_type == "siteSettings"][0] {
+        logo {
+          asset->{
+            url
+          },
+          alt
+        }
+      }`),
+      insightId
+        ? client.fetch(
+            `*[_type == "insightPdf" && _id == $id][0]{
+              title,
+              pdfFile { asset->{ url, originalFilename } }
+            }`,
+            { id: insightId }
+          )
+        : null,
+    ]);
+
+    // Prepare logo data for email
+    const logoData = siteSettings?.logo?.asset?.url
+      ? {
+          src: urlFor(siteSettings.logo).url(),
+          alt: siteSettings.logo.alt || "Onterra Capital",
+        }
+      : undefined;
+
+    // Download the PDF buffer from Sanity CDN
+    let pdfBuffer: Buffer | null = null;
+    let pdfFilename: string | null = null;
+
+    if (insightData?.pdfFile?.asset?.url) {
+      const pdfUrl = insightData.pdfFile.asset.url;
+      // Use original filename if available, otherwise use insight title
+      pdfFilename =
+        insightData.pdfFile.asset.originalFilename ||
+        `${insightData.title || insightTitle}.pdf`;
+
+      // Ensure filename ends with .pdf
+      if (pdfFilename && !pdfFilename.toLowerCase().endsWith(".pdf")) {
+        pdfFilename += ".pdf";
+      }
+
+      const pdfResponse = await fetch(pdfUrl);
+      if (pdfResponse.ok) {
+        const arrayBuffer = await pdfResponse.arrayBuffer();
+        pdfBuffer = Buffer.from(arrayBuffer);
+      }
+    }
+
+    // Send both emails in parallel:
+    // 1. Notification to Onterra team (always)
+    // 2. PDF delivery to user (if PDF available)
+    const emailPromises: Promise<void>[] = [
+      sendInsightRequestEmail(
+        { name, organisation, designation, email, city, insightTitle, insightId },
+        logoData
+      ),
+    ];
+
+    if (pdfBuffer && pdfFilename) {
+      emailPromises.push(
+        sendInsightPdfToUser(
+          { name, email, insightTitle },
+          { buffer: pdfBuffer, filename: pdfFilename },
+          logoData
+        )
+      );
+    }
+
+    await Promise.all(emailPromises);
 
     return NextResponse.json(
       {
         success: true,
-        message: "Thank you! Our team will share the report with you shortly.",
+        message: "Thank you! The report has been sent to your email.",
       },
       { status: 200 }
     );

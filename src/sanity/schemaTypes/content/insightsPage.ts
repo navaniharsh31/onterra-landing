@@ -56,7 +56,7 @@ export const insightsPage = defineType({
           rows: 2,
           description: "Short description shown below the form title",
           initialValue:
-            "Fill in your details and our team will share the report with you shortly.",
+            "Fill in your details and the report will be sent to your email instantly.",
           validation: (Rule) => Rule.max(200),
         }),
         defineField({
@@ -65,7 +65,7 @@ export const insightsPage = defineType({
           type: "string",
           description: "Message shown after successful form submission",
           initialValue:
-            "Thank you! Our team will share the report with you shortly.",
+            "Thank you! The report has been sent to your email.",
           validation: (Rule) => Rule.max(200),
         }),
         defineField({

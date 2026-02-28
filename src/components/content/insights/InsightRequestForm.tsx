@@ -136,10 +136,10 @@ export function InsightRequestForm({
   const formTitle = formSettings?.formTitle || "Request This Report";
   const formDescription =
     formSettings?.formDescription ||
-    "Fill in your details and our team will share the report with you shortly.";
+    "Fill in your details and the report will be sent to your email instantly.";
   const successMessage =
     formSettings?.successMessage ||
-    "Thank you! Our team will share the report with you shortly.";
+    "Thank you! The report has been sent to your email.";
   const errorMessage =
     formSettings?.errorMessage ||
     "Something went wrong. Please try again or contact us directly.";
