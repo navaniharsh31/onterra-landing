@@ -234,7 +234,7 @@ export async function sendContactEmail(
     };
 
     await transporter.sendMail(mailOptions);
-  } catch (error) {
+  } catch {
     throw new Error("Failed to send email. Please try again later.");
   }
 }
@@ -465,7 +465,7 @@ export async function sendInsightRequestEmail(
     };
 
     await transporter.sendMail(mailOptions);
-  } catch (error) {
+  } catch {
     throw new Error("Failed to send email. Please try again later.");
   }
 }
@@ -596,7 +596,7 @@ function generateInsightPdfUserEmailHTML(
 
         <div class="footer">
           <p><strong>Onterra Capital</strong><br>
-          Real Estate Investment Solutions</p>
+          Real Estate Investment Management</p>
         </div>
       </div>
     </body>
@@ -669,7 +669,7 @@ The Onterra Capital Team
 
 ---
 Onterra Capital
-Real Estate Investment Solutions
+Real Estate Investment Management
       `.trim(),
       html: `
         <!DOCTYPE html>
@@ -740,7 +740,7 @@ Real Estate Investment Solutions
             
             <div class="footer">
               <p><strong>Onterra Capital</strong><br>
-              Real Estate Investment Solutions</p>
+              Real Estate Investment Management</p>
             </div>
           </div>
         </body>
@@ -749,7 +749,7 @@ Real Estate Investment Solutions
     };
 
     await transporter.sendMail(mailOptions);
-  } catch (error) {
+  } catch {
     // Don't throw error for auto-reply failures - we don't want to break the main flow
   }
 }
